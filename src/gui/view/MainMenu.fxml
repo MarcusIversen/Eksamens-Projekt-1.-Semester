@@ -26,10 +26,10 @@
         </TableView>
         <TableView fx:id="tvSongs" layoutX="485.0" layoutY="111.0" prefHeight="426.0" prefWidth="300.0">
             <columns>
-                <TableColumn fx:id="tcTitle" prefWidth="75.0" text="Title" />
-                <TableColumn fx:id="tcArtist" prefWidth="75.0" text="Artist" />
+                <TableColumn fx:id="tcStar" prefWidth="25.0" text="★" />
+                <TableColumn fx:id="tcTitle" prefWidth="125.0" text="Title" />
                 <TableColumn fx:id="tcCategory" prefWidth="75.0" text="Category" />
-                <TableColumn fx:id="tcTimeSongs" prefWidth="75.0" text="Time" />
+                <TableColumn fx:id="tcTimeSongs" prefWidth="75.0" text="Duration" />
             </columns>
         </TableView>
         <Button fx:id="btnEditPlaylist" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
@@ -37,36 +37,15 @@
         <Button fx:id="btnDeleteSongsOnPlaylist" layoutX="377.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
         <Button fx:id="btnUp" layoutX="235.0" layoutY="550.0" mnemonicParsing="false" text="▲" />
         <Button fx:id="btnDown" layoutX="290.0" layoutY="550.0" mnemonicParsing="false" text="▼" />
-        <Slider fx:id="sliderSound" layoutX="85.0" layoutY="56.0" prefHeight="14.0" prefWidth="98.0" />
         <Button fx:id="btnNewSong" layoutX="485.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="New.." />
         <Button fx:id="btnEditSong" layoutX="552.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteSong" layoutX="621.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
-        <Button fx:id="btnClose" layoutX="736.0" layoutY="550.0" mnemonicParsing="false" text="Close" />
-        <Label fx:id="labelPlayList" layoutX="20.0" layoutY="90.0" text="Category's" />
-        <Label fx:id="labelSongsOnPlayList" layoutX="235.0" layoutY="90.0" text="Movies on Category's123" />
-        <Label fx:id="labelSongs" layoutX="485.0" layoutY="90.0" text="Movies" />
+        <Button fx:id="btnClose" layoutX="736.0" layoutY="550.0" mnemonicParsing="false" onAction="#closeTheAppButton" text="Close" />
+        <Label fx:id="labelPlayList" layoutX="90.0" layoutY="90.0" text="Categories" />
+        <Label fx:id="labelSongsOnPlayList" layoutX="275.0" layoutY="90.0" text="Movies in Category" />
+        <Label fx:id="labelSongs" layoutX="485.0" layoutY="90.0" text="Movie" />
         <Button fx:id="btnLeftArrow" layoutX="442.0" layoutY="111.0" mnemonicParsing="false" style="-fx-rotate: 90px;" text="▼" />
-        <Label fx:id="SoundOnOff" layoutX="62.0" layoutY="50.0" text="♫">
-            <font>
-                <Font size="21.0" />
-            </font>
-        </Label>
-        <Button fx:id="btnSongPlayer" layoutX="107.0" layoutY="17.0" mnemonicParsing="false" style="-fx-rotate: 270px; -fx-background-radius: 100;" text="▼">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Button>
-        <Button fx:id="btnNewPlaylist" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="New.." />
-        <Button fx:id="btnSongBack" layoutX="69.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="˂˂">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <Button fx:id="btnSongForward" layoutX="146.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-radius: 100; -fx-rotate: 180;" text="˂˂">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
+        <Button fx:id="btnNewPlaylist" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Add.." />
         <Label fx:id="labelFilter" layoutX="564.0" layoutY="13.0" text="Filter:">
             <font>
                 <Font name="System Bold" size="16.0" />
@@ -80,10 +59,5 @@
                 <TableColumn fx:id="tcSongsOnPlaylist" prefWidth="169" text="Movies" />
             </columns>
         </TableView>
-        <Label fx:id="LabelPlayerSong" layoutX="297.0" layoutY="40.0" text="(none) is playing">
-            <font>
-                <Font size="17.0" />
-            </font>
-        </Label>
     </children>
 </AnchorPane>
