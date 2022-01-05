@@ -1,6 +1,8 @@
 package gui.controller;
 
+import gui.model.MovieModel;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainMenuController {
 
@@ -75,6 +78,10 @@ public class MainMenuController {
     private TableColumn tcLastViewed;
 
     private Stage stage = new Stage();
+    private MovieModel movieModel = new MovieModel();
+
+    public MainMenuController() throws SQLException {
+    }
 
     public void closeTheAppButton() {
         Platform.exit();
@@ -124,6 +131,19 @@ public class MainMenuController {
 
     public void deleteCategory(){
 
+    }
+
+    /**
+     * Reloads the song table
+     */
+    public void reloadMovieTable() throws Exception {
+        try {
+            int index = tvMovies.getSelectionModel().getFocusedIndex();
+            this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
+            tvMovies.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

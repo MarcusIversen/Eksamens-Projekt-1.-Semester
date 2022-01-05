@@ -25,6 +25,7 @@ public class NewMovieController {
     private Button btnSaveSong;
 
     private MovieModel movieModel = new MovieModel();
+    private MainMenuController mainMenuController = new MainMenuController();
     private MediaPlayer mediaPlayer;
 
     public NewMovieController() throws SQLException {
@@ -39,14 +40,14 @@ public class NewMovieController {
     }
 
 
-     public void saveSongButton() {
+     public void saveSongButton() throws Exception {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();
 
      //todo add combobox
      movieModel.createMovie(title, rating, fileLink);
-     //mainMenuController.reloadSongTable();
+     mainMenuController.reloadMovieTable();
      Stage stage = (Stage) btnSaveSong.getScene().getWindow();
      stage.close();
      }
