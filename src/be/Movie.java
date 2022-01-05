@@ -4,11 +4,11 @@ public class Movie {
 
     private int id;
     private String name;
-    private double rating;
+    private String rating;
     private String fileLink;
     private String lastView;
 
-    public Movie(int id, String name, double rating, String fileLink, String lastView) {
+    public Movie(int id, String name, String rating, String fileLink, String lastView) {
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -32,11 +32,11 @@ public class Movie {
         this.name = name;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
