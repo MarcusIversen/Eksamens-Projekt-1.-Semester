@@ -13,6 +13,7 @@ import java.io.File;
 import java.sql.SQLException;
 
 public class AddMovieController {
+
     @FXML
     private TextField txtFieldTitle;
     @FXML
@@ -23,6 +24,8 @@ public class AddMovieController {
     private TextField txtFieldCategory;
     @FXML
     private Button btnSaveSong;
+    @FXML
+    public Button btnCancel;
 
     private MovieModel movieModel = new MovieModel();
     private MainMenuController mainMenuController = new MainMenuController();
@@ -34,13 +37,13 @@ public class AddMovieController {
     /**
      * Pressing the cancel button takes you back to the main window.
      */
-    public void cancelNewSongButton() {
-        Stage stage = (Stage) btnSaveSong.getScene().getWindow();
+    public void cancelNewMovieButton() {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
 
-     public void saveSongButton() throws Exception {
+     public void saveMovieButton() throws Exception {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();

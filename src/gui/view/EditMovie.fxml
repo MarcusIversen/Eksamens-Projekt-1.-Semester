@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.EditMovieController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
@@ -30,7 +29,7 @@
             <TextField fx:id="txtFieldTitle" layoutX="106.0" layoutY="50.0" prefHeight="26.0" prefWidth="329.0" />
             <TextField fx:id="txtFieldFile" layoutX="106.0" layoutY="122.0" prefHeight="26.0" prefWidth="329.0" />
             <Button fx:id="chooseFileButton" layoutX="465.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Choose" />
-            <Button fx:id="btnCancel" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" text="Cancel" />
+            <Button fx:id="btnCancel" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#cancelEditMovieButton" text="Cancel" />
             <Button fx:id="btnSaveSong" layoutX="511.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" text="Edit" />
             <Label fx:id="NewSongTitle" alignment="CENTER" layoutX="175.0" layoutY="14.0" prefHeight="18.0" prefWidth="249.0" text="Edit Movie" textAlignment="CENTER" wrapText="true">
                <font>
