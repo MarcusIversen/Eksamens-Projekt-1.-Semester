@@ -1,6 +1,7 @@
 package gui.controller;
 
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,38 +13,66 @@ import java.io.IOException;
 
 public class MainMenuController {
 
-    public Button btnEditCategory;
-    public Button btnDeleteCategory;
-    public Button btnDeleteMovieFromCategory;
-    public Button btnUp;
-    public Button btnDown;
-    public Button btnNewMovie;
-    public Button btnEditMovie;
-    public Button btnDeleteMovie;
-    public Button btnClose;
-    public Button btnLeftArrow;
-    public Button btnNewCategory;
-    public Button btnSearchBar;
+    @FXML
+    private Button btnEditCategory;
+    @FXML
+    private Button btnDeleteCategory;
+    @FXML
+    private Button btnDeleteMovieFromCategory;
+    @FXML
+    private Button btnUp;
+    @FXML
+    private Button btnDown;
+    @FXML
+    private Button btnNewMovie;
+    @FXML
+    private Button btnEditMovie;
+    @FXML
+    private Button btnDeleteMovie;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private Button btnLeftArrow;
+    @FXML
+    private Button btnNewCategory;
+    @FXML
+    private Button btnSearchBar;
 
-    public Label labelCategories;
-    public Label labelMoviesOnCategory;
-    public Label labelMovies;
-    public Label labelFilter;
+    @FXML
+    private Label labelCategories;
+    @FXML
+    private Label labelMoviesOnCategory;
+    @FXML
+    private Label labelMovies;
+    @FXML
+    private Label labelFilter;
 
-    public TextField tfSearchBar;
+    @FXML
+    private TextField tfSearchBar;
 
-    public TableView tvMovies;
-    public TableView tvCategories;
-    public TableView tvMoviesOnCategory;
+    @FXML
+    private TableView tvMovies;
+    @FXML
+    private TableView tvCategories;
+    @FXML
+    private TableView tvMoviesOnCategory;
 
-    public TableColumn tcMovieRatingOnCategory;
-    public TableColumn tcMoviesOnCategory;
-    public TableColumn tcName;
-    public TableColumn tcNumberOfMoviesOnCategory;
-    public TableColumn tcMovieRating;
-    public TableColumn tcTitle;
-    public TableColumn tcCategory;
-    public TableColumn tcLastViewed;
+    @FXML
+    private TableColumn tcMovieRatingOnCategory;
+    @FXML
+    private TableColumn tcMoviesOnCategory;
+    @FXML
+    private TableColumn tcName;
+    @FXML
+    private TableColumn tcNumberOfMoviesOnCategory;
+    @FXML
+    private TableColumn tcMovieRating;
+    @FXML
+    private TableColumn tcTitle;
+    @FXML
+    private TableColumn tcCategory;
+    @FXML
+    private TableColumn tcLastViewed;
 
     private Stage stage = new Stage();
 
