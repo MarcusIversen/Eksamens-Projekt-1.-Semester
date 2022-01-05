@@ -40,7 +40,7 @@ public class AddMovieController {
     }
 
 
-     public void saveSongButton() throws Exception {
+     public void saveMovieButton() throws Exception {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();
