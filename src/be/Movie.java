@@ -23,6 +23,13 @@ public class Movie {
 
     }
 
+    public Movie(int id, String name, String rating, String fileLink) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.fileLink = fileLink;
+    }
+
     public int getId() {
         return id;
     }
