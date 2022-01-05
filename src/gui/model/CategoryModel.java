@@ -26,7 +26,7 @@ public class CategoryModel {
         categoryManager.createCategory(name);
     }
 
-    public void deletePlaylist(int id) throws SQLException {
+    public void deleteCategory(int id) throws SQLException {
         categoryManager.deleteCategory(id);
     }
 
