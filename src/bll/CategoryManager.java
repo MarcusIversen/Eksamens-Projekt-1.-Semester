@@ -29,7 +29,18 @@ public class CategoryManager {
     }
 
     public void deleteCategory(int id) throws SQLException{
-        CategoryDAO.deleteCategory(id);
+        categoryDAO.deleteCategory(id);
     }
 
+    public void editCategory(Category category) throws SQLException{
+        categoryDAO.editCategory(category);
+    }
+
+    public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
+        categoryDAO.addMovieToCategory(categoryId, movieId);
+    }
+
+    public void removeFromCategory(int categoryId, int movieId) throws SQLException{
+        categoryDAO.removeFromCategory(categoryId, movieId);
+    }
 }
