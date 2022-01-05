@@ -12,7 +12,7 @@ public class MainMenuController {
     private Stage stage = new Stage();
 
     public void createNewMovieButton() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/AddMovie.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/NewMovie.fxml"));
         stage.setTitle("New Song");
         stage.setScene(new Scene(root));
         stage.show();
