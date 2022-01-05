@@ -25,7 +25,7 @@ public class MovieManager {
     }
 
     public Movie createMovie(String title, String rating, String fileLink, String lastView){
-        return movieDAO.createMovie();
+        return movieDAO.createMovie(title, rating, fileLink, lastView);
     }
 
     /**

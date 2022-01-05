@@ -12,6 +12,7 @@ import java.util.List;
 public class MovieDAO {
 
     private final DatabaseConnector databaseConnector;
+    private String oldSearchQuery = "";
 
     /**
      * Making a reference to the databaseConnector, so we can connect to the SQL Database.
@@ -23,14 +24,15 @@ public class MovieDAO {
     /**
      * Create part of C.R.U.D.
      * Method to create a movie in the database.
+     *
      * @param name
      * @param rating
-     * @param filelink
-     * @param lastview
+     * @param fileLink
+     * @param lastView
      * @return
      */
 
-    public Movie createMovie(String name, String rating, String filelink, String lastview) {
+    public Movie createMovie(String name, String rating, String fileLink, String lastView) {
 
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO movie(name, rating, filelink, lastview) values(?,?,?,?);";
@@ -38,8 +40,8 @@ public class MovieDAO {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, rating);
-                preparedStatement.setString(3, filelink);
-                preparedStatement.setString(4, lastview);
+                preparedStatement.setString(3, fileLink);
+                preparedStatement.setString(4, lastView);
                 preparedStatement.executeUpdate();
 
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -48,7 +50,7 @@ public class MovieDAO {
                     id = resultSet.getInt(1);
                 }
 
-                Movie movie = new Movie(id, name, rating, filelink, lastview);
+                Movie movie = new Movie(id, name, rating, fileLink, lastView);
                 return movie;
             }
         } catch (SQLException throwables) {
@@ -60,6 +62,7 @@ public class MovieDAO {
     /**
      * Read part of C.R.U.D.
      * Method to read alle the movies in the database.
+     *
      * @return
      */
 
@@ -98,6 +101,7 @@ public class MovieDAO {
     /**
      * Update part of C.R.U.D.
      * Method to update/edit movies in the database.
+     *
      * @param movie
      */
 
@@ -121,23 +125,24 @@ public class MovieDAO {
     /**
      * Delete part of C.R.U.D.
      * Method to delete movies from the database.
+     *
      * @param
      */
 
     public void deleteMovie(int id) {
-            try (Connection connection = databaseConnector.getConnection()) {
-                String sql = "DELETE FROM Movie WHERE Id =?;";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, id);
-                if (preparedStatement.executeUpdate() != 1) {
-                    throw new Exception("Could not delete movie");
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "DELETE FROM Movie WHERE Id =?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            if (preparedStatement.executeUpdate() != 1) {
+                throw new Exception("Could not delete movie");
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
     public static void main(String[] args) throws SQLException {
         MovieDAO movieDAO = new MovieDAO();
@@ -145,5 +150,41 @@ public class MovieDAO {
         //movieDAO.createMovie("test", String.valueOf(4.7), "imdb.com", "yesterday");
         System.out.println(allMovies);
 
+    }
+
+    /**
+     * Searches through the list of movie in lower case.
+     * If the method is called again, it clears the search and shows the entire movie table again.
+     */
+    public List<Movie> searchMovie(String searchQuery) {
+        String SavedSearchedQuery = searchQuery;
+        if (searchQuery.equals(oldSearchQuery) && searchQuery != "") {
+            SavedSearchedQuery = "";
+            oldSearchQuery = "";
+        } else {
+            oldSearchQuery = SavedSearchedQuery;
+        }
+        List<Movie> resultMovies = new ArrayList<>();
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "SELECT * FROM Movie WHERE LOWER(name) LIKE LOWER(?) OR rating LIKE LOWER(?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%" + SavedSearchedQuery + "%");
+            preparedStatement.setString(2, "%" + SavedSearchedQuery + "%");
+            if (preparedStatement.execute()) {
+                ResultSet resultSet = preparedStatement.getResultSet();
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    String rating = resultSet.getString("rating");
+                    Movie movie = new Movie(id, name, rating);
+                    resultMovies.add(movie);
+                }
+            }
+        } catch (SQLServerException throwables) {
+            throwables.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return resultMovies;
     }
 }
