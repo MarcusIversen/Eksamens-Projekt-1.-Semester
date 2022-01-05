@@ -8,36 +8,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="588.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
-        <TableView fx:id="tvPlaylist" layoutX="20.0" layoutY="111.0" prefHeight="426.0" prefWidth="200.0">
+        <TableView fx:id="tvCategories" layoutX="20.0" layoutY="111.0" prefHeight="426.0" prefWidth="200.0">
             <columns>
                 <TableColumn fx:id="tcName" prefWidth="170" text="Name" />
-                <TableColumn fx:id="tcSongs" prefWidth="30" text="#" />
+                <TableColumn fx:id="tcNumberOfMoviesOnCategory" prefWidth="30" text="#" />
             </columns>
         </TableView>
-        <TableView fx:id="tvSongs" layoutX="485.0" layoutY="111.0" prefHeight="426.0" prefWidth="303.0">
+        <TableView fx:id="tvMovies" layoutX="485.0" layoutY="111.0" prefHeight="426.0" prefWidth="300.0">
             <columns>
-                <TableColumn fx:id="tcStar" prefWidth="25.0" text="★" />
-                <TableColumn fx:id="tcTitle" prefWidth="125.0" text="Title" />
+                <TableColumn fx:id="tcMovieRating" prefWidth="25.0" text="★" />
+                <TableColumn fx:id="tcTitle" prefWidth="125.0" text="Name" />
                 <TableColumn fx:id="tcCategory" prefWidth="75.0" text="Category" />
-                <TableColumn fx:id="tcTimeSongs" prefWidth="83.0" text="Duration" />
+                <TableColumn fx:id="tcLastViewed" prefWidth="75.0" text="Last viewed" />
             </columns>
         </TableView>
-        <Button fx:id="btnEditPlaylist" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit...." />
-        <Button fx:id="btnDeletePlaylist" layoutX="167.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
-        <Button fx:id="btnDeleteSongsOnPlaylist" layoutX="377.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
+        <Button fx:id="btnEditCategory" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
+        <Button fx:id="btnDeleteCategory" layoutX="167.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
+        <Button fx:id="btnDeleteMovieFromCategory" layoutX="377.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
         <Button fx:id="btnUp" layoutX="235.0" layoutY="550.0" mnemonicParsing="false" text="▲" />
         <Button fx:id="btnDown" layoutX="290.0" layoutY="550.0" mnemonicParsing="false" text="▼" />
-        <Button fx:id="btnNewSong" layoutX="485.0" layoutY="550.0" mnemonicParsing="false" onAction="#createNewMovieButton" prefHeight="17.0" prefWidth="50.0" text="New.." />
-        <Button fx:id="btnEditSong" layoutX="552.0" layoutY="550.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="50.0" text="Edit...." />
-        <Button fx:id="btnDeleteSong" layoutX="621.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
-        <Button fx:id="btnClose" layoutX="743.0" layoutY="550.0" mnemonicParsing="false" onAction="#closeTheAppButton" text="Close" />
-        <Label fx:id="labelPlayList" layoutX="90.0" layoutY="90.0" text="Categories" />
-        <Label fx:id="labelSongsOnPlayList" layoutX="275.0" layoutY="90.0" text="Movies in Category" />
-        <Label fx:id="labelSongs" layoutX="485.0" layoutY="90.0" text="Movie" />
+        <Button fx:id="btnNewMovie" layoutX="485.0" layoutY="550.0" mnemonicParsing="false" onAction="#createNewMovieButton" prefHeight="26.0" prefWidth="50.0" text="New.." />
+        <Button fx:id="btnEditMovie" layoutX="552.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
+        <Button fx:id="btnDeleteMovie" layoutX="621.0" layoutY="550.0" mnemonicParsing="false" text="Delete" />
+        <Button fx:id="btnClose" layoutX="736.0" layoutY="550.0" mnemonicParsing="false" onAction="#closeTheAppButton" text="Close" />
+        <Label fx:id="labelCategories" layoutX="20.0" layoutY="90.0" text="Categories" />
+        <Label fx:id="labelMoviesOnCategory" layoutX="238.0" layoutY="90.0" text="Movies in Category" />
+        <Label fx:id="labelMovies" layoutX="485.0" layoutY="90.0" text="Movies" />
         <Button fx:id="btnLeftArrow" layoutX="442.0" layoutY="111.0" mnemonicParsing="false" style="-fx-rotate: 90px;" text="▼" />
-        <Button fx:id="btnNewPlaylist" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="50.0" text="Add.." />
+        <Button fx:id="btnNewCategory" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Add.." />
         <Label fx:id="labelFilter" layoutX="564.0" layoutY="13.0" text="Filter:">
             <font>
                 <Font name="System Bold" size="16.0" />
@@ -45,10 +45,10 @@
         </Label>
         <TextField fx:id="tfSearchBar" layoutX="609.0" layoutY="10.0" prefHeight="25.0" prefWidth="126.0" />
         <Button fx:id="btnSearchBar" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0" text="🔍" />
-        <TableView fx:id="tvSongsOnPlaylist" layoutX="236.0" layoutY="111.0" prefHeight="426.0" prefWidth="194.0">
+        <TableView fx:id="tvMoviesOnCategory" layoutX="236.0" layoutY="111.0" prefHeight="426.0" prefWidth="194.0">
             <columns>
-                <TableColumn fx:id="playliststar" prefWidth="26" text="★" />
-                <TableColumn fx:id="tcSongsOnPlaylist" prefWidth="169" text="Movies" />
+                <TableColumn fx:id="tcMovieRatingOnCategory" prefWidth="26" text="★" />
+                <TableColumn fx:id="tcMoviesOnCategory" prefWidth="169" text="Movies" />
             </columns>
         </TableView>
     </children>
