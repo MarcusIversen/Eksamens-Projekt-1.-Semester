@@ -21,8 +21,8 @@ public class MovieDAO {
     }
 
     /**
-     * Create delen af vores C.R.U.D.
-     * Her gøres det muligt at oprette en ny movie inde i vores database.
+     * Create part of C.R.U.D.
+     * Method to create a movie in the database.
      * @param name
      * @param rating
      * @param filelink
@@ -41,11 +41,13 @@ public class MovieDAO {
                 preparedStatement.setString(3, filelink);
                 preparedStatement.setString(4, lastview);
                 preparedStatement.executeUpdate();
+
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 int id = 0;
                 if (resultSet.next()) {
                     id = resultSet.getInt(1);
                 }
+
                 Movie movie = new Movie(id, name, rating, filelink, lastview);
                 return movie;
             }
@@ -56,8 +58,8 @@ public class MovieDAO {
     }
 
     /**
-     * Read delen af vores C.R.U.D.
-     * Her bliver der lavet en liste, som henter alle de film vi har i databasen ned
+     * Read part of C.R.U.D.
+     * Method to read alle the movies in the database.
      * @return
      */
 
@@ -94,8 +96,8 @@ public class MovieDAO {
     }
 
     /**
-     * Update delen af vores C.R.U.D.
-     * Her kan du opdatere/ændre din films data.
+     * Update part of C.R.U.D.
+     * Method to update/edit movies in the database.
      * @param movie
      */
 
@@ -118,7 +120,7 @@ public class MovieDAO {
 
     /**
      * Delete part of C.R.U.D.
-     * Her bliver det gjort muligt at slette en film fra databasen, filmen slettes udfra dets id.
+     * Method to delete movies from the database.
      * @param
      */
 
@@ -139,10 +141,8 @@ public class MovieDAO {
 
     public static void main(String[] args) throws SQLException {
         MovieDAO movieDAO = new MovieDAO();
-        //List<Song> allSongs = playlistDAO.getSongsOnPlaylist(45);
         List<Movie> allMovies = movieDAO.getMovies();
-        //categoryDAO.createCategory("Drama");
-        //movieDAO.createMovie("test", String.valueOf(1.7), "imdb.com", "yesterday");
+        //movieDAO.createMovie("test", String.valueOf(4.7), "imdb.com", "yesterday");
         System.out.println(allMovies);
 
     }
