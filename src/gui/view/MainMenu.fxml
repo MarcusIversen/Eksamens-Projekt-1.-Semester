@@ -29,7 +29,7 @@
         <Button fx:id="btnDeleteMovieFromCategory" layoutX="377.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteMovieInCategory" text="Delete" />
         <Button fx:id="btnUp" layoutX="235.0" layoutY="550.0" mnemonicParsing="false" text="▲" />
         <Button fx:id="btnDown" layoutX="290.0" layoutY="550.0" mnemonicParsing="false" text="▼" />
-        <Button fx:id="btnNewMovie" layoutX="485.0" layoutY="550.0" mnemonicParsing="false" onAction="#goAddMovie" prefHeight="26.0" prefWidth="50.0" text="New.." />
+        <Button fx:id="btnNewMovie" layoutX="485.0" layoutY="550.0" mnemonicParsing="false" onAction="#goNewMovie" prefHeight="26.0" prefWidth="50.0" text="New.." />
         <Button fx:id="btnEditMovie" layoutX="552.0" layoutY="550.0" mnemonicParsing="false" onAction="#goEditMovie" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteMovie" layoutX="621.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete" />
         <Button fx:id="btnClose" layoutX="736.0" layoutY="550.0" mnemonicParsing="false" onAction="#closeTheAppButton" text="Close" />

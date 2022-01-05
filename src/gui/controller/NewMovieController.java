@@ -1,10 +1,7 @@
 package gui.controller;
 
-import gui.model.MovieModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -14,8 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.sql.SQLException;
 
-public class AddMovieController {
-
+public class NewMovieController {
     @FXML
     private TextField txtFieldTitle;
     @FXML
@@ -30,7 +26,7 @@ public class AddMovieController {
     //private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
 
-    public AddMovieController() throws SQLException {
+    public NewMovieController() throws SQLException {
 
     }
 
@@ -44,17 +40,17 @@ public class AddMovieController {
     }
 
     /**
-    public void saveSongButton() {
-        String title = txtFieldTitle.getText();
-        String rating = txtFieldRating.getText();
-        String fileLink = txtFieldFile.getText();
-        String category = txtFieldCategory.getText();
+     public void saveSongButton() {
+     String title = txtFieldTitle.getText();
+     String rating = txtFieldRating.getText();
+     String fileLink = txtFieldFile.getText();
+     String category = txtFieldCategory.getText();
 
-        movieModel.createSong(title, rating, fileLink, );
-        mainMenuController.reloadSongTable();
-        Stage stage = (Stage) btnSaveSong.getScene().getWindow();
-        stage.close();
-    } */
+     movieModel.createSong(title, rating, fileLink, );
+     mainMenuController.reloadSongTable();
+     Stage stage = (Stage) btnSaveSong.getScene().getWindow();
+     stage.close();
+     } */
 
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
