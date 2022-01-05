@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gui.model.MovieModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -23,13 +24,11 @@ public class NewMovieController {
     @FXML
     private Button btnSaveSong;
 
-    //private MovieModel movieModel = new MovieModel();
+    private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
 
     public NewMovieController() throws SQLException {
-
     }
-
 
     /**
      * Pressing the cancel button takes you back to the main window.
@@ -39,18 +38,18 @@ public class NewMovieController {
         stage.close();
     }
 
-    /**
+
      public void saveSongButton() {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();
-     String category = txtFieldCategory.getText();
 
-     movieModel.createSong(title, rating, fileLink, );
-     mainMenuController.reloadSongTable();
+     //todo add combobox
+     movieModel.createMovie(title, rating, fileLink);
+     //mainMenuController.reloadSongTable();
      Stage stage = (Stage) btnSaveSong.getScene().getWindow();
      stage.close();
-     } */
+     }
 
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();

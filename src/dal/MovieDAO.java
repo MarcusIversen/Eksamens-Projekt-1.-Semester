@@ -32,7 +32,7 @@ public class MovieDAO {
      * @return
      */
 
-    public Movie createMovie(String name, String rating, String fileLink, String lastView) {
+    public Movie createMovie(String name, String rating, String fileLink) {
 
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO movie(name, rating, filelink, lastview) values(?,?,?,?);";
@@ -41,7 +41,6 @@ public class MovieDAO {
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, rating);
                 preparedStatement.setString(3, fileLink);
-                preparedStatement.setString(4, lastView);
                 preparedStatement.executeUpdate();
 
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -50,7 +49,7 @@ public class MovieDAO {
                     id = resultSet.getInt(1);
                 }
 
-                Movie movie = new Movie(id, name, rating, fileLink, lastView);
+                Movie movie = new Movie(id, name, rating, fileLink);
                 return movie;
             }
         } catch (SQLException throwables) {
