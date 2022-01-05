@@ -1,5 +1,6 @@
 package dal;
 
+import be.Category;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
@@ -116,16 +117,16 @@ public class MovieDAO {
     }
 
     /**
-     * Delete delen af vores C.R.U.D.
+     * Delete part of C.R.U.D.
      * Her bliver det gjort muligt at slette en film fra databasen, filmen slettes udfra dets id.
-     * @param movie
+     * @param
      */
 
-    public void deleteMovie(Movie movie) {
+    public void deleteMovie(int id) {
             try (Connection connection = databaseConnector.getConnection()) {
                 String sql = "DELETE FROM Movie WHERE Id =?;";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, movie.getId());
+                preparedStatement.setInt(1, id);
                 if (preparedStatement.executeUpdate() != 1) {
                     throw new Exception("Could not delete movie");
                 }
@@ -136,7 +137,13 @@ public class MovieDAO {
             }
         }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        MovieDAO movieDAO = new MovieDAO();
+        //List<Song> allSongs = playlistDAO.getSongsOnPlaylist(45);
+        List<Movie> allMovies = movieDAO.getMovies();
+        //categoryDAO.createCategory("Drama");
+        //movieDAO.createMovie("test", String.valueOf(1.7), "imdb.com", "yesterday");
+        System.out.println(allMovies);
 
     }
 }
