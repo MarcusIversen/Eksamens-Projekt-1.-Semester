@@ -66,7 +66,7 @@ public class CategoryDAO {
 
     public void deleteCategory(int id){
         String sql = "DELETE FROM Category WHERE id = ?;";
-        try (var con = databaseConnector.getConnection();
+        try (Connection con = databaseConnector.getConnection();
              PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setInt(1, id);
             st.executeUpdate();
@@ -81,7 +81,7 @@ public class CategoryDAO {
 
     public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
         String sql = "INSERT INTO CatMovie (categoryId, movieId) VALUES (?,?);";
-        try (var con = databaseConnector.getConnection();
+        try (Connection con = databaseConnector.getConnection();
              PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setInt(1, categoryId);
             st.setInt(2, movieId);
@@ -94,7 +94,7 @@ public class CategoryDAO {
 
     public void removeFromCategory(int categoryId, int movieId) throws SQLException{
         String sql = "DELETE FROM CatMovie WHERE categoryId=? AND movieId=?;";
-        try (var con = databaseConnector.getConnection();
+        try (Connection con = databaseConnector.getConnection();
              PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setInt(1, categoryId);
             st.setInt(2, movieId);
