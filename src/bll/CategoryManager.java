@@ -19,17 +19,11 @@ public class CategoryManager {
     /**
      * Gets the list of category using the getCategory method in categoryDAO.
      */
-    public List<Category> getPlaylist() throws SQLException {
-        List<Category> allPlaylist = categoryDAO.getCategories();
-        return allPlaylist;
+    public List<Category> getCategories() throws SQLException {
+        List<Category> allCategories = categoryDAO.getCategories();
+        return allCategories;
     }
 
-    /**
-     * Gets the list of movie on the category's by taking the id
-     * Uses the method in CategoryDAO.
-     */
-    public List<Movie> getSongsOnPlaylist(int id) throws SQLException {
-        return categoryDAO.getCategories(id);
-    }
+
 
 }
