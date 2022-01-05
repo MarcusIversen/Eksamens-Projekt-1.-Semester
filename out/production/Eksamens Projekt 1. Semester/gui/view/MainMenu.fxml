@@ -19,9 +19,8 @@
         <TableView fx:id="tvMovies" layoutX="485.0" layoutY="111.0" prefHeight="426.0" prefWidth="300.0">
             <columns>
                 <TableColumn fx:id="tcMovieRating" prefWidth="25.0" text="★" />
-                <TableColumn fx:id="tcTitle" prefWidth="125.0" text="Name" />
-                <TableColumn fx:id="tcCategory" prefWidth="75.0" text="Category" />
-                <TableColumn fx:id="tcLastViewed" prefWidth="75.0" text="Last viewed" />
+                <TableColumn fx:id="tcNameOnMovie" prefWidth="142.40008544921875" text="Name" />
+                <TableColumn fx:id="tcLastViewed" prefWidth="129.59991455078125" text="Last viewed" />
             </columns>
         </TableView>
         <Button fx:id="btnEditCategory" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />

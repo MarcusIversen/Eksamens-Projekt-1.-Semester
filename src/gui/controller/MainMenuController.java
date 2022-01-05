@@ -1,19 +1,27 @@
 package gui.controller;
 
+import be.Category;
+import be.Movie;
+import gui.model.CategoryModel;
 import gui.model.MovieModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class MainMenuController {
+public class MainMenuController implements Initializable {
 
     @FXML
     private Button btnEditCategory;
@@ -70,7 +78,7 @@ public class MainMenuController {
     @FXML
     private TableColumn tcMovieRating;
     @FXML
-    private TableColumn tcTitle;
+    private TableColumn tcNameOnMovie;
     @FXML
     private TableColumn tcCategory;
     @FXML
@@ -78,8 +86,56 @@ public class MainMenuController {
 
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
+    private CategoryModel categoryModel = new CategoryModel();
+    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+    private ObservableList<Category> allCategories = FXCollections.observableArrayList();
+    private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 
     public MainMenuController() throws SQLException {
+    }
+
+    /**
+     * Initialize the 3 different tables used
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
+        //tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+        //TODO make lastView work
+
+        try {
+            allMovies = FXCollections.observableList(movieModel.getMovies());
+            tableViewLoadMovies(allMovies);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        try {
+            allCategories = FXCollections.observableList(categoryModel.getCategories());
+            tableViewLoadCategories(allCategories);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void tableViewLoadCategories(ObservableList<Category> allCategories) {
+        tvCategories.setItems(getCategoryData());
+    }
+
+    private ObservableList<Category> getCategoryData() {
+        return allCategories;
+    }
+
+    private void tableViewLoadMovies(ObservableList<Movie> allMovies) {
+        tvMovies.setItems(getMoviesData());
+    }
+
+    private ObservableList<Movie> getMoviesData() {
+        return allMovies;
     }
 
     public void closeTheAppButton() {
@@ -143,5 +199,4 @@ public class MainMenuController {
             exception.printStackTrace();
         }
     }
-
 }
