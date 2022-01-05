@@ -20,7 +20,7 @@ public class MovieManager {
      * @throws Exception
      */
     public List<Movie> getMovie() {
-        List<Movie> allMovie = movieDAO.getSongs();
+        List<Movie> allMovie = movieDAO.getMovies();
         return allMovie;
     }
 
