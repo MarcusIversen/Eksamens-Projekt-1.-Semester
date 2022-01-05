@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
@@ -91,6 +92,8 @@ public class MainMenuController implements Initializable {
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 
+    private Category selectedCategory;
+
     public MainMenuController() throws SQLException {
     }
 
@@ -99,7 +102,11 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeTable();
 
+    }
+
+    public void initializeTable(){
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
         //tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
@@ -119,7 +126,6 @@ public class MainMenuController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     private void tableViewLoadCategories(ObservableList<Category> allCategories) {
@@ -148,6 +154,13 @@ public class MainMenuController implements Initializable {
         stage.setTitle("Add Category");
         stage.setScene(new Scene(root));
         stage.show();
+        stage.setOnHiding( event ->
+        { try {
+            allCategories = FXCollections.observableList(categoryModel.getCategories());
+            tableViewLoadCategories(allCategories);
+        } catch (Exception e){
+            e.printStackTrace();
+        } });
     }
 
     public void goAddMovie() throws IOException {
@@ -183,7 +196,25 @@ public class MainMenuController implements Initializable {
 
     }
 
-    public void deleteCategory(){
+    public void deleteCategory() throws SQLException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("WARNING MESSAGE");
+        alert.setHeaderText("Warning before you delete playlist");
+        alert.setContentText("Are you sure you want to delete this playlist!?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            selectedPlaylist();
+            categoryModel.deleteCategory(selectedCategory.getId());
+        }else {
+            return;
+        }
+        try{
+            allCategories = FXCollections.observableList(categoryModel.getCategories());
+            tableViewLoadCategories(allCategories);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -199,4 +230,31 @@ public class MainMenuController implements Initializable {
             exception.printStackTrace();
         }
     }
+
+    /**
+     * Reloads the playlist table
+     */
+    private void reloadCategoryTable() {
+        try {
+            int index = tvCategories.getSelectionModel().getFocusedIndex();
+            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
+            tvCategories.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Makes you able to select a playlist from the table
+     */
+    private void selectedPlaylist(){
+        this.tvCategories.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if ((Category) newValue != null) {
+                this.selectedCategory = (Category) newValue;
+            }
+        }));
+    }
+
+
+
 }
