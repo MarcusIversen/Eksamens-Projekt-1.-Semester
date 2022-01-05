@@ -103,6 +103,7 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
+        selectedCategory();
 
     }
 
@@ -204,7 +205,7 @@ public class MainMenuController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            selectedPlaylist();
+            selectedCategory();
             categoryModel.deleteCategory(selectedCategory.getId());
         }else {
             return;
@@ -247,7 +248,7 @@ public class MainMenuController implements Initializable {
     /**
      * Makes you able to select a playlist from the table
      */
-    private void selectedPlaylist(){
+    private void selectedCategory(){
         this.tvCategories.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Category) newValue != null) {
                 this.selectedCategory = (Category) newValue;
