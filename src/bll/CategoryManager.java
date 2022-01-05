@@ -24,6 +24,12 @@ public class CategoryManager {
         return allCategories;
     }
 
+    public void createCategory(String name) throws SQLException{
+        categoryDAO.createCategory(name);
+    }
 
+    public void deleteCategory(int id) throws SQLException{
+        CategoryDAO.deleteCategory(id);
+    }
 
 }
