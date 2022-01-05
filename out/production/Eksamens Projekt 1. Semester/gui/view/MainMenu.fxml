@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="20.0" layoutY="111.0" prefHeight="426.0" prefWidth="200.0">
             <columns>
@@ -23,7 +23,7 @@
                 <TableColumn fx:id="tcLastViewed" prefWidth="129.59991455078125" text="Last viewed" />
             </columns>
         </TableView>
-        <Button fx:id="btnEditCategory" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
+        <Button fx:id="btnEditCategory" layoutX="84.0" layoutY="550.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteCategory" layoutX="167.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
         <Button fx:id="btnDeleteMovieFromCategory" layoutX="377.0" layoutY="550.0" mnemonicParsing="false" onAction="#deleteMovieInCategory" text="Delete" />
         <Button fx:id="btnUp" layoutX="235.0" layoutY="550.0" mnemonicParsing="false" text="▲" />
