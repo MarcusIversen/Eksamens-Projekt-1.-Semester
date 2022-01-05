@@ -75,8 +75,18 @@ public class CategoryDAO {
         }
     }
 
-    public void editCategory(){
-
+    public void editCategory(Category category){
+        String sql = "UPDATE Category SET name=? WHERE id=?;";
+        try (Connection con = databaseConnector.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+            preparedStatement.setString(1, category.getName());
+            preparedStatement.setInt(2, category.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
