@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -27,7 +26,7 @@ public class MainMenuController {
     @FXML
     private Button btnDown;
     @FXML
-    private Button btnNewMovie;
+    private Button btnAddMovie;
     @FXML
     private Button btnEditMovie;
     @FXML
@@ -37,7 +36,7 @@ public class MainMenuController {
     @FXML
     private Button btnLeftArrow;
     @FXML
-    private Button btnNewCategory;
+    private Button btnAddCategory;
     @FXML
     private Button btnSearchBar;
 
@@ -90,16 +89,15 @@ public class MainMenuController {
     public void goAddCategory() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/AddCategory.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("New Category");
+        stage.setTitle("Add Category");
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    public void goNewMovie() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/NewMovie.fxml"));
-        stage.setTitle("New Song");
+    public void goAddMovie() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/AddMovie.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("New Movie");
+        stage.setTitle("Add movie");
         stage.setScene(new Scene(root));
         stage.show();
     }

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.sql.SQLException;
 
-public class NewMovieController {
+public class AddMovieController {
     @FXML
     private TextField txtFieldTitle;
     @FXML
@@ -28,7 +28,7 @@ public class NewMovieController {
     private MainMenuController mainMenuController = new MainMenuController();
     private MediaPlayer mediaPlayer;
 
-    public NewMovieController() throws SQLException {
+    public AddMovieController() throws SQLException {
     }
 
     /**
