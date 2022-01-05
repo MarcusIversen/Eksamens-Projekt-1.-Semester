@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.sql.SQLException;
 
 public class AddMovieController {
 
@@ -26,10 +27,10 @@ public class AddMovieController {
     @FXML
     private Button btnSaveSong;
 
-    private MovieModel movieModel = new MovieModel();
+    //private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
 
-    public AddMovieController() {
+    public AddMovieController() throws SQLException {
 
     }
 
@@ -42,6 +43,7 @@ public class AddMovieController {
         stage.close();
     }
 
+    /**
     public void saveSongButton() {
         String title = txtFieldTitle.getText();
         String rating = txtFieldRating.getText();
@@ -52,8 +54,7 @@ public class AddMovieController {
         mainMenuController.reloadSongTable();
         Stage stage = (Stage) btnSaveSong.getScene().getWindow();
         stage.close();
-
-    }
+    } */
 
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();

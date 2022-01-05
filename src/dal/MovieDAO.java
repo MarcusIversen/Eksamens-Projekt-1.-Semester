@@ -41,6 +41,7 @@ public class MovieDAO {
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, rating);
                 preparedStatement.setString(3, fileLink);
+                preparedStatement.setString(4, lastView);
                 preparedStatement.executeUpdate();
 
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -49,7 +50,7 @@ public class MovieDAO {
                     id = resultSet.getInt(1);
                 }
 
-                Movie movie = new Movie(id, name, rating, fileLink);
+                Movie movie = new Movie(id, name, rating, fileLink, lastView);
                 return movie;
             }
         } catch (SQLException throwables) {
