@@ -8,10 +8,12 @@ import java.util.List;
 
 public class MovieManager {
 
-    private MovieDAO movieDAO = new MovieDAO();
+    private MovieSearcher movieSearcher;
+    private MovieDAO movieDAO;
 
     public MovieManager() throws SQLException {
-
+        movieSearcher = new MovieSearcher();
+        movieDAO = new MovieDAO();
     }
 
     /**
@@ -53,7 +55,9 @@ public class MovieManager {
      * @throws Exception
      */
     public List<Movie> searchMovie(String query) throws Exception {
-        return movieDAO.searchMovie(query);
+        List<Movie> allMovies = getMovie();
+        List<Movie> searchResult = movieSearcher.search(allMovies, query);
+        return searchResult;
     }
 
 

@@ -91,6 +91,7 @@ public class MainMenuController implements Initializable {
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
+    ObservableList<Movie> searchData = FXCollections.observableArrayList();
 
     private Category selectedCategory;
 
@@ -200,8 +201,8 @@ public class MainMenuController implements Initializable {
     public void deleteCategory() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
-        alert.setHeaderText("Warning before you delete playlist");
-        alert.setContentText("Are you sure you want to delete this playlist!?");
+        alert.setHeaderText("Warning before you delete category");
+        alert.setContentText("Are you sure you want to delete this category!?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -254,6 +255,34 @@ public class MainMenuController implements Initializable {
                 this.selectedCategory = (Category) newValue;
             }
         }));
+    }
+
+    /**
+     * Loads the tableview for the movies, when search is pressed.
+     * @param searchData
+     */
+    private void searchTableViewLoad(ObservableList<Movie> searchData){
+        tvMovies.setItems(getSearchData());
+    }
+
+    /**
+     * Gets the searchdata.
+     * @return searchData;
+     */
+    public ObservableList<Movie> getSearchData() {
+        return searchData;
+    }
+
+    /**
+     * Method that filters the movies, with the text input you write in the textfield, next to the search button.
+     */
+    public void filterMovies(){
+        try{
+            searchData = FXCollections.observableList(movieModel.searchMovie(tfSearchBar.getText()));
+            searchTableViewLoad(searchData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

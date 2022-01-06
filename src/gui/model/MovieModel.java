@@ -2,16 +2,21 @@ package gui.model;
 
 import be.Movie;
 import bll.MovieManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class MovieModel {
 
+    private ObservableList<Movie> moviesToBeViewed;
     private MovieManager movieManager;
 
     public MovieModel() throws SQLException {
         movieManager = new MovieManager();
+        moviesToBeViewed = FXCollections.observableArrayList();
+        moviesToBeViewed.addAll(movieManager.getMovie());
     }
 
     /**
@@ -54,13 +59,19 @@ public class MovieModel {
     }
 
     /**
-     * Searching through a list of songs using the method from SongsDAO.
+     *Search method for the model, searches for movies by text.
      * @param query
-     * @return
+     * @return searchResults
      * @throws Exception
      */
     public List<Movie> searchMovie(String query) throws Exception {
-        return movieManager.searchMovie(query);
+        List<Movie> searchResults = null;
+
+        searchResults = movieManager.searchMovie(query);
+        moviesToBeViewed.clear();
+        moviesToBeViewed.addAll(searchResults);
+
+        return searchResults;
     }
 
 }
