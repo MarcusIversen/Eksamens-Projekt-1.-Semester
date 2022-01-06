@@ -245,6 +245,17 @@ public class MainMenuController implements Initializable {
 
     }
 
+    public void addMovieToCategory() {
+        if (selectedMovie != null)
+            try {
+                categoryModel.addMovieToCategory(selectedCategory.getId(), selectedMovie.getId());
+                reloadMovieTable();
+                reloadCategoryTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
     public void deleteCategory() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
@@ -274,6 +285,19 @@ public class MainMenuController implements Initializable {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
             tvMovies.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Reloads the category table
+     */
+    private void reloadCategoryTable() {
+        try {
+            int index = tvCategories.getSelectionModel().getFocusedIndex();
+            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
+            tvCategories.getSelectionModel().select(index);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

@@ -26,7 +26,6 @@ public class AddMovieController {
     private Button btnCancel;
 
     private MovieModel movieModel = new MovieModel();
-    private MainMenuController mainMenuController = new MainMenuController();
     private MediaPlayer mediaPlayer;
 
     public AddMovieController() throws SQLException {
