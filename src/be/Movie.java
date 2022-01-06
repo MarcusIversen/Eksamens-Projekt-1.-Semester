@@ -55,9 +55,16 @@ public class Movie {
         this.rating = rating;
     }
 
-    public void setDuration(int duration) {        this.duration = duration;}
+    public void setDuration(int duration) {this.duration = duration;}
 
-    public int getDuration() {return duration;}
+    public String getDuration() {
+        int minuts = (duration)/60;
+        int seconds = (duration) %60;
+        if (10 > seconds){
+            return minuts + ":0" + seconds;
+        } else {
+            return minuts + ":" + seconds;
+        }}
 
     public String getFileLink() {
         return fileLink;
