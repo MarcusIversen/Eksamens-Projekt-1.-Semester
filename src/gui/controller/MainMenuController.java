@@ -7,9 +7,11 @@ import gui.model.MovieModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -174,12 +176,31 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void goEditCategory() throws IOException {
+    public void goEditCategory(ActionEvent actionEvent) throws IOException {
+        if(selectedCategory != null) {
+            Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
+            FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditCategory.fxml"));
+            Scene mainWindowScene = null;
+            try {
+                mainWindowScene = new Scene(parent.load());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            Stage editCategoryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            editCategoryStage.setScene(mainWindowScene);
+            EditCategoryController editCategoryController = parent.getController();
+            editCategoryController.setSelectedCategory(selectedCategory);
+            editCategoryStage.show();
+        }else{
+            System.out.println("No playlist selected");
+        }
+        /*
         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditCategory.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Edit Category");
         stage.setScene(new Scene(root));
         stage.show();
+        */
     }
 
     public void goEditMovie() throws IOException {
