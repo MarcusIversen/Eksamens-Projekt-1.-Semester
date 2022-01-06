@@ -52,6 +52,7 @@ public class EditMovieController {
 
     private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
+    private MainMenuController mainMenuController = new MainMenuController();
 
     public EditMovieController() throws SQLException {
     }
@@ -65,7 +66,7 @@ public class EditMovieController {
     /**
      * Saves the newly added song.
      */
-    public void saveBtn(ActionEvent actionEvent) throws Exception {
+    public void saveBtn() throws Exception {
         String name = txtFieldTitle.getText();
         String rating = txtFieldFileRating.getText();
         String fileLink = txtFieldFile.getText();

@@ -105,7 +105,7 @@ public class MovieDAO {
 
     public void editMovie(Movie movie) {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Movie SET name=?, rating=?, fileleink=?, lastview=? WHERE Id=?;";
+            String sql = "UPDATE Movie SET name=?, rating=?, filelink=?, lastview=? WHERE Id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, movie.getName());
             preparedStatement.setString(2, movie.getRating());
