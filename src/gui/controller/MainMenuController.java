@@ -133,6 +133,7 @@ public class MainMenuController implements Initializable {
         }
 
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcMovieRatingOnCategory.setCellValueFactory(new PropertyValueFactory<>("rating"));
         try {
             allCategories = FXCollections.observableList(categoryModel.getCategories());
             tableViewLoadCategories(allCategories);
