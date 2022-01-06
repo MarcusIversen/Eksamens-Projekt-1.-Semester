@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
     private TextField tfSearchBar;
 
     @FXML
-    private TableView tvMovies;
+    private TableView<Movie> tvMovies;
     @FXML
     private TableView tvCategories;
     @FXML
@@ -184,7 +184,7 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void goEditCategory(ActionEvent actionEvent) throws IOException {
+    public void goEditCategory(){
         if(selectedCategory != null) {
             Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditCategory.fxml"));
@@ -194,7 +194,7 @@ public class MainMenuController implements Initializable {
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-            Stage editCategoryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage editCategoryStage;
             editCategoryStage = new Stage();
             editCategoryStage.setScene(mainWindowScene);
             EditCategoryController editCategoryController = parent.getController();
@@ -203,22 +203,29 @@ public class MainMenuController implements Initializable {
         }else{
             System.out.println("No playlist selected");
         }
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditCategory.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Category");
-        stage.setScene(new Scene(root));
-        stage.show();
-        */
     }
 
-    public void goEditMovie() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditMovie.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Movie");
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void goEditMovie(){
+        if(selectedMovie != null) {
+            Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
+            FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
+            Scene mainWindowScene = null;
+            try {
+                mainWindowScene = new Scene(parent.load());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            Stage editMovieStage;
+            editMovieStage = new Stage();
+            editMovieStage.setScene(mainWindowScene);
+            EditMovieController editMovieController = parent.getController();
+            editMovieController.setSelectedMovie(selectedMovie);
+            editMovieStage.show();
+        }else{
+            System.out.println("No songs are selected");
+        }
     }
+
 
     public void deleteMovie() throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -243,6 +250,17 @@ public class MainMenuController implements Initializable {
 
     public void deleteMovieInCategory(){
 
+    }
+
+    public void addMovieToCategory() {
+        if (selectedMovie != null)
+            try {
+                categoryModel.addMovieToCategory(selectedCategory.getId(), selectedMovie.getId());
+                reloadMovieTable();
+                reloadCategoryTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public void deleteCategory() throws SQLException {
@@ -274,6 +292,19 @@ public class MainMenuController implements Initializable {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
             tvMovies.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Reloads the category table
+     */
+    private void reloadCategoryTable() {
+        try {
+            int index = tvCategories.getSelectionModel().getFocusedIndex();
+            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
+            tvCategories.getSelectionModel().select(index);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
