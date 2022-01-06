@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="19.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -28,8 +28,8 @@
         <Button fx:id="btnEditCategory" layoutX="76.0" layoutY="552.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteCategory" layoutX="174.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="80.0" text="Delete" />
         <Button fx:id="btnDeleteMovieFromCategory" layoutX="473.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteMovieInCategory" prefHeight="25.0" prefWidth="80.0" text="Delete" />
-        <Button fx:id="btnUp" layoutX="261.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="▲" />
-        <Button fx:id="btnDown" layoutX="323.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="▼" />
+        <Button fx:id="btnUp" layoutX="261.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnUp" prefHeight="25.0" prefWidth="57.0" text="▲" />
+        <Button fx:id="btnDown" layoutX="323.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnDown" prefHeight="25.0" prefWidth="57.0" text="▼" />
         <Button fx:id="btnAddMovie" layoutX="603.0" layoutY="553.0" mnemonicParsing="false" onAction="#goAddMovie" prefHeight="26.0" prefWidth="50.0" text="Add.." />
         <Button fx:id="btnEditMovie" layoutX="665.0" layoutY="552.0" mnemonicParsing="false" onAction="#goEditMovie" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteMovie" layoutX="728.0" layoutY="552.0" mnemonicParsing="false" onAction="#deleteMovie" prefHeight="25.0" prefWidth="67.0" text="Delete" />
