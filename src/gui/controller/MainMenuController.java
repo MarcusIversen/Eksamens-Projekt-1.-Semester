@@ -184,7 +184,7 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void goEditCategory(ActionEvent actionEvent) throws IOException {
+    public void goEditCategory(){
         if(selectedCategory != null) {
             Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditCategory.fxml"));
@@ -194,7 +194,7 @@ public class MainMenuController implements Initializable {
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-            Stage editCategoryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage editCategoryStage;
             editCategoryStage = new Stage();
             editCategoryStage.setScene(mainWindowScene);
             EditCategoryController editCategoryController = parent.getController();
@@ -203,16 +203,9 @@ public class MainMenuController implements Initializable {
         }else{
             System.out.println("No playlist selected");
         }
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditCategory.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Category");
-        stage.setScene(new Scene(root));
-        stage.show();
-        */
     }
 
-    public void goEditMovie(ActionEvent actionEvent) throws IOException {
+    public void goEditMovie(){
         if(selectedMovie != null) {
             Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
@@ -222,7 +215,8 @@ public class MainMenuController implements Initializable {
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-            Stage editMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage editMovieStage;
+            editMovieStage = new Stage();
             editMovieStage.setScene(mainWindowScene);
             EditMovieController editMovieController = parent.getController();
             editMovieController.setSelectedMovie(selectedMovie);
