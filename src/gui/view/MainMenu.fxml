@@ -13,15 +13,15 @@
     <children>
         <TableView fx:id="tvCategories" layoutX="37.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
-                <TableColumn fx:id="tcName" prefWidth="170" text="Name" />
-                <TableColumn fx:id="tcNumberOfMoviesOnCategory" prefWidth="30" text="#" />
+                <TableColumn fx:id="tcName" prefWidth="199.0" text="Name" />
+                <TableColumn fx:id="tcNumberOfMoviesOnCategory" prefWidth="35.0" text="#" />
             </columns>
         </TableView>
         <TableView fx:id="tvMovies" layoutX="638.0" layoutY="107.0" prefHeight="426.0" prefWidth="332.0">
             <columns>
                 <TableColumn fx:id="tcMovieRating" prefWidth="30.0" text="★" />
-                <TableColumn fx:id="tcNameOnMovie" prefWidth="154.0" text="Name" />
-                <TableColumn fx:id="tcLastViewed" prefWidth="120.0" text="Last viewed" />
+                <TableColumn fx:id="tcNameOnMovie" prefWidth="193.0" text="Name" />
+                <TableColumn fx:id="tcLastViewed" prefWidth="108.0" text="Last viewed" />
             </columns>
         </TableView>
         <Button fx:id="btnEditCategory" layoutX="101.0" layoutY="553.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
@@ -38,17 +38,17 @@
         <Label fx:id="labelMovies" layoutX="638.0" layoutY="90.0" text="Movies" />
         <Button fx:id="btnLeftArrow" layoutX="588.0" layoutY="101.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="27.0" style="-fx-rotate: 90px;" text="▼" />
         <Button fx:id="btnAddCategory" layoutX="37.0" layoutY="552.0" mnemonicParsing="false" onAction="#goAddCategory" prefHeight="26.0" prefWidth="50.0" text="Add.." />
-        <Label fx:id="labelFilter" layoutX="715.0" layoutY="38.0" text="Search:">
+        <Label fx:id="labelFilter" layoutX="761.0" layoutY="36.0" text="Search:">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="tfSearchBar" layoutX="766.0" layoutY="35.0" prefHeight="25.0" prefWidth="172.0" />
+        <TextField fx:id="tfSearchBar" layoutX="818.0" layoutY="35.0" prefHeight="25.0" prefWidth="120.0" />
         <Button fx:id="btnSearchBar" layoutX="940.0" layoutY="35.0" mnemonicParsing="false" onAction="#filterMovies" prefHeight="26.0" prefWidth="31.0" text="🔍" />
         <TableView fx:id="tvMoviesOnCategory" layoutX="283.0" layoutY="107.0" prefHeight="426.0" prefWidth="292.0">
             <columns>
-                <TableColumn fx:id="tcMovieRatingOnCategory" prefWidth="26" text="★" />
-                <TableColumn fx:id="tcMoviesOnCategory" prefWidth="169" text="Movies" />
+                <TableColumn fx:id="tcMovieRatingOnCategory" prefWidth="31.0" text="★" />
+                <TableColumn fx:id="tcMoviesOnCategory" prefWidth="260.0" text="Movies" />
             </columns>
         </TableView>
       <Label layoutX="37.0" layoutY="17.0" prefHeight="63.0" prefWidth="628.0" text="PRIVATE MOVIE COLLECTION">
