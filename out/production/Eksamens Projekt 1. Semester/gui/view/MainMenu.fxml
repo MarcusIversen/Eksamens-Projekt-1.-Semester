@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="620.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="37.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -36,7 +36,7 @@
         <Label fx:id="labelCategories" layoutX="72.0" layoutY="90.0" text="Categories" />
         <Label fx:id="labelMoviesOnCategory" layoutX="283.0" layoutY="90.0" text="Movies in Category" />
         <Label fx:id="labelMovies" layoutX="638.0" layoutY="90.0" text="Movies" />
-        <Button fx:id="btnLeftArrow" layoutX="588.0" layoutY="101.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="27.0" style="-fx-rotate: 90px;" text="▼" />
+        <Button fx:id="btnLeftArrow" layoutX="588.0" layoutY="101.0" mnemonicParsing="false" onAction="#addMovieToCategory" prefHeight="40.0" prefWidth="27.0" style="-fx-rotate: 90px;" text="▼" />
         <Button fx:id="btnAddCategory" layoutX="37.0" layoutY="552.0" mnemonicParsing="false" onAction="#goAddCategory" prefHeight="26.0" prefWidth="50.0" text="Add.." />
         <Label fx:id="labelFilter" layoutX="715.0" layoutY="38.0" text="Search:">
             <font>

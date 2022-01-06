@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
     private TextField tfSearchBar;
 
     @FXML
-    private TableView tvMovies;
+    private TableView<Movie> tvMovies;
     @FXML
     private TableView tvCategories;
     @FXML
@@ -212,13 +212,26 @@ public class MainMenuController implements Initializable {
         */
     }
 
-    public void goEditMovie() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditMovie.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Edit Movie");
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void goEditMovie(ActionEvent actionEvent) throws IOException {
+        if(selectedMovie != null) {
+            Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
+            FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
+            Scene mainWindowScene = null;
+            try {
+                mainWindowScene = new Scene(parent.load());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            Stage editMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            editMovieStage.setScene(mainWindowScene);
+            EditMovieController editMovieController = parent.getController();
+            editMovieController.setSelectedMovie(selectedMovie);
+            editMovieStage.show();
+        }else{
+            System.out.println("No songs are selected");
+        }
     }
+
 
     public void deleteMovie() throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
