@@ -174,6 +174,13 @@ public class MainMenuController implements Initializable {
         stage.setTitle("Add movie");
         stage.setScene(new Scene(root));
         stage.show();
+        stage.setOnHiding( event ->
+        { try {
+            allMovies = FXCollections.observableList(movieModel.getMovies());
+            tableViewLoadMovies(allMovies);
+        } catch (Exception e){
+            e.printStackTrace();
+        } });
     }
 
 
@@ -267,19 +274,6 @@ public class MainMenuController implements Initializable {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
             tvMovies.getSelectionModel().select(index);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-    }
-
-    /**
-     * Reloads the playlist table
-     */
-    private void reloadCategoryTable() {
-        try {
-            int index = tvCategories.getSelectionModel().getFocusedIndex();
-            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
-            tvCategories.getSelectionModel().select(index);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

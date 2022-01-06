@@ -40,7 +40,6 @@ public class AddMovieController {
         stage.close();
     }
 
-
      public void saveMovieButton() throws Exception {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
@@ -48,7 +47,6 @@ public class AddMovieController {
 
      //todo add combobox
      movieModel.createMovie(title, rating, fileLink);
-     mainMenuController.reloadMovieTable();
      Stage stage = (Stage) btnSaveSong.getScene().getWindow();
      stage.close();
      }
