@@ -88,9 +88,6 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableColumn tcLastViewed;
 
-    private Movie selectedMovieOnCategory;
-    private ObservableList<Movie>MoviesOnCategory = FXCollections.observableArrayList();
-
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
     private CategoryModel categoryModel = new CategoryModel();
@@ -99,10 +96,11 @@ public class MainMenuController implements Initializable {
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 
-    ObservableList<Movie> searchData = FXCollections.observableArrayList();
+    private ObservableList<Movie> searchData = FXCollections.observableArrayList();
 
     private Category selectedCategory;
     private Movie selectedMovie;
+    private Movie selectedMovieOnCategory;
 
     public MainMenuController() throws SQLException {
     }
@@ -113,6 +111,7 @@ public class MainMenuController implements Initializable {
         initializeTable();
         selectedCategory();
         selectedMovie();
+        selectedMovieOnCategory();
     }
 
 
@@ -154,8 +153,26 @@ public class MainMenuController implements Initializable {
         return allMovies;
     }
 
+    private void tableViewMoviesOnCategories(ObservableList<Movie> allMoviesOnCategories) {
+        tvMoviesOnCategory.setItems(getMoviesOnCategoriesData());
+    }
+
+    private ObservableList<Movie> getMoviesOnCategoriesData() {
+        return allMoviesOnCategories;
+    }
+
     public void closeTheAppButton() {
         Platform.exit();
+    }
+
+    public void seeMoviesOnCategories(){
+        tcMoviesOnCategory.setCellValueFactory(new PropertyValueFactory<>("name"));
+        try {
+            allMoviesOnCategories = FXCollections.observableList(categoryModel.getMoviesOnCategory(selectedCategory.getId()));
+            tableViewMoviesOnCategories(allMoviesOnCategories);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void goAddCategory() throws IOException {
@@ -252,15 +269,25 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void deleteMovieInCategory(){
-
+    public void deleteMovieInCategory() throws SQLException {
+        if (selectedCategory != null && selectedMovieOnCategory != null) {
+            try {
+                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
+                categoryModel.deleteFromCategory(selectedCategory.getId(), selectedMovieOnCategory.getId());
+                reloadMoviesOnCategory();
+                reloadCategoryTable();
+                tvMoviesOnCategory.getSelectionModel().select(index > 0 ? index - 1 : index);
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
     }
 
     public void addMovieToCategory() {
         if (selectedMovie != null)
             try {
                 categoryModel.addMovieToCategory(selectedCategory.getId(), selectedMovie.getId());
-                reloadMovieTable();
+                reloadMoviesOnCategory();
                 reloadCategoryTable();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -318,6 +345,16 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    public void reloadMoviesOnCategory() {
+        try {
+            int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
+            this.tvMoviesOnCategory.setItems(FXCollections.observableList(categoryModel.getMoviesOnCategory(selectedCategory.getId())));
+            tvMoviesOnCategory.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     /**
      * Makes you able to select a playlist from the table
      */
@@ -325,6 +362,17 @@ public class MainMenuController implements Initializable {
         this.tvCategories.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Category) newValue != null) {
                 this.selectedCategory = (Category) newValue;
+                seeMoviesOnCategories();
+            }
+        }));
+    }
+
+
+    private void selectedMovieOnCategory() {
+        this.tvMoviesOnCategory.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            this.selectedMovieOnCategory = (Movie) newValue;
+            if (selectedMovieOnCategory != null) {
+                this.tvMovies.getSelectionModel().clearSelection();
             }
         }));
     }
@@ -365,16 +413,14 @@ public class MainMenuController implements Initializable {
         }));
     }
 
-    /**
-     * Takes the selected song on the playlist and moves its position 1 up
-     */
+
     public void btnUp(){
         if (selectedMovieOnCategory != null){
             try {
                 int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -1;
                 int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -0;
                 tvMoviesOnCategory.getSelectionModel().select(index);
-                Collections.swap(MoviesOnCategory, index, index1);
+                Collections.swap(allMoviesOnCategories, index, index1);
                 tvMoviesOnCategory.getSelectionModel().select(index);
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -382,21 +428,21 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    /**
-     * Takes the selected song on the playlist and moves its position 1 down
-     */
+
     public void btnDown() {
         if (selectedMovieOnCategory != null) {
             try {
                 int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() + 1;
                 int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 0;
                 tvMoviesOnCategory.getSelectionModel().select(index);
-                Collections.swap(MoviesOnCategory, index, index1);
+                Collections.swap(allMoviesOnCategories, index, index1);
                 tvMoviesOnCategory.getSelectionModel().select(index);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
     }
+
+
 
 }

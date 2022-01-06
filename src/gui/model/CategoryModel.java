@@ -1,6 +1,7 @@
 package gui.model;
 
 import be.Category;
+import be.Movie;
 import bll.CategoryManager;
 
 import java.sql.SQLException;
@@ -42,4 +43,11 @@ public class CategoryModel {
         categoryManager.removeFromCategory(categoryId, movieId);
     }
 
+    public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
+        return categoryManager.getMoviesOnCategory(categoryId);
+    }
+
+    public void deleteFromCategory(int categoryId, int movieId) throws SQLException {
+        categoryManager.deleteFromCategory(categoryId, movieId);
+    }
 }

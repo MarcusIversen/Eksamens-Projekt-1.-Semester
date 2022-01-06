@@ -27,8 +27,8 @@
         <Button fx:id="btnEditCategory" layoutX="101.0" layoutY="553.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteCategory" layoutX="192.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="80.0" text="Delete" />
         <Button fx:id="btnDeleteMovieFromCategory" layoutX="495.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteMovieInCategory" prefHeight="25.0" prefWidth="80.0" text="Delete" />
-        <Button fx:id="btnUp" layoutX="283.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="▲" />
-        <Button fx:id="btnDown" layoutX="350.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="▼" />
+        <Button fx:id="btnUp" layoutX="283.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnUp" prefHeight="25.0" prefWidth="57.0" text="▲" />
+        <Button fx:id="btnDown" layoutX="350.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnDown" prefHeight="25.0" prefWidth="57.0" text="▼" />
         <Button fx:id="btnAddMovie" layoutX="638.0" layoutY="552.0" mnemonicParsing="false" onAction="#goAddMovie" prefHeight="26.0" prefWidth="50.0" text="Add.." />
         <Button fx:id="btnEditMovie" layoutX="700.0" layoutY="552.0" mnemonicParsing="false" onAction="#goEditMovie" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteMovie" layoutX="755.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteMovie" prefHeight="25.0" prefWidth="67.0" text="Delete" />

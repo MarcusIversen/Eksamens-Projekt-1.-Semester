@@ -1,9 +1,11 @@
 package dal;
 
 import be.Category;
+import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +114,41 @@ public class CategoryDAO {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
+        ArrayList<Movie> allCategories = new ArrayList<>();
+
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "SELECT * FROM Movie INNER JOIN CatMovie ON CatMovie.MovieId = movie.id WHERE CatMovie.categoryId = ?;";
+            PreparedStatement st = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, categoryId);
+            st.execute();
+            ResultSet rs = st.getResultSet();
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String rating = rs.getString("rating");
+                String fileLink = rs.getString("fileLink");
+                if (fileLink != null)
+                    allCategories.add(new Movie(id, name, rating, fileLink));
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return allCategories;
+    }
+
+    public void deleteFromCategory(int categoryId, int movieId) throws SQLServerException {
+        String sql = "DELETE FROM CatMovie WHERE categoryId = ? AND MovieId = ?;";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement st = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, categoryId);
+            st.setInt(2, movieId);
+            st.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } ;
     }
 
     public static void main(String[] args) throws SQLException{
