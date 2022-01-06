@@ -188,6 +188,7 @@ public class MainMenuController implements Initializable {
                 exception.printStackTrace();
             }
             Stage editCategoryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            editCategoryStage = new Stage();
             editCategoryStage.setScene(mainWindowScene);
             EditCategoryController editCategoryController = parent.getController();
             editCategoryController.setSelectedCategory(selectedCategory);
