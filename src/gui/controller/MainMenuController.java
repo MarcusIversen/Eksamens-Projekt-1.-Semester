@@ -93,6 +93,7 @@ public class MainMenuController implements Initializable {
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 
     private Category selectedCategory;
+    private Movie selectedMovie;
 
     public MainMenuController() throws SQLException {
     }
@@ -104,7 +105,7 @@ public class MainMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
         selectedCategory();
-
+        selectedMovie();
     }
 
     public void initializeTable(){
@@ -189,8 +190,25 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
-    public void deleteMovie(){
+    public void deleteMovie() throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("WARNING MESSAGE");
+        alert.setHeaderText("Warning before you delete movie");
+        alert.setContentText("Are you sure you want to delete this movie!?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            selectedMovie();
+            movieModel.deleteMovie(selectedMovie.getId());
+        }else {
+            return;
+        }
+        try{
+            allMovies = FXCollections.observableList(movieModel.getMovies());
+            tableViewLoadMovies(allMovies);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void deleteMovieInCategory(){
@@ -200,8 +218,8 @@ public class MainMenuController implements Initializable {
     public void deleteCategory() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
-        alert.setHeaderText("Warning before you delete playlist");
-        alert.setContentText("Are you sure you want to delete this playlist!?");
+        alert.setHeaderText("Warning before you delete category");
+        alert.setContentText("Are you sure you want to delete this category!?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -216,7 +234,6 @@ public class MainMenuController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -256,6 +273,16 @@ public class MainMenuController implements Initializable {
         }));
     }
 
+    /**
+     * Makes you able to select a movie from the table
+     */
+    private void selectedMovie(){
+        this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if ((Movie) newValue != null) {
+                this.selectedMovie = (Movie) newValue;
+            }
+        }));
+    }
 
 
 }
