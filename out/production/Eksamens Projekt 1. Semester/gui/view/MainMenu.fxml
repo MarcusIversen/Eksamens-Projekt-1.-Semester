@@ -59,5 +59,7 @@
             <Bloom threshold="0.05" />
          </effect>
       </Label>
+      <Label layoutX="904.0" layoutY="90.0" prefHeight="17.0" prefWidth="67.0" text="Reload table" />
+      <Button fx:id="btnReload" layoutX="904.0" layoutY="85.0" mnemonicParsing="false" onAction="#reloadMovieTable" opacity="0.0" prefHeight="27.0" prefWidth="67.0" />
     </children>
 </AnchorPane>

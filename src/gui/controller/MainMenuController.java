@@ -322,8 +322,7 @@ public class MainMenuController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
+    
     private void selectedMovie(){
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Movie) newValue != null) {
