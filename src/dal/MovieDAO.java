@@ -28,14 +28,13 @@ public class MovieDAO {
      * @param name
      * @param rating
      * @param fileLink
-     * @param lastView
      * @return
      */
 
     public Movie createMovie(String name, String rating, String fileLink) {
 
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "INSERT INTO movie(name, rating, filelink, lastview) values(?,?,?,?);";
+            String sql = "INSERT INTO movie(name, rating, filelink) values(?,?,?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
