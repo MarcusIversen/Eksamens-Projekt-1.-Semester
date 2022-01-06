@@ -16,8 +16,8 @@ public class OpeningMenuController {
 
     public void goMainMenu() throws IOException{
         Stage switcher = (Stage) btnGoToMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/gui/view/MainMenu.fxml"));
-        Scene scene = new Scene(parent);
+        Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+        Scene scene = new Scene(root);
         switcher.setScene(scene);
     }
 

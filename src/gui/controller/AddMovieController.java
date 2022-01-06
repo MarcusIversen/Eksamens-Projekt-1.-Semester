@@ -45,7 +45,7 @@ public class AddMovieController {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();
-     int duration = Integer.parseInt(txtFieldDuration.getText());
+     int duration = (int) mediaPlayer.getMedia().getDuration().toSeconds();
 
      //todo add combobox
      movieModel.createMovie(title, rating, fileLink, duration);
