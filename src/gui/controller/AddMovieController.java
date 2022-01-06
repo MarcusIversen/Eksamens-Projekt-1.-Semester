@@ -15,6 +15,8 @@ import java.sql.SQLException;
 public class AddMovieController {
 
     @FXML
+    public TextField txtFieldDuration;
+    @FXML
     private TextField txtFieldTitle;
     @FXML
     private TextField txtFieldFile;
@@ -43,9 +45,10 @@ public class AddMovieController {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();
+     int duration = Integer.parseInt(txtFieldDuration.getText());
 
      //todo add combobox
-     movieModel.createMovie(title, rating, fileLink);
+     movieModel.createMovie(title, rating, fileLink, duration);
      Stage stage = (Stage) btnSaveSong.getScene().getWindow();
      stage.close();
      }
@@ -59,6 +62,16 @@ public class AddMovieController {
             Media media = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             txtFieldFile.appendText("data/" + selectedFile.getName());
+            mediaPlayer.setOnReady(() -> {
+                String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
+                int minuts = Integer.parseInt(timeInSeconds) / 60;
+                int seconds = Integer.parseInt(timeInSeconds) % 60;
+                if (10 > seconds) {
+                    txtFieldDuration.setText(minuts + ":0" + seconds);
+                } else {
+                    txtFieldDuration.setText(minuts + ":" + seconds);
+                }
+            });
         }else {
             System.out.println("File is invalid");
         }

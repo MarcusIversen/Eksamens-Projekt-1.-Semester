@@ -45,8 +45,8 @@ public class MovieModel {
      * @param fileLink
      * @return movie
      */
-    public Movie createMovie(String name, String rating, String fileLink){
-        return movieManager.createMovie(name, rating, fileLink);
+    public Movie createMovie(String name, String rating, String fileLink, int duration){
+        return movieManager.createMovie(name, rating, fileLink, duration);
     }
 
     /**

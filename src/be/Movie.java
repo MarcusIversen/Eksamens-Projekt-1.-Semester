@@ -7,13 +7,15 @@ public class Movie {
     private String rating;
     private String fileLink;
     private String lastView;
+    private int duration;
 
-    public Movie(int id, String name, String rating, String fileLink, String lastView) {
+    public Movie(int id, String name, String rating, String fileLink, int duration) {
         this.id = id;
         this.name = name;
         this.rating = rating;
         this.fileLink = fileLink;
-        this.lastView = lastView;
+        this.duration = duration;
+
     }
 
     public Movie(int id, String name, String rating) {
@@ -52,6 +54,10 @@ public class Movie {
     public void setRating(String rating) {
         this.rating = rating;
     }
+
+    public void setDuration(int duration) {        this.duration = duration;}
+
+    public int getDuration() {return duration;}
 
     public String getFileLink() {
         return fileLink;

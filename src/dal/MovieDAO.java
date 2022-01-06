@@ -31,15 +31,16 @@ public class MovieDAO {
      * @return
      */
 
-    public Movie createMovie(String name, String rating, String fileLink) {
+    public Movie createMovie(String name, String rating, String fileLink, int duration) {
 
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "INSERT INTO movie(name, rating, filelink) values(?,?,?);";
+            String sql = "INSERT INTO movie(name, rating, filelink, duration) values(?,?,?,?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, rating);
                 preparedStatement.setString(3, fileLink);
+                preparedStatement.setInt(4, duration);
                 preparedStatement.executeUpdate();
 
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -48,7 +49,7 @@ public class MovieDAO {
                     id = resultSet.getInt(1);
                 }
 
-                Movie movie = new Movie(id, name, rating, fileLink);
+                Movie movie = new Movie(id, name, rating, fileLink, duration);
                 return movie;
             }
         } catch (SQLException throwables) {
@@ -81,10 +82,11 @@ public class MovieDAO {
                     String name = resultset.getString("name");
                     String rating = resultset.getString("rating");
                     String filelink = resultset.getString("filelink");
-                    String lastview = resultset.getString("lastview");
+                    int duration = resultset.getInt("duration");
 
 
-                    Movie movie = new Movie(id, name, rating, filelink, lastview);
+
+                    Movie movie = new Movie(id, name, rating, filelink, duration);
                     allMovies.add(movie);
                 }
             }

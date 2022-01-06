@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
 
+
     @FXML
     private Button btnEditCategory;
     @FXML
@@ -87,6 +88,8 @@ public class MainMenuController implements Initializable {
     private TableColumn tcCategory;
     @FXML
     private TableColumn tcLastViewed;
+    @FXML
+    public TableColumn tcDuration;
 
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
@@ -119,6 +122,7 @@ public class MainMenuController implements Initializable {
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
         //tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+        tcDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         //TODO make lastView work
 
         try {

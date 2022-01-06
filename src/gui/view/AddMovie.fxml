@@ -14,12 +14,12 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label fx:id="labelNewEditSongCategory" layoutX="25.0" layoutY="200.0" text="Category:">
+        <Label fx:id="labelNewEditSongCategory" layoutX="26.0" layoutY="246.0" text="Category:">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label fx:id="labelNewEditSongFile" layoutX="59.0" layoutY="122.0" prefHeight="26.0" prefWidth="34.0" text="File:">
+        <Label fx:id="labelNewEditSongFile" layoutX="70.0" layoutY="122.0" prefHeight="26.0" prefWidth="34.0" text="File:">
             <font>
                 <Font size="16.0" />
             </font>
@@ -27,19 +27,25 @@
         <TextField fx:id="txtFieldTitle" layoutX="106.0" layoutY="50.0" prefHeight="26.0" prefWidth="329.0" />
         <TextField fx:id="txtFieldFile" layoutX="106.0" layoutY="122.0" prefHeight="26.0" prefWidth="329.0" />
         <Button fx:id="chooseFileButton" layoutX="465.0" layoutY="122.0" mnemonicParsing="false" onAction="#chooseMP4Button" prefHeight="26.0" prefWidth="92.0" text="Choose" />
-        <Button fx:id="btnCancel" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#cancelNewMovieButton" text="Cancel" />
-        <Button fx:id="btnSaveSong" layoutX="511.0" layoutY="338.0" mnemonicParsing="false" onAction="#saveMovieButton" prefHeight="26.0" prefWidth="51.0" text="Save" />
+        <Button fx:id="btnCancel" layoutX="439.0" layoutY="352.0" mnemonicParsing="false" onAction="#cancelNewMovieButton" text="Cancel" />
+        <Button fx:id="btnSaveSong" layoutX="511.0" layoutY="352.0" mnemonicParsing="false" onAction="#saveMovieButton" prefHeight="26.0" prefWidth="51.0" text="Save" />
         <Label fx:id="NewSongTitle" alignment="CENTER" layoutX="175.0" layoutY="14.0" prefHeight="18.0" prefWidth="249.0" text="Add Movie" textAlignment="CENTER" wrapText="true">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="cbProof" layoutX="105.0" layoutY="200.0" prefHeight="26.0" prefWidth="330.0" />
-      <Label fx:id="labelNewEditSongCategory1" layoutX="32.0" layoutY="282.0" text="Rating: ">
+        <ChoiceBox fx:id="cbProof" layoutX="106.0" layoutY="245.0" prefHeight="26.0" prefWidth="330.0" />
+      <Label fx:id="labelNewEditSongCategory1" layoutX="43.0" layoutY="306.0" text="Rating: ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFieldRating" layoutX="105.0" layoutY="281.0" prefHeight="26.0" prefWidth="329.0" promptText="0.0" />
+      <TextField fx:id="txtFieldRating" layoutX="106.0" layoutY="306.0" prefHeight="26.0" prefWidth="329.0" promptText="0.0" />
+      <Label fx:id="durationLabel" layoutX="27.0" layoutY="188.0" text="Duration:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFieldDuration" layoutX="106.0" layoutY="187.0" prefHeight="26.0" prefWidth="329.0" />
     </children>
 </AnchorPane>
