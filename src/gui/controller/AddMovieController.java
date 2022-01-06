@@ -21,11 +21,9 @@ public class AddMovieController {
     @FXML
     private TextField txtFieldRating;
     @FXML
-    private TextField txtFieldCategory;
-    @FXML
     private Button btnSaveSong;
     @FXML
-    public Button btnCancel;
+    private Button btnCancel;
 
     private MovieModel movieModel = new MovieModel();
     private MainMenuController mainMenuController = new MainMenuController();

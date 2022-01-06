@@ -7,9 +7,11 @@ import gui.model.MovieModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -94,6 +96,7 @@ public class MainMenuController implements Initializable {
     ObservableList<Movie> searchData = FXCollections.observableArrayList();
 
     private Category selectedCategory;
+    private Movie selectedMovie;
 
     public MainMenuController() throws SQLException {
     }
@@ -105,7 +108,7 @@ public class MainMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
         selectedCategory();
-
+        selectedMovie();
     }
 
     public void initializeTable(){
@@ -174,12 +177,31 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void goEditCategory() throws IOException {
+    public void goEditCategory(ActionEvent actionEvent) throws IOException {
+        if(selectedCategory != null) {
+            Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
+            FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditCategory.fxml"));
+            Scene mainWindowScene = null;
+            try {
+                mainWindowScene = new Scene(parent.load());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            Stage editCategoryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            editCategoryStage.setScene(mainWindowScene);
+            EditCategoryController editCategoryController = parent.getController();
+            editCategoryController.setSelectedCategory(selectedCategory);
+            editCategoryStage.show();
+        }else{
+            System.out.println("No playlist selected");
+        }
+        /*
         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/EditCategory.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Edit Category");
         stage.setScene(new Scene(root));
         stage.show();
+        */
     }
 
     public void goEditMovie() throws IOException {
@@ -190,8 +212,25 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
-    public void deleteMovie(){
+    public void deleteMovie() throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("WARNING MESSAGE");
+        alert.setHeaderText("Warning before you delete movie");
+        alert.setContentText("Are you sure you want to delete this movie!?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            selectedMovie();
+            movieModel.deleteMovie(selectedMovie.getId());
+        }else {
+            return;
+        }
+        try{
+            allMovies = FXCollections.observableList(movieModel.getMovies());
+            tableViewLoadMovies(allMovies);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void deleteMovieInCategory(){
@@ -217,7 +256,6 @@ public class MainMenuController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -283,6 +321,15 @@ public class MainMenuController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void selectedMovie(){
+        this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if ((Movie) newValue != null) {
+                this.selectedMovie = (Movie) newValue;
+            }
+        }));
     }
 
 

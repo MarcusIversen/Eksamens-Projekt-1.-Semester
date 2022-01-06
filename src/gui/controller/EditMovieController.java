@@ -1,48 +1,103 @@
 package gui.controller;
 
+import be.Movie;
+import gui.model.MovieModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.sql.SQLException;
 
 public class EditMovieController {
 
 
     @FXML
-    public Label labelNewEditSongTitle;
+    private Label labelNewEditSongTitle;
     @FXML
-    public Label labelNewEditSongCategory;
+    private Label labelNewEditSongCategory;
     @FXML
-    public Label labelNewEditSongFile;
+    private Label labelNewEditSongFile;
 
     @FXML
-    public TextField txtFieldTitle;
+    private TextField txtFieldTitle;
     @FXML
-    public TextField txtFieldFile;
+    private TextField txtFieldFile;
     @FXML
-    public TextField txtFieldFileRating;
+    private TextField txtFieldFileRating;
+    @FXML
+    private TextField txtFieldId;
 
     @FXML
-    public Button chooseFileButton;
+    private Button chooseFileButton;
     @FXML
-    public Button btnCancel;
+    private Button btnCancel;
     @FXML
-    public Button btnSaveSong;
+    private Button btnSave;
 
     @FXML
-    public ChoiceBox cbProof;
+    private ChoiceBox cbProof;
 
     @FXML
-    public Label NewSongTitle;
+    private Label NewSongTitle;
     @FXML
-    public Label labelNewEditSongCategory1;
+    private Label labelNewEditSongCategory1;
+
+    private MovieModel movieModel = new MovieModel();
+    private MediaPlayer mediaPlayer;
+
+    public EditMovieController() throws SQLException {
+    }
 
 
     public void cancelEditMovieButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+    }
+
+    /**
+     * Saves the newly added song.
+     */
+    public void saveBtn(ActionEvent actionEvent) throws Exception {
+        String name = txtFieldTitle.getText();
+        String rating = txtFieldFileRating.getText();
+        String fileLink = txtFieldFile.getText();
+        int id = Integer.parseInt(txtFieldId.getText());
+
+        Movie movie = new Movie(id, name, rating, fileLink);
+        movieModel.editMovie(movie);
+        cancelEditMovieButton();
+    }
+
+    /**
+     * Gets the values of the selected song.
+     */
+    public void setSelectedMovie(Movie movie) {
+        txtFieldTitle.setText(movie.getName());
+        txtFieldFileRating.setText(movie.getRating());
+        txtFieldFile.setText(movie.getFileLink());
+        txtFieldId.setText(String.valueOf(movie.getId()));
+    }
+
+    public void chooseMP4Button() {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movies files", "*.mp4", "*.mpeg4"));
+        Media f = new Media(selectedFile.toURI().toString());
+        if (selectedFile != null){
+            Media media = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            txtFieldFile.appendText("data/" + selectedFile.getName());
+        }else {
+            System.out.println("File is invalid");
+        }
     }
 
 }
