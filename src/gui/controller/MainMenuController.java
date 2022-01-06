@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -86,6 +87,9 @@ public class MainMenuController implements Initializable {
     private TableColumn tcCategory;
     @FXML
     private TableColumn tcLastViewed;
+
+    private Movie selectedMovieOnCategory;
+    private ObservableList<Movie>MoviesOnCategory = FXCollections.observableArrayList();
 
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
@@ -361,6 +365,38 @@ public class MainMenuController implements Initializable {
         }));
     }
 
+    /**
+     * Takes the selected song on the playlist and moves its position 1 up
+     */
+    public void btnUp(){
+        if (selectedMovieOnCategory != null){
+            try {
+                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -1;
+                int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -0;
+                tvMoviesOnCategory.getSelectionModel().select(index);
+                Collections.swap(MoviesOnCategory, index, index1);
+                tvMoviesOnCategory.getSelectionModel().select(index);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 
+    /**
+     * Takes the selected song on the playlist and moves its position 1 down
+     */
+    public void btnDown() {
+        if (selectedMovieOnCategory != null) {
+            try {
+                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() + 1;
+                int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 0;
+                tvMoviesOnCategory.getSelectionModel().select(index);
+                Collections.swap(MoviesOnCategory, index, index1);
+                tvMoviesOnCategory.getSelectionModel().select(index);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 
 }
