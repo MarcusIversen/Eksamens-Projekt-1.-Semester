@@ -17,7 +17,7 @@ Redefine of the background color, to a dark blue color.
 
     /* text colors depending on background's brightness */
     -fx-light-text-color: rgb(220, 220, 220);
-    
+
 
     /* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
