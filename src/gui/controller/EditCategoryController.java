@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Category;
+import com.sun.tools.javac.Main;
 import gui.model.CategoryModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import java.sql.SQLException;
 public class EditCategoryController {
 
     @FXML
-    public TextField TextInputPlaylist;
+    public TextField txtFieldEditCategory;
     @FXML
     public Button btnCancel;
     @FXML
@@ -25,6 +26,7 @@ public class EditCategoryController {
     public Label newCategoryName;
 
     private CategoryModel categoryModel = new CategoryModel();
+    private MainMenuController mainMenuController = new MainMenuController();
 
     public EditCategoryController() throws SQLException {
     }
@@ -35,15 +37,16 @@ public class EditCategoryController {
     }
 
     public void editCategoryButton(ActionEvent actionEvent) throws SQLException {
-        String name = TextInputPlaylist.getText();
+        String name = txtFieldEditCategory.getText();
         int id = Integer.parseInt(playlistId.getText());
         Category category = new Category(id, name);
         categoryModel.editCategory(category);
         cancelEditCategoryButton(actionEvent);
+        mainMenuController.reloadCategoryTable();
     }
 
     public void setSelectedCategory(Category category) {
-        TextInputPlaylist.setText(category.getName());
+        txtFieldEditCategory.setText(category.getName());
         playlistId.setText(Integer.toString(category.getId()));
     }
 

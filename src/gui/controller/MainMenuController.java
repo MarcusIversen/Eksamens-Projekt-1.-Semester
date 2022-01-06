@@ -66,9 +66,9 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableView<Movie> tvMovies;
     @FXML
-    private TableView tvCategories;
+    private TableView<Category> tvCategories;
     @FXML
-    private TableView tvMoviesOnCategory;
+    private TableView<Movie> tvMoviesOnCategory;
 
     @FXML
     private TableColumn tcMovieRatingOnCategory;
@@ -90,9 +90,11 @@ public class MainMenuController implements Initializable {
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
     private CategoryModel categoryModel = new CategoryModel();
+
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
+
     ObservableList<Movie> searchData = FXCollections.observableArrayList();
 
     private Category selectedCategory;
@@ -101,15 +103,14 @@ public class MainMenuController implements Initializable {
     public MainMenuController() throws SQLException {
     }
 
-    /**
-     * Initialize the 3 different tables used
-     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
         selectedCategory();
         selectedMovie();
     }
+
 
     public void initializeTable(){
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
@@ -226,7 +227,6 @@ public class MainMenuController implements Initializable {
         }
     }
 
-
     public void deleteMovie() throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
@@ -292,6 +292,10 @@ public class MainMenuController implements Initializable {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
             tvMovies.getSelectionModel().select(index);
+            //todo delete the code below when reload works
+            int index1 = tvCategories.getSelectionModel().getFocusedIndex();
+            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
+            tvCategories.getSelectionModel().select(index1);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -300,7 +304,7 @@ public class MainMenuController implements Initializable {
     /**
      * Reloads the category table
      */
-    private void reloadCategoryTable() {
+    public void reloadCategoryTable() {
         try {
             int index = tvCategories.getSelectionModel().getFocusedIndex();
             this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
