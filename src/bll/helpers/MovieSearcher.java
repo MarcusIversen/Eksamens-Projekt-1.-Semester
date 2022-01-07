@@ -48,6 +48,6 @@ public class MovieSearcher {
      * @return
      */
     private boolean compareToMovieRating(String query, Movie movie) {
-        return movie.getRating().toLowerCase().contains(query.toLowerCase());
+        return movie.getRating().contains(query);
     }
 }
