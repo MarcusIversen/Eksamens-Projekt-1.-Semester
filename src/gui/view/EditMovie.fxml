@@ -9,26 +9,26 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.EditMovieController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@main.css">
+      <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@main.css">
          <children>
-            <Label fx:id="labelNewEditSongTitle" layoutX="60.0" layoutY="50.0" text="Title:">
+            <Label fx:id="labelNewEditSongTitle" layoutX="59.0" layoutY="62.0" text="Title:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelNewEditSongCategory" layoutX="25.0" layoutY="200.0" text="Category:">
+            <Label fx:id="labelNewEditSongCategory" layoutX="26.0" layoutY="148.0" text="Category:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelNewEditSongFile" layoutX="59.0" layoutY="122.0" prefHeight="26.0" prefWidth="34.0" text="File:">
+            <Label fx:id="labelNewEditSongFile" layoutX="59.0" layoutY="108.0" prefHeight="26.0" prefWidth="34.0" text="File:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFieldTitle" layoutX="106.0" layoutY="50.0" prefHeight="26.0" prefWidth="329.0" />
-            <TextField fx:id="txtFieldFile" layoutX="106.0" layoutY="122.0" prefHeight="26.0" prefWidth="329.0" />
-            <Button fx:id="chooseFileButton" layoutX="465.0" layoutY="122.0" mnemonicParsing="false" onAction="#chooseMP4Button" prefHeight="26.0" prefWidth="92.0" text="Choose" />
+            <TextField fx:id="txtFieldTitle" layoutX="104.0" layoutY="62.0" prefHeight="26.0" prefWidth="329.0" />
+            <TextField fx:id="txtFieldFile" layoutX="105.0" layoutY="108.0" prefHeight="26.0" prefWidth="329.0" />
+            <Button fx:id="chooseFileButton" layoutX="444.0" layoutY="147.0" mnemonicParsing="false" onAction="#chooseMP4Button" prefHeight="26.0" prefWidth="92.0" text="Choose" />
             <Button fx:id="btnCancel" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#cancelEditMovieButton" text="Cancel" />
             <Button fx:id="btnSave" layoutX="511.0" layoutY="338.0" mnemonicParsing="false" onAction="#saveBtn" prefHeight="26.0" prefWidth="51.0" text="Save" />
             <Label fx:id="NewSongTitle" alignment="CENTER" layoutX="175.0" layoutY="14.0" prefHeight="18.0" prefWidth="249.0" text="Edit Movie" textAlignment="CENTER" wrapText="true">
@@ -36,14 +36,26 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="cbProof" layoutX="105.0" layoutY="200.0" prefHeight="26.0" prefWidth="330.0" />
-            <Label fx:id="labelNewEditSongCategory1" layoutX="32.0" layoutY="282.0" text="Rating: ">
+            <ChoiceBox fx:id="cbProof" layoutX="104.0" layoutY="148.0" prefHeight="26.0" prefWidth="330.0" />
+            <Label fx:id="labelNewEditSongCategory1" layoutX="40.0" layoutY="193.0" text="Rating: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFieldFileRating" layoutX="105.0" layoutY="281.0" prefHeight="26.0" prefWidth="329.0" promptText="0.0" />
+            <TextField fx:id="txtFieldFileRating" layoutX="105.0" layoutY="193.0" prefHeight="26.0" prefWidth="329.0" promptText="0.0" />
             <TextField fx:id="txtFieldId" layoutX="19.0" layoutY="351.0" prefHeight="26.0" prefWidth="0.0" visible="false" />
+            <Label fx:id="labelLastViewed" layoutX="8.0" layoutY="237.0" text="Last viewed:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFieldFileLastViewed" layoutX="105.0" layoutY="236.0" prefHeight="26.0" prefWidth="329.0" />
+            <TextField fx:id="txtFieldFileDuration" layoutX="106.0" layoutY="280.0" prefHeight="26.0" prefWidth="329.0" />
+            <Label fx:id="labelDuration" layoutX="27.0" layoutY="280.0" text="Duration:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

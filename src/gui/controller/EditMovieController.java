@@ -33,6 +33,10 @@ public class EditMovieController {
     private TextField txtFieldFileRating;
     @FXML
     private TextField txtFieldId;
+    @FXML
+    private TextField txtFieldFileLastViewed;
+    @FXML
+    private TextField txtFieldFileDuration;
 
     @FXML
     private Button chooseFileButton;
@@ -72,8 +76,10 @@ public class EditMovieController {
         String rating = txtFieldFileRating.getText();
         String fileLink = txtFieldFile.getText();
         int id = Integer.parseInt(txtFieldId.getText());
+        String lastViewed = txtFieldFileLastViewed.getText();
+        int duration = (int) mediaPlayer.getMedia().getDuration().toSeconds();
 
-        Movie movie = new Movie(id, name, rating, fileLink);
+        Movie movie = new Movie(id, name, rating, fileLink, lastViewed, duration);
         movieModel.editMovie(movie);
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
@@ -87,6 +93,8 @@ public class EditMovieController {
         txtFieldFileRating.setText(movie.getRating());
         txtFieldFile.setText(movie.getFileLink());
         txtFieldId.setText(String.valueOf(movie.getId()));
+        txtFieldFileLastViewed.setText(movie.getLastView());
+        txtFieldFileDuration.setText(String.valueOf(movie.getDuration()));
     }
 
     public void chooseMP4Button() {
@@ -100,9 +108,9 @@ public class EditMovieController {
             int minutes = Integer.parseInt(timeInSeconds) / 60;
             int seconds = Integer.parseInt(timeInSeconds) % 60;
             if (10 > seconds) {
-                txtFieldDuration.setText(minutes + ":0" + seconds);
+                txtFieldFileDuration.setText(minutes + ":0" + seconds);
             } else {
-                txtFieldDuration.setText(minutes + ":" + seconds);
+                txtFieldFileDuration.setText(minutes + ":" + seconds);
             }
         });
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -111,5 +119,9 @@ public class EditMovieController {
             alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
             alert.showAndWait();
         }
+<<<<<<< Updated upstream
     }
 
+=======
+}
+>>>>>>> Stashed changes
