@@ -120,7 +120,7 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void initializeTable(){
+    public void initializeTable() {
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
         //tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
@@ -139,7 +139,7 @@ public class MainMenuController implements Initializable {
         try {
             allCategories = FXCollections.observableList(categoryModel.getCategories());
             tableViewLoadCategories(allCategories);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -172,7 +172,7 @@ public class MainMenuController implements Initializable {
         Platform.exit();
     }
 
-    public void seeMoviesOnCategories(){
+    public void seeMoviesOnCategories() {
         tcMoviesOnCategory.setCellValueFactory(new PropertyValueFactory<>("name"));
         try {
             allMoviesOnCategories = FXCollections.observableList(categoryModel.getMoviesOnCategory(selectedCategory.getId()));
@@ -188,13 +188,15 @@ public class MainMenuController implements Initializable {
         stage.setTitle("Add Category");
         stage.setScene(new Scene(root));
         stage.show();
-        stage.setOnHiding( event ->
-        { try {
-            allCategories = FXCollections.observableList(categoryModel.getCategories());
-            tableViewLoadCategories(allCategories);
-        } catch (Exception e){
-            e.printStackTrace();
-        } });
+        stage.setOnHiding(event ->
+        {
+            try {
+                allCategories = FXCollections.observableList(categoryModel.getCategories());
+                tableViewLoadCategories(allCategories);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void goAddMovie() throws IOException {
@@ -203,18 +205,20 @@ public class MainMenuController implements Initializable {
         stage.setTitle("Add movie");
         stage.setScene(new Scene(root));
         stage.show();
-        stage.setOnHiding( event ->
-        { try {
-            allMovies = FXCollections.observableList(movieModel.getMovies());
-            tableViewLoadMovies(allMovies);
-        } catch (Exception e){
-            e.printStackTrace();
-        } });
+        stage.setOnHiding(event ->
+        {
+            try {
+                allMovies = FXCollections.observableList(movieModel.getMovies());
+                tableViewLoadMovies(allMovies);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 
-    public void goEditCategory(){
-        if(selectedCategory != null) {
+    public void goEditCategory() {
+        if (selectedCategory != null) {
             Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditCategory.fxml"));
             Scene mainWindowScene = null;
@@ -229,13 +233,13 @@ public class MainMenuController implements Initializable {
             EditCategoryController editCategoryController = parent.getController();
             editCategoryController.setSelectedCategory(selectedCategory);
             editCategoryStage.show();
-        }else{
+        } else {
             System.out.println("No playlist selected");
         }
     }
 
-    public void goEditMovie(){
-        if(selectedMovie != null) {
+    public void goEditMovie() {
+        if (selectedMovie != null) {
             Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
             Scene mainWindowScene = null;
@@ -250,7 +254,7 @@ public class MainMenuController implements Initializable {
             EditMovieController editMovieController = parent.getController();
             editMovieController.setSelectedMovie(selectedMovie);
             editMovieStage.show();
-        }else{
+        } else {
             System.out.println("No songs are selected");
         }
     }
@@ -259,19 +263,19 @@ public class MainMenuController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
         alert.setHeaderText("Warning before you delete movie");
-        alert.setContentText("Are you sure you want to delete this movie!?");
-
+        alert.setContentText(" To delete a movie, remove it from all categories first!! \n Are you sure you want " +
+                "to delete this movie?");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             selectedMovie();
             movieModel.deleteMovie(selectedMovie.getId());
-        }else {
+        } else {
             return;
         }
-        try{
+        try {
             allMovies = FXCollections.observableList(movieModel.getMovies());
             tableViewLoadMovies(allMovies);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -305,21 +309,23 @@ public class MainMenuController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
         alert.setHeaderText("Warning before you delete category");
-        alert.setContentText("Are you sure you want to delete this category!?");
+        alert.setContentText(" Remove all movies from selected category to delete!! \n Are you sure you want " +
+                "to delete this movie?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             selectedCategory();
             categoryModel.deleteCategory(selectedCategory.getId());
-        }else {
+        } else {
             return;
         }
-        try{
+        try {
             allCategories = FXCollections.observableList(categoryModel.getCategories());
             tableViewLoadCategories(allCategories);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -365,7 +371,7 @@ public class MainMenuController implements Initializable {
     /**
      * Makes you able to select a playlist from the table
      */
-    private void selectedCategory(){
+    private void selectedCategory() {
         this.tvCategories.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Category) newValue != null) {
                 this.selectedCategory = (Category) newValue;
@@ -386,14 +392,16 @@ public class MainMenuController implements Initializable {
 
     /**
      * Loads the tableview for the movies, when search is pressed.
+     *
      * @param searchData
      */
-    private void searchTableViewLoad(ObservableList<Movie> searchData){
+    private void searchTableViewLoad(ObservableList<Movie> searchData) {
         tvMovies.setItems(getSearchData());
     }
 
     /**
      * Gets the searchdata.
+     *
      * @return searchData;
      */
     public ObservableList<Movie> getSearchData() {
@@ -403,16 +411,16 @@ public class MainMenuController implements Initializable {
     /**
      * Method that filters the movies, with the text input you write in the textfield, next to the search button.
      */
-    public void filterMovies(){
-        if (hasSearched == true && !tfSearchBar.getText().equals("")){
+    public void filterMovies() {
+        if (hasSearched == true && !tfSearchBar.getText().equals("")) {
             btnSearchBar.setText("X");
             hasSearched = false;
-        }else{
+        } else {
             btnSearchBar.setText("🔍");
             hasSearched = true;
             tfSearchBar.clear();
         }
-        try{
+        try {
             searchData = FXCollections.observableList(movieModel.searchMovie(tfSearchBar.getText()));
             searchTableViewLoad(searchData);
         } catch (Exception e) {
@@ -420,7 +428,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    private void selectedMovie(){
+    private void selectedMovie() {
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Movie) newValue != null) {
                 this.selectedMovie = (Movie) newValue;
@@ -429,11 +437,11 @@ public class MainMenuController implements Initializable {
     }
 
 
-    public void btnUp(){
-        if (selectedMovieOnCategory != null){
+    public void btnUp() {
+        if (selectedMovieOnCategory != null) {
             try {
-                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -1;
-                int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() -0;
+                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 1;
+                int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 0;
                 tvMoviesOnCategory.getSelectionModel().select(index);
                 Collections.swap(allMoviesOnCategories, index, index1);
                 tvMoviesOnCategory.getSelectionModel().select(index);
@@ -457,7 +465,6 @@ public class MainMenuController implements Initializable {
             }
         }
     }
-
 
 
 }

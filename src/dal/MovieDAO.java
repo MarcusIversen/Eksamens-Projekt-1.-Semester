@@ -4,10 +4,13 @@ import be.Category;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MovieDAO {
 
@@ -138,7 +141,11 @@ public class MovieDAO {
                 throw new Exception("Could not delete movie");
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("WARNING MESSAGE");
+            alert.setHeaderText("There is still categories assigned to this movie!!");
+            alert.setContentText(" To delete a movie, remove it from all categories first!!");
+            alert.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }

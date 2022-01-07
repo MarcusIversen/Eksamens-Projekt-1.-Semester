@@ -4,6 +4,7 @@ import be.Category;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
+import javafx.scene.control.Alert;
 
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
@@ -73,7 +74,11 @@ public class CategoryDAO {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("WARNING MESSAGE");
+            alert.setHeaderText("There is still movies in the selected category");
+            alert.setContentText("Remove all movies from category to delete");
+            alert.showAndWait();
         }
     }
 
