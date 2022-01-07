@@ -4,6 +4,7 @@ import be.Movie;
 import bll.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 
 import java.sql.SQLException;
 import java.util.List;

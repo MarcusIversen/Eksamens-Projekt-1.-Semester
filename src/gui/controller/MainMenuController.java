@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Category;
 import be.Movie;
+import bll.MovieManager;
 import gui.model.CategoryModel;
 import gui.model.MovieModel;
 import javafx.application.Platform;
@@ -15,9 +16,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -94,6 +100,7 @@ public class MainMenuController implements Initializable {
     private Stage stage = new Stage();
     private MovieModel movieModel = new MovieModel();
     private CategoryModel categoryModel = new CategoryModel();
+    private MovieManager movieManager = new MovieManager();
 
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
@@ -388,6 +395,19 @@ public class MainMenuController implements Initializable {
                 this.tvMovies.getSelectionModel().clearSelection();
             }
         }));
+        
+        this.tvMoviesOnCategory.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && selectedMovieOnCategory != null) {
+                try {
+                    movieModel.editMovie(selectedMovieOnCategory);
+                    Desktop.getDesktop().open(new File(selectedMovieOnCategory.getFileLink()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
@@ -428,17 +448,35 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    private void selectedMovie() {
+    public MovieManager getMovieManager() {
+        return movieManager;
+    }
+
+    private void selectedMovie(){
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Movie) newValue != null) {
                 this.selectedMovie = (Movie) newValue;
             }
         }));
+
+
+        this.tvMovies.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && selectedMovie != null) {
+                try {
+                    movieModel.editMovie(selectedMovie);
+                    Desktop.getDesktop().open(new File(selectedMovie.getFileLink()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            });
     }
 
 
-    public void btnUp() {
-        if (selectedMovieOnCategory != null) {
+    public void btnUp(){
+        if (selectedMovieOnCategory != null){
             try {
                 int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 1;
                 int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 0;

@@ -159,39 +159,4 @@ public class MovieDAO {
 
     }
 
-    /**
-     * Searches through the list of movie in lower case.
-     * If the method is called again, it clears the search and shows the entire movie table again.
-     */
-    public List<Movie> searchMovie(String searchQuery) {
-        String SavedSearchedQuery = searchQuery;
-        if (searchQuery.equals(oldSearchQuery) && searchQuery != "") {
-            SavedSearchedQuery = "";
-            oldSearchQuery = "";
-        } else {
-            oldSearchQuery = SavedSearchedQuery;
-        }
-        List<Movie> resultMovies = new ArrayList<>();
-        try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "SELECT * FROM Movie WHERE LOWER(name) LIKE LOWER(?) OR rating LIKE LOWER(?);";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, "%" + SavedSearchedQuery + "%");
-            preparedStatement.setString(2, "%" + SavedSearchedQuery + "%");
-            if (preparedStatement.execute()) {
-                ResultSet resultSet = preparedStatement.getResultSet();
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
-                    String rating = resultSet.getString("rating");
-                    Movie movie = new Movie(id, name, rating);
-                    resultMovies.add(movie);
-                }
-            }
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        return resultMovies;
-    }
 }
