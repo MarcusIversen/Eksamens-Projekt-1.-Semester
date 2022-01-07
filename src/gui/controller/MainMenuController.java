@@ -244,6 +244,15 @@ public class MainMenuController implements Initializable {
             EditCategoryController editCategoryController = parent.getController();
             editCategoryController.setSelectedCategory(selectedCategory);
             editCategoryStage.show();
+            editCategoryStage.setOnHiding(event ->
+            {
+                try {
+                    allCategories = FXCollections.observableList(categoryModel.getCategories());
+                    tableViewLoadCategories(allCategories);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR MESSAGE");
@@ -253,6 +262,8 @@ public class MainMenuController implements Initializable {
         }
 
     }
+
+
 
     public void goEditMovie() {
         if (selectedMovie != null) {
@@ -272,6 +283,15 @@ public class MainMenuController implements Initializable {
             EditMovieController editMovieController = parent.getController();
             editMovieController.setSelectedMovie(selectedMovie);
             editMovieStage.show();
+            editMovieStage.setOnHiding(event ->
+            {
+                try {
+                    allMovies = FXCollections.observableList(movieModel.getMovies());
+                    tableViewLoadMovies(allMovies);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR MESSAGE");

@@ -26,7 +26,7 @@ public class EditCategoryController {
     public Label newCategoryName;
 
     private CategoryModel categoryModel = new CategoryModel();
-    private MainMenuController mainMenuController = new MainMenuController();
+    //private MainMenuController mainMenuController = new MainMenuController();
 
     public EditCategoryController() throws SQLException {
     }
@@ -42,7 +42,7 @@ public class EditCategoryController {
         Category category = new Category(id, name);
         categoryModel.editCategory(category);
         cancelEditCategoryButton(actionEvent);
-        mainMenuController.reloadCategoryTable();
+        //mainMenuController.reloadCategoryTable();
     }
 
     public void setSelectedCategory(Category category) {
