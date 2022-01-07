@@ -72,9 +72,9 @@ public class MainMenuController implements Initializable {
     private TextField tfSearchBar;
 
     @FXML
-    private TableView<Movie> tvMovies;
+    public TableView<Movie> tvMovies;
     @FXML
-    private TableView<Category> tvCategories;
+    public TableView<Category> tvCategories;
     @FXML
     private TableView<Movie> tvMoviesOnCategory;
 
@@ -102,7 +102,7 @@ public class MainMenuController implements Initializable {
     private CategoryModel categoryModel;
     private MovieManager movieManager;
 
-    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+    public ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 
@@ -163,11 +163,11 @@ public class MainMenuController implements Initializable {
         return allCategories;
     }
 
-    private void tableViewLoadMovies(ObservableList<Movie> allMovies) {
+    public void tableViewLoadMovies(ObservableList<Movie> allMovies) {
         tvMovies.setItems(getMoviesData());
     }
 
-    private ObservableList<Movie> getMoviesData() {
+    public ObservableList<Movie> getMoviesData() {
         return allMovies;
     }
 
@@ -251,6 +251,7 @@ public class MainMenuController implements Initializable {
             alert.setContentText("To edit a category, select a category first");
             alert.showAndWait();
         }
+
     }
 
     public void goEditMovie() {
@@ -371,6 +372,7 @@ public class MainMenuController implements Initializable {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+
     }
 
     public void reloadMoviesOnCategory() {

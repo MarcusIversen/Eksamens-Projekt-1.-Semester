@@ -3,6 +3,7 @@ package gui.controller;
 import be.Movie;
 import com.sun.tools.javac.Main;
 import gui.model.MovieModel;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -75,7 +76,9 @@ public class EditMovieController {
 
         Movie movie = new Movie(id, name, rating, fileLink);
         movieModel.editMovie(movie);
-        cancelEditMovieButton();
+        mainMenuController.initializeTable();
+        Stage stage = (Stage) btnSave.getScene().getWindow();
+        stage.close();
     }
 
     /**
