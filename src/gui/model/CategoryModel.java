@@ -3,12 +3,15 @@ package gui.model;
 import be.Category;
 import be.Movie;
 import bll.CategoryManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryModel {
 
+    private ObservableList<Category> categoriesToBeViewed;
     private CategoryManager categoryManager;
 
     /**
@@ -16,6 +19,8 @@ public class CategoryModel {
      */
     public CategoryModel() throws SQLException {
         categoryManager = new CategoryManager();
+        categoriesToBeViewed = FXCollections.observableArrayList();
+        categoriesToBeViewed.addAll(categoryManager.getCategories());
     }
 
     public List<Category> getCategories() throws SQLException {

@@ -35,6 +35,7 @@ public class CategoryDAO {
                     String title = resultSet.getString("name");
 
                     Category category = new Category(id, title);
+                    category.setMovies(getMoviesOnCategory(category.getId()));
                     allCategories.add(category);
                 }
                 return allCategories;

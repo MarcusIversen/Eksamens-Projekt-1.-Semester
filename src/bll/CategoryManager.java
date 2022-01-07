@@ -21,8 +21,7 @@ public class CategoryManager {
      * Gets the list of category using the getCategory method in categoryDAO.
      */
     public List<Category> getCategories() throws SQLException {
-        List<Category> allCategories = categoryDAO.getCategories();
-        return allCategories;
+        return categoryDAO.getCategories();
     }
 
     public void createCategory(String name) throws SQLException{
