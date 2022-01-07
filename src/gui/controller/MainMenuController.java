@@ -395,7 +395,7 @@ public class MainMenuController implements Initializable {
                 this.tvMovies.getSelectionModel().clearSelection();
             }
         }));
-        
+
         this.tvMoviesOnCategory.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovieOnCategory != null) {
                 try {
@@ -452,7 +452,7 @@ public class MainMenuController implements Initializable {
         return movieManager;
     }
 
-    private void selectedMovie(){
+    private void selectedMovie() {
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Movie) newValue != null) {
                 this.selectedMovie = (Movie) newValue;
@@ -471,12 +471,12 @@ public class MainMenuController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            });
+        });
     }
 
 
-    public void btnUp(){
-        if (selectedMovieOnCategory != null){
+    public void btnUp() {
+        if (selectedMovieOnCategory != null) {
             try {
                 int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 1;
                 int index1 = tvMoviesOnCategory.getSelectionModel().getFocusedIndex() - 0;
