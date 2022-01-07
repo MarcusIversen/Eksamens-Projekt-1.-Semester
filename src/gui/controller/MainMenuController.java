@@ -257,6 +257,8 @@ public class MainMenuController implements Initializable {
     public void goEditMovie() {
         if (selectedMovie != null) {
             Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
+
+            Stage switcher = (Stage) btnEditMovie.getScene().getWindow();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
             Scene mainWindowScene = null;
             try {

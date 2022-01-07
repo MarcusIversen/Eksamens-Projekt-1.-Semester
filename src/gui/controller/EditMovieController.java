@@ -49,11 +49,13 @@ public class EditMovieController {
     @FXML
     private Label labelNewEditSongCategory1;
 
-    private MovieModel movieModel = new MovieModel();
+    private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
-    private MainMenuController mainMenuController = new MainMenuController();
+    private MainMenuController mainMenuController;
 
     public EditMovieController() throws SQLException {
+        movieModel = new MovieModel();
+        mainMenuController = new MainMenuController();
     }
 
 
@@ -73,7 +75,6 @@ public class EditMovieController {
 
         Movie movie = new Movie(id, name, rating, fileLink);
         movieModel.editMovie(movie);
-        mainMenuController.initializeTable();
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
     }
@@ -112,4 +113,3 @@ public class EditMovieController {
         }
     }
 
-}
