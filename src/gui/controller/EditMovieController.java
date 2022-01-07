@@ -113,15 +113,10 @@ public class EditMovieController {
                 txtFieldFileDuration.setText(minutes + ":" + seconds);
             }
         });
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR MESSAGE");
-            alert.setHeaderText("Wrong file type is selected");
-            alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
-            alert.showAndWait();
-        }
-<<<<<<< Updated upstream
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("ERROR MESSAGE");
+        alert.setHeaderText("Wrong file type is selected");
+        alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
+        alert.showAndWait();
     }
-
-=======
 }
->>>>>>> Stashed changes
