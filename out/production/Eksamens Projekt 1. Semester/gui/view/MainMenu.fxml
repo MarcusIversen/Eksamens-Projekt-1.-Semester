@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="19.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -20,9 +20,9 @@
         <TableView fx:id="tvMovies" layoutX="603.0" layoutY="107.0" prefHeight="426.0" prefWidth="367.0">
             <columns>
                 <TableColumn fx:id="tcMovieRating" prefWidth="30.0" text="★" />
-                <TableColumn fx:id="tcNameOnMovie" prefWidth="167.0" text="Name" />
-                <TableColumn fx:id="tcLastViewed" prefWidth="98.0" text="Last viewed" />
-            <TableColumn fx:id="tcDuration" prefWidth="71.0" text="Duration" />
+                <TableColumn fx:id="tcNameOnMovie" prefWidth="125.60009765625" text="Name" />
+                <TableColumn fx:id="tcLastViewed" prefWidth="141.5999755859375" text="Last viewed" />
+            <TableColumn fx:id="tcDuration" prefWidth="72.0" text="Duration" />
             </columns>
         </TableView>
         <Button fx:id="btnEditCategory" layoutX="76.0" layoutY="552.0" mnemonicParsing="false" onAction="#goEditCategory" prefHeight="26.0" prefWidth="50.0" text="Edit...." />

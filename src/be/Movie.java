@@ -9,15 +9,6 @@ public class Movie {
     private String lastView;
     private int duration;
 
-    public Movie(int id, String name, String rating, String fileLink, int duration) {
-        this.id = id;
-        this.name = name;
-        this.rating = rating;
-        this.fileLink = fileLink;
-        this.duration = duration;
-
-    }
-
     public Movie(int id, String name, String rating) {
         this.id = id;
         this.name = name;
@@ -30,6 +21,24 @@ public class Movie {
         this.rating = rating;
         this.fileLink = fileLink;
     }
+
+    public Movie(int id, String name, String rating, String fileLink, int duration) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.fileLink = fileLink;
+        this.duration = duration;
+    }
+
+    public Movie(int id, String name, String rating, String fileLink, String lastView, int duration) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.fileLink = fileLink;
+        this.lastView = lastView;
+        this.duration = duration;
+    }
+
 
     public int getId() {
         return id;

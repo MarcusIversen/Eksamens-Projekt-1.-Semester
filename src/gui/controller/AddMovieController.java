@@ -2,12 +2,14 @@ package gui.controller;
 
 import be.Category;
 import gui.model.MovieModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -32,6 +34,10 @@ public class AddMovieController implements Initializable {
     private Button btnSaveSong;
     @FXML
     private Button btnCancel;
+
+    @FXML
+    private ComboBox<String> comboBox;
+    ObservableList<String> list = FXCollections.observableArrayList("Test1", "Test2", "Test3");
 
     private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
@@ -85,6 +91,6 @@ public class AddMovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        comboBox.setItems(list);
     }
 }
