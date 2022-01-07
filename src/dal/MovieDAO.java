@@ -15,7 +15,6 @@ import java.util.Optional;
 public class MovieDAO {
 
     private final DatabaseConnector databaseConnector;
-    private String oldSearchQuery = "";
 
     /**
      * Making a reference to the databaseConnector, so we can connect to the SQL Database.
@@ -85,11 +84,10 @@ public class MovieDAO {
                     String name = resultset.getString("name");
                     String rating = resultset.getString("rating");
                     String filelink = resultset.getString("filelink");
+                    String lastView = resultset.getString("lastView");
                     int duration = resultset.getInt("duration");
 
-
-
-                    Movie movie = new Movie(id, name, rating, filelink, duration);
+                    Movie movie = new Movie(id, name, rating, filelink, lastView, duration);
                     allMovies.add(movie);
                 }
             }
@@ -110,7 +108,7 @@ public class MovieDAO {
 
     public void editMovie(Movie movie) {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Movie SET name=?, rating=?, filelink=?, lastview=? WHERE Id=?;";
+            String sql = "UPDATE Movie SET name=?, rating=?, filelink=?, lastView=? WHERE Id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, movie.getName());
             preparedStatement.setString(2, movie.getRating());

@@ -27,7 +27,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -87,13 +89,13 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableColumn tcNumberOfMoviesOnCategory;
     @FXML
-    private TableColumn tcMovieRating;
+    private TableColumn<Movie, String> tcMovieRating;
     @FXML
-    private TableColumn tcNameOnMovie;
+    private TableColumn<Movie, String> tcNameOnMovie;
     @FXML
-    private TableColumn tcCategory;
+    private TableColumn<Category, String> tcCategory;
     @FXML
-    private TableColumn tcLastViewed;
+    private TableColumn<Movie, String> tcLastViewed;
     @FXML
     public TableColumn tcDuration;
 
@@ -130,9 +132,8 @@ public class MainMenuController implements Initializable {
     public void initializeTable() {
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+        tcLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastView"));
         tcDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        //TODO make lastView work
 
         try {
             allMovies = FXCollections.observableList(movieModel.getMovies());
@@ -351,10 +352,6 @@ public class MainMenuController implements Initializable {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));
             tvMovies.getSelectionModel().select(index);
-            //todo delete the code below when reload works
-            int index1 = tvCategories.getSelectionModel().getFocusedIndex();
-            this.tvCategories.setItems(FXCollections.observableList(categoryModel.getCategories()));
-            tvCategories.getSelectionModel().select(index1);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -407,6 +404,12 @@ public class MainMenuController implements Initializable {
         this.tvMoviesOnCategory.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovieOnCategory != null) {
                 try {
+                    var lastView_date = new Date(System.currentTimeMillis());
+                    String pattern = "dd/MM/yyyy  HH:mm:ss";
+                    var simpleDateFormat = new SimpleDateFormat(pattern);
+                    String date = simpleDateFormat.format(lastView_date);
+                    selectedMovieOnCategory.setLastView(date);
+
                     movieModel.editMovie(selectedMovieOnCategory);
                     Desktop.getDesktop().open(new File(selectedMovieOnCategory.getFileLink()));
                 } catch (IOException e) {
@@ -471,6 +474,12 @@ public class MainMenuController implements Initializable {
         this.tvMovies.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovie != null) {
                 try {
+                    var lastView_date = new Date(System.currentTimeMillis());
+                    String pattern = "dd/MM/yyyy  HH:mm:ss";
+                    var simpleDateFormat = new SimpleDateFormat(pattern);
+                    String date = simpleDateFormat.format(lastView_date);
+                    selectedMovie.setLastView(date);
+
                     movieModel.editMovie(selectedMovie);
                     Desktop.getDesktop().open(new File(selectedMovie.getFileLink()));
                 } catch (IOException e) {
