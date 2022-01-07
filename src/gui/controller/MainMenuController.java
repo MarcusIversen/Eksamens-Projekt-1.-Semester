@@ -412,6 +412,7 @@ public class MainMenuController implements Initializable {
 
                     movieModel.editMovie(selectedMovieOnCategory);
                     Desktop.getDesktop().open(new File(selectedMovieOnCategory.getFileLink()));
+                    reloadMovieTable();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -482,6 +483,7 @@ public class MainMenuController implements Initializable {
 
                     movieModel.editMovie(selectedMovie);
                     Desktop.getDesktop().open(new File(selectedMovie.getFileLink()));
+                    reloadMovieTable();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
