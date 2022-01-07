@@ -105,6 +105,8 @@ public class MainMenuController implements Initializable {
     private Movie selectedMovie;
     private Movie selectedMovieOnCategory;
 
+    private boolean hasSearched = true;
+
     public MainMenuController() throws SQLException {
     }
 
@@ -402,6 +404,14 @@ public class MainMenuController implements Initializable {
      * Method that filters the movies, with the text input you write in the textfield, next to the search button.
      */
     public void filterMovies(){
+        if (hasSearched == true && !tfSearchBar.getText().equals("")){
+            btnSearchBar.setText("X");
+            hasSearched = false;
+        }else{
+            btnSearchBar.setText("🔍");
+            hasSearched = true;
+            tfSearchBar.clear();
+        }
         try{
             searchData = FXCollections.observableList(movieModel.searchMovie(tfSearchBar.getText()));
             searchTableViewLoad(searchData);
