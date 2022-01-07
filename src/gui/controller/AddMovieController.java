@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -67,8 +68,10 @@ public class AddMovieController implements Initializable {
 
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movie files", "*.mp4", "*.mpeg4"));
+        fileChooser.setInitialDirectory(new File("data/"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movies files", "*.mp4", "*.mpeg4"));
+
         Media f = new Media(selectedFile.toURI().toString());
         if (selectedFile != null){
             Media media = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
@@ -76,16 +79,20 @@ public class AddMovieController implements Initializable {
             txtFieldFile.appendText("data/" + selectedFile.getName());
             mediaPlayer.setOnReady(() -> {
                 String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
-                int minuts = Integer.parseInt(timeInSeconds) / 60;
+                int minutes = Integer.parseInt(timeInSeconds) / 60;
                 int seconds = Integer.parseInt(timeInSeconds) % 60;
                 if (10 > seconds) {
-                    txtFieldDuration.setText(minuts + ":0" + seconds);
+                    txtFieldDuration.setText(minutes + ":0" + seconds);
                 } else {
-                    txtFieldDuration.setText(minuts + ":" + seconds);
+                    txtFieldDuration.setText(minutes + ":" + seconds);
                 }
             });
         }else {
-            System.out.println("File is invalid");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText("Wrong file type is selected");
+            alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
+            alert.showAndWait();
         }
     }
 

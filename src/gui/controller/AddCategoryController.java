@@ -3,6 +3,7 @@ package gui.controller;
 import gui.model.CategoryModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -44,8 +45,11 @@ public class AddCategoryController {
         if(txtFieldNewCategory != null && !txtFieldNewCategory.getText().isEmpty()){
             categoryModel.createCategory(txtFieldNewCategory.getText());
         }else{
-            System.out.println("You did not give your category a name");
-            //TODO error handling
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText("No name is giving to the category");
+            alert.setContentText("To add a category, please enter a name first");
+            alert.showAndWait();
         }
         stage.close();
     }
