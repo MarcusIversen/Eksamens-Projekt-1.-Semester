@@ -32,13 +32,9 @@ public class AddMovieController implements Initializable {
     private Button btnSaveSong;
     @FXML
     private Button btnCancel;
-    @FXML
-    private ComboBox cbProof;
 
     private MovieModel movieModel = new MovieModel();
     private MediaPlayer mediaPlayer;
-    private ObservableList<Category> categories;
-    private String selectedCategory;
 
     public AddMovieController() throws SQLException {
     }
@@ -87,30 +83,8 @@ public class AddMovieController implements Initializable {
         }
     }
 
-    /**
-     * Initialize the combo box to listen to when a new item is selected.
-     */
-    private void selectedCategory() {
-        cbProof.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
-            selectedCategory = (String) newValue;
-            System.out.println("Selected category: " + selectedCategory);
-        }));
-    }
-
-    /**
-     * Assign the category combo box to have the specified categories.
-     *
-     * @param categories The genres to add.
-     */
-    public void setCategoryComboBox(ObservableList<Category> categories) {
-        this.categories = categories;
-        cbProof.getItems().clear();
-        for (Category cat : categories)
-            cbProof.getItems().add(cat.getName());
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        selectedCategory();
+
     }
 }
