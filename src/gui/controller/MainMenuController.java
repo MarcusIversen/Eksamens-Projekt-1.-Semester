@@ -241,7 +241,11 @@ public class MainMenuController implements Initializable {
             editCategoryController.setSelectedCategory(selectedCategory);
             editCategoryStage.show();
         } else {
-            System.out.println("No playlist selected");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText("No category is selected");
+            alert.setContentText("To edit a category, select a category first");
+            alert.showAndWait();
         }
     }
 
@@ -262,7 +266,11 @@ public class MainMenuController implements Initializable {
             editMovieController.setSelectedMovie(selectedMovie);
             editMovieStage.show();
         } else {
-            System.out.println("No songs are selected");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText("No movie is selected");
+            alert.setContentText("To edit a movie, select a movie first");
+            alert.showAndWait();
         }
     }
 
