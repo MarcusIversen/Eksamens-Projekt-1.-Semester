@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="19.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -34,8 +34,8 @@
         <Button fx:id="btnEditMovie" layoutX="665.0" layoutY="552.0" mnemonicParsing="false" onAction="#goEditMovie" prefHeight="26.0" prefWidth="50.0" text="Edit...." />
         <Button fx:id="btnDeleteMovie" layoutX="728.0" layoutY="552.0" mnemonicParsing="false" onAction="#deleteMovie" prefHeight="25.0" prefWidth="67.0" text="Delete" />
         <Button fx:id="btnClose" layoutX="876.0" layoutY="552.0" mnemonicParsing="false" onAction="#closeTheAppButton" prefHeight="25.0" prefWidth="92.0" text="Close" />
-        <Label fx:id="labelCategories" layoutX="72.0" layoutY="90.0" text="Categories" />
-        <Label fx:id="labelMoviesOnCategory" layoutX="283.0" layoutY="90.0" text="Movies in Category" />
+        <Label fx:id="labelCategories" layoutX="19.0" layoutY="90.0" text="Categories" />
+        <Label fx:id="labelMoviesOnCategory" layoutX="261.0" layoutY="90.0" text="Movies in Category" />
         <Label fx:id="labelMovies" layoutX="603.0" layoutY="90.0" text="Movies" />
         <Button fx:id="btnLeftArrow" layoutX="564.0" layoutY="100.0" mnemonicParsing="false" onAction="#addMovieToCategory" prefHeight="40.0" prefWidth="27.0" style="-fx-rotate: 90px;" text="▼" />
         <Button fx:id="btnAddCategory" layoutX="19.0" layoutY="552.0" mnemonicParsing="false" onAction="#goAddCategory" prefHeight="26.0" prefWidth="50.0" text="Add.." />

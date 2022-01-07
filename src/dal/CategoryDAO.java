@@ -74,7 +74,7 @@ public class CategoryDAO {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException ex) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING MESSAGE");
             alert.setHeaderText("There is still movies in the selected category");
             alert.setContentText("Remove all movies from category to delete");

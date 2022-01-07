@@ -141,7 +141,7 @@ public class MovieDAO {
                 throw new Exception("Could not delete movie");
             }
         } catch (SQLException throwables) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING MESSAGE");
             alert.setHeaderText("There is still categories assigned to this movie!!");
             alert.setContentText(" To delete a movie, delete it from all categories first!!");
