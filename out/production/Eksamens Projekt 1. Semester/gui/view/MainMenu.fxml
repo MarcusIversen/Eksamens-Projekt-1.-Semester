@@ -52,7 +52,7 @@
                 <TableColumn fx:id="tcMoviesOnCategory" prefWidth="260.0" text="Movies" />
             </columns>
         </TableView>
-      <Label layoutX="37.0" layoutY="17.0" prefHeight="63.0" prefWidth="628.0" text="PRIVATE MOVIE COLLECTION">
+      <Label layoutX="19.0" prefHeight="63.0" prefWidth="628.0" text="PRIVATE MOVIE COLLECTION">
          <font>
             <Font name="Bodoni MT Black" size="37.0" />
          </font>
@@ -62,5 +62,13 @@
       </Label>
       <Label layoutX="904.0" layoutY="90.0" prefHeight="17.0" prefWidth="67.0" text="Reload table" />
       <Button fx:id="btnReload" layoutX="901.0" layoutY="85.0" mnemonicParsing="false" onAction="#reloadMovieTable" opacity="0.0" prefHeight="27.0" prefWidth="67.0" />
+      <Label layoutX="46.0" layoutY="52.0" prefHeight="23.0" prefWidth="256.0" text="Double tap to play movie">
+         <font>
+            <Font name="Bodoni MT Black" size="19.0" />
+         </font>
+         <effect>
+            <Bloom threshold="0.86" />
+         </effect>
+      </Label>
     </children>
 </AnchorPane>
