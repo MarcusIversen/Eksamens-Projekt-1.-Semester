@@ -6,10 +6,7 @@ import gui.model.MovieModel;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -93,15 +90,25 @@ public class EditMovieController {
 
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movies files", "*.mp4", "*.mpeg4"));
-        Media f = new Media(selectedFile.toURI().toString());
-        if (selectedFile != null){
-            Media media = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
-            txtFieldFile.appendText("data/" + selectedFile.getName());
-        }else {
-            System.out.println("File is invalid");
+        fileChooser.setInitialDirectory(new File("data/"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        txtFieldFile.appendText("data/" + selectedFile.getName());
+        mediaPlayer.setOnReady(() -> {
+            String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
+            int minutes = Integer.parseInt(timeInSeconds) / 60;
+            int seconds = Integer.parseInt(timeInSeconds) % 60;
+            if (10 > seconds) {
+                txtFieldDuration.setText(minutes + ":0" + seconds);
+            } else {
+                txtFieldDuration.setText(minutes + ":" + seconds);
+            }
+        });
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText("Wrong file type is selected");
+            alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
+            alert.showAndWait();
         }
     }
 
