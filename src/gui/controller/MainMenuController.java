@@ -432,6 +432,7 @@ public class MainMenuController implements Initializable {
      * @throws SQLException
      */
     public void deleteMovieInCategory() throws SQLException {
+
         if (selectedCategory != null && selectedMovieOnCategory != null) {
             try {
                 int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
@@ -442,6 +443,12 @@ public class MainMenuController implements Initializable {
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
+        }else{
+            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
+            alertDelete.setTitle("ERROR MESSAGE");
+            alertDelete.setHeaderText("No movie is selected");
+            alertDelete.setContentText("To delete a movie, select a movie first");
+            alertDelete.showAndWait();
         }
     }
 
