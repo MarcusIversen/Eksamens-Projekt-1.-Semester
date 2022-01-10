@@ -40,10 +40,16 @@ public class AddMovieController implements Initializable {
     private ComboBox<String> comboBox;
     ObservableList<String> list = FXCollections.observableArrayList("Test1", "Test2", "Test3");
 
-    private MovieModel movieModel = new MovieModel();
+    private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
 
     public AddMovieController() throws SQLException {
+        this.movieModel = new MovieModel();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        comboBox.setItems(list);
     }
 
     /**
@@ -54,6 +60,10 @@ public class AddMovieController implements Initializable {
         stage.close();
     }
 
+    /**
+     *
+     * @throws Exception
+     */
      public void saveMovieButton() throws Exception {
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
@@ -66,6 +76,9 @@ public class AddMovieController implements Initializable {
      stage.close();
      }
 
+    /**
+     *
+     */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movie files", "*.mp4", "*.mpeg4"));
@@ -94,10 +107,5 @@ public class AddMovieController implements Initializable {
             alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
             alert.showAndWait();
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        comboBox.setItems(list);
     }
 }

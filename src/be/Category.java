@@ -9,16 +9,11 @@ public class Category {
     private String name;
     private List<Movie> movies = new ArrayList<>();
 
-    public Category(int id, String name, int movies){
-        this.id = id;
-        this.name = name;
-    }
 
     public Category(int id, String name){
         this.id = id;
         this.name = name;
     }
-
 
     public int getId() {
         return id;
@@ -36,9 +31,6 @@ public class Category {
         this.name = name;
     }
 
-    public int getMovieCount() {
-        return movies.size();
-    }
     public List<Movie> getMovies() {return movies;}
 
     public void setMovies(List<Movie> movies) {

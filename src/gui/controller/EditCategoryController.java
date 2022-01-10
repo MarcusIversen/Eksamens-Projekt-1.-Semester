@@ -26,25 +26,36 @@ public class EditCategoryController {
     public Label newCategoryName;
 
     private CategoryModel categoryModel = new CategoryModel();
-    //private MainMenuController mainMenuController = new MainMenuController();
 
     public EditCategoryController() throws SQLException {
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void cancelEditCategoryButton(ActionEvent actionEvent) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void editCategoryButton(ActionEvent actionEvent) throws SQLException {
         String name = txtFieldEditCategory.getText();
         int id = Integer.parseInt(playlistId.getText());
         Category category = new Category(id, name);
         categoryModel.editCategory(category);
         cancelEditCategoryButton(actionEvent);
-        //mainMenuController.reloadCategoryTable();
     }
 
+    /**
+     *
+     * @param category
+     */
     public void setSelectedCategory(Category category) {
         txtFieldEditCategory.setText(category.getName());
         playlistId.setText(Integer.toString(category.getId()));

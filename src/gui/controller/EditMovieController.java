@@ -96,6 +96,9 @@ public class EditMovieController {
         txtFieldFileDuration.setText(String.valueOf(movie.getDuration()));
     }
 
+    /**
+     *
+     */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movie files", "*.mp4", "*.mpeg4"));

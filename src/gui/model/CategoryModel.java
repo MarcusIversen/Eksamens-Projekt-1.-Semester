@@ -44,10 +44,6 @@ public class CategoryModel {
         categoryManager.addMovieToCategory(categoryId, movieId);
     }
 
-    public void removeFromCategory(int categoryId, int movieId) throws SQLException {
-        categoryManager.removeFromCategory(categoryId, movieId);
-    }
-
     public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
         return categoryManager.getMoviesOnCategory(categoryId);
     }

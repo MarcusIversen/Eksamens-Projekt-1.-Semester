@@ -22,6 +22,11 @@ public class CategoryDAO {
         databaseConnector = new DatabaseConnector();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Category> getCategories() throws SQLException{
         ArrayList<Category> allCategories = new ArrayList<>();
         try(Connection connection = databaseConnector.getConnection()) {
@@ -47,7 +52,12 @@ public class CategoryDAO {
         return allCategories;
     }
 
-
+    /**
+     *
+     * @param name
+     * @return
+     * @throws SQLServerException
+     */
     public Category createCategory(String name) throws SQLServerException {
         String sql = "INSERT INTO Category (name) VALUES (?);";
         Connection connection = databaseConnector.getConnection();
@@ -68,6 +78,10 @@ public class CategoryDAO {
 
     }
 
+    /**
+     *
+     * @param id
+     */
     public void deleteCategory(int id){
         String sql = "DELETE FROM Category WHERE id = ?;";
         try (Connection con = databaseConnector.getConnection();
@@ -83,6 +97,10 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     *
+     * @param category
+     */
     public void editCategory(Category category){
         String sql = "UPDATE Category SET name=? WHERE id=?;";
         try (Connection con = databaseConnector.getConnection();
@@ -97,6 +115,12 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     *
+     * @param categoryId
+     * @param movieId
+     * @throws SQLException
+     */
     public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
         String sql = "INSERT INTO CatMovie (categoryId, movieId) VALUES (?,?);";
         try (Connection con = databaseConnector.getConnection();
@@ -110,18 +134,13 @@ public class CategoryDAO {
 
     }
 
-    public void removeFromCategory(int categoryId, int movieId) throws SQLException{
-        String sql = "DELETE FROM CatMovie WHERE categoryId=? AND movieId=?;";
-        try (Connection con = databaseConnector.getConnection();
-             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            st.setInt(1, categoryId);
-            st.setInt(2, movieId);
-            st.executeUpdate();
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-    }
 
+    /**
+     *
+     * @param categoryId
+     * @return
+     * @throws SQLException
+     */
     public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
         ArrayList<Movie> allCategories = new ArrayList<>();
 
@@ -145,6 +164,12 @@ public class CategoryDAO {
         return allCategories;
     }
 
+    /**
+     *
+     * @param categoryId
+     * @param movieId
+     * @throws SQLServerException
+     */
     public void deleteFromCategory(int categoryId, int movieId) throws SQLServerException {
         String sql = "DELETE FROM CatMovie WHERE categoryId = ? AND MovieId = ?;";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -159,17 +184,9 @@ public class CategoryDAO {
 
     public static void main(String[] args) throws SQLException{
         CategoryDAO categoryDAO = new CategoryDAO();
-        //List<Song> allSongs = playlistDAO.getSongsOnPlaylist(45);
         List<Category> allCategories = categoryDAO.getCategories();
         //categoryDAO.createCategory("Drama");
         System.out.println(allCategories);
         categoryDAO.deleteCategory(2);
-        //playlistDAO.getTotalDuration(53);
-        //System.out.println();
-        //playlistDAO.addSongToPlaylist(45,39);
-
-        //playlistDAO.deleteFromPlaylist(18,23);
-        //playlistDAO.deletePlaylist(3);
-        //System.out.println(allPlaylist);
     }
 }

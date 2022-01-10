@@ -28,18 +28,28 @@ public class AddCategoryController {
     @FXML
     public Button btnSave;
 
-    private CategoryModel categoryModel = new CategoryModel();
+    private CategoryModel categoryModel;
 
+    /**
+     *
+     * @throws SQLException
+     */
     public AddCategoryController() throws SQLException {
+        this.categoryModel = new CategoryModel();
     }
 
-
+    /**
+     *
+     */
     public void cancelNewCategoryButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
-
+    /**
+     *
+     * @throws SQLException
+     */
     public void createCategoryBtn() throws SQLException {
         Stage stage = (Stage) btnSave.getScene().getWindow();
         if(txtFieldNewCategory != null && !txtFieldNewCategory.getText().isEmpty()){

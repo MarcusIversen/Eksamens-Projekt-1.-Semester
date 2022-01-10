@@ -24,30 +24,59 @@ public class CategoryManager {
         return categoryDAO.getCategories();
     }
 
+    /**
+     *
+     * @param name
+     * @throws SQLException
+     */
     public void createCategory(String name) throws SQLException{
         categoryDAO.createCategory(name);
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void deleteCategory(int id) throws SQLException{
         categoryDAO.deleteCategory(id);
     }
 
+    /**
+     *
+     * @param category
+     * @throws SQLException
+     */
     public void editCategory(Category category) throws SQLException{
         categoryDAO.editCategory(category);
     }
 
+    /**
+     *
+     * @param categoryId
+     * @param movieId
+     * @throws SQLException
+     */
     public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
         categoryDAO.addMovieToCategory(categoryId, movieId);
     }
-
-    public void removeFromCategory(int categoryId, int movieId) throws SQLException{
-        categoryDAO.removeFromCategory(categoryId, movieId);
-    }
-
+    
+    /**
+     *
+     * @param categoryId
+     * @return
+     * @throws SQLException
+     */
     public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
         return categoryDAO.getMoviesOnCategory(categoryId);
     }
 
+    /**
+     *
+     * @param categoryId
+     * @param movieId
+     * @throws SQLException
+     */
     public void deleteFromCategory(int categoryId, int movieId) throws SQLException {
         categoryDAO.deleteFromCategory(categoryId, movieId);
     }

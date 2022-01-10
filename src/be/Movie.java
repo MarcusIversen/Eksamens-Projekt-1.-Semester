@@ -47,8 +47,6 @@ public class Movie {
         this.duration = duration;
     }
 
-
-
     public int getId() {
         return id;
     }
@@ -75,6 +73,10 @@ public class Movie {
 
     public void setDuration(int duration) {this.duration = duration;}
 
+    /**
+     *
+     * @return
+     */
     public String getDuration() {
         int minuts = (duration)/60;
         int seconds = (duration) %60;

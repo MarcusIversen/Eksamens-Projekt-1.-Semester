@@ -32,7 +32,6 @@ public class MovieDAO {
      * @param fileLink
      * @return
      */
-
     public Movie createMovie(String name, String rating, String fileLink, int duration) {
 
         try (Connection connection = databaseConnector.getConnection()) {
@@ -66,7 +65,6 @@ public class MovieDAO {
      *
      * @return
      */
-
     public List<Movie> getMovies() {
 
         ArrayList<Movie> allMovies = new ArrayList<>();
@@ -105,7 +103,6 @@ public class MovieDAO {
      *
      * @param movie
      */
-
     public void editMovie(Movie movie) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "UPDATE Movie SET name=?, rating=?, filelink=?, lastView=? WHERE Id=?;";
@@ -129,7 +126,6 @@ public class MovieDAO {
      *
      * @param
      */
-
     public void deleteMovie(int id) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "DELETE FROM Movie WHERE Id =?;";

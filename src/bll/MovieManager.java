@@ -12,6 +12,10 @@ public class MovieManager {
     private MovieSearcher movieSearcher;
     private MovieDAO movieDAO;
 
+    /**
+     *
+     * @throws SQLException
+     */
     public MovieManager() throws SQLException {
         movieSearcher = new MovieSearcher();
         movieDAO = new MovieDAO();
@@ -27,6 +31,14 @@ public class MovieManager {
         return allMovie;
     }
 
+    /**
+     *
+     * @param name
+     * @param rating
+     * @param fileLink
+     * @param duration
+     * @return
+     */
     public Movie createMovie(String name, String rating, String fileLink, int duration){
         return movieDAO.createMovie(name, rating, fileLink, duration);
     }

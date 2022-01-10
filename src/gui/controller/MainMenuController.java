@@ -166,7 +166,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * 
+     *
      * @param allCategories
      */
     private void tableViewLoadCategories(ObservableList<Category> allCategories) {
