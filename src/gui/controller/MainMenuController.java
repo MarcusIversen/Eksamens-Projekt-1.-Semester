@@ -370,18 +370,26 @@ public class MainMenuController implements Initializable {
         alert.setHeaderText("Warning before you delete movie");
         alert.setContentText(" To delete a movie, remove it from all categories first!! \n Are you sure you want " +
                 "to delete this movie?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            selectedMovie();
-            movieModel.deleteMovie(selectedMovie.getId());
-        } else {
-            return;
-        }
-        try {
-            allMovies = FXCollections.observableList(movieModel.getMovies());
-            tableViewLoadMovies(allMovies);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (selectedMovie != null) {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                selectedMovie();
+                movieModel.deleteMovie(selectedMovie.getId());
+            } else {
+                return;
+            }
+            try {
+                allMovies = FXCollections.observableList(movieModel.getMovies());
+                tableViewLoadMovies(allMovies);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else {
+            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
+            alertDelete.setTitle("ERROR MESSAGE");
+            alertDelete.setHeaderText("No movie is selected");
+            alertDelete.setContentText("To edit a movie, select a movie first");
+            alertDelete.showAndWait();
         }
     }
 
@@ -395,19 +403,26 @@ public class MainMenuController implements Initializable {
         alert.setHeaderText("Warning before you delete category");
         alert.setContentText(" Remove all movies from selected category to delete!! \n Are you sure you want " +
                 "to delete this movie?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            selectedCategory();
-            categoryModel.deleteCategory(selectedCategory.getId());
-        } else {
-            return;
-        }
-        try {
-            allCategories = FXCollections.observableList(categoryModel.getCategories());
-            tableViewLoadCategories(allCategories);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (selectedMovie != null) {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                selectedCategory();
+                categoryModel.deleteCategory(selectedCategory.getId());
+            } else {
+                return;
+            }
+            try {
+                allCategories = FXCollections.observableList(categoryModel.getCategories());
+                tableViewLoadCategories(allCategories);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else {
+            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
+            alertDelete.setTitle("ERROR MESSAGE");
+            alertDelete.setHeaderText("No category is selected");
+            alertDelete.setContentText("To delete a category, select a category first");
+            alertDelete.showAndWait();
         }
 
     }
