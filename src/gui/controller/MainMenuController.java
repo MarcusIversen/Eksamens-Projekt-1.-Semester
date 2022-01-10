@@ -15,7 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -27,35 +26,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.List;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
-    
-    @FXML
-    private Button btnEditCategory;
-    @FXML
-    private Button btnDeleteCategory;
-    @FXML
-    private Button btnDeleteMovieFromCategory;
-    @FXML
-    private Button btnUp;
-    @FXML
-    private Button btnDown;
-    @FXML
-    private Button btnAddMovie;
+
     @FXML
     private Button btnEditMovie;
-    @FXML
-    private Button btnDeleteMovie;
-    @FXML
-    private Button btnClose;
-    @FXML
-    private Button btnLeftArrow;
-    @FXML
-    private Button btnAddCategory;
     @FXML
     private Button btnSearchBar;
 

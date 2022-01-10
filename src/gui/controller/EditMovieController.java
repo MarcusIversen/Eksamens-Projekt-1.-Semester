@@ -1,10 +1,7 @@
 package gui.controller;
 
 import be.Movie;
-import com.sun.tools.javac.Main;
 import gui.model.MovieModel;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;
