@@ -475,12 +475,13 @@ public class MainMenuController implements Initializable {
      * reloads the movies on the category in view
      */
     public void reloadMoviesOnCategory() {
-        tvMoviesOnCategory.refresh();
-
-        Category category = tvCategories.getSelectionModel().getSelectedItem();
-
-        List<Movie> observableList = (category.getMovies());
-        tvMoviesOnCategory.setItems(FXCollections.observableList(observableList));
+        try {
+            int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
+            this.tvMoviesOnCategory.setItems(FXCollections.observableList(movieModel.getMovies()));
+            tvMoviesOnCategory.getSelectionModel().select(index);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**
