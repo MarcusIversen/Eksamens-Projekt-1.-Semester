@@ -19,7 +19,7 @@ public class EditCategoryController {
     @FXML
     private Button btnCancel;
     @FXML
-    private TextField playlistId;
+    private TextField categoryId;
 
     private CategoryModel categoryModel = new CategoryModel();
 
@@ -45,7 +45,7 @@ public class EditCategoryController {
      */
     public void editCategoryButton(ActionEvent actionEvent) throws SQLException {
         String name = txtFieldEditCategory.getText();
-        int id = Integer.parseInt(playlistId.getText());
+        int id = Integer.parseInt(categoryId.getText());
         Category category = new Category(id, name);
         categoryModel.editCategory(category);
         cancelEditCategoryButton(actionEvent);
@@ -57,7 +57,7 @@ public class EditCategoryController {
      */
     public void setSelectedCategory(Category category) {
         txtFieldEditCategory.setText(category.getName());
-        playlistId.setText(Integer.toString(category.getId()));
+        categoryId.setText(Integer.toString(category.getId()));
     }
 
 }
