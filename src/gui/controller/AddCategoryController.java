@@ -23,7 +23,8 @@ public class AddCategoryController {
     private CategoryModel categoryModel;
 
     /**
-     *
+     * Constructor for AddCategoryController
+     * adds CategoryModel
      * @throws SQLException
      */
     public AddCategoryController() throws SQLException {
@@ -31,7 +32,7 @@ public class AddCategoryController {
     }
 
     /**
-     *
+     * Closes the create addCategory window.
      */
     public void cancelNewCategoryButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -39,7 +40,7 @@ public class AddCategoryController {
     }
 
     /**
-     *
+     * Tries to create the new category with the given name, cannot be null.
      * @throws SQLException
      */
     public void createCategoryBtn() throws SQLException {
