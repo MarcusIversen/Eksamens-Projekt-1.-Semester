@@ -114,6 +114,10 @@ public class MainMenuController implements Initializable {
 
     private boolean hasSearched = true;
 
+    /**
+     *
+     * @throws SQLException
+     */
     public MainMenuController() throws SQLException {
         stage = new Stage();
         movieModel = new MovieModel();
@@ -121,7 +125,11 @@ public class MainMenuController implements Initializable {
         movieManager = new MovieManager();
     }
 
-
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
@@ -130,7 +138,9 @@ public class MainMenuController implements Initializable {
         selectedMovieOnCategory();
     }
 
-
+    /**
+     *
+     */
     public void initializeTable() {
         tcMovieRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tcNameOnMovie.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -155,34 +165,83 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    /**
+     * 
+     * @param allCategories
+     */
     private void tableViewLoadCategories(ObservableList<Category> allCategories) {
         tvCategories.setItems(getCategoryData());
     }
 
-    private ObservableList<Category> getCategoryData() {
-        return allCategories;
-    }
-
+    /**
+     *
+     * @param allMovies
+     */
     public void tableViewLoadMovies(ObservableList<Movie> allMovies) {
         tvMovies.setItems(getMoviesData());
     }
 
-    public ObservableList<Movie> getMoviesData() {
-        return allMovies;
-    }
-
+    /**
+     *
+     * @param allMoviesOnCategories
+     */
     private void tableViewMoviesOnCategories(ObservableList<Movie> allMoviesOnCategories) {
         tvMoviesOnCategory.setItems(getMoviesOnCategoriesData());
     }
 
+    /**
+     *
+     * @return
+     */
+    private ObservableList<Category> getCategoryData() {
+        return allCategories;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ObservableList<Movie> getMoviesData() {
+        return allMovies;
+    }
+
+    /**
+     *
+     * @return
+     */
     private ObservableList<Movie> getMoviesOnCategoriesData() {
         return allMoviesOnCategories;
+    }
+
+    /**
+     * Loads the tableview for the movies, when search is pressed.
+     *
+     * @param searchData
+     */
+    private void searchTableViewLoad(ObservableList<Movie> searchData) {
+        tvMovies.setItems(getSearchData());
+    }
+
+    /**
+     * Gets the searchdata.
+     *
+     * @return searchData;
+     */
+    public ObservableList<Movie> getSearchData() {
+        return searchData;
+    }
+
+    public MovieManager getMovieManager() {
+        return movieManager;
     }
 
     public void closeTheAppButton() {
         Platform.exit();
     }
 
+    /**
+     *
+     */
     public void seeMoviesOnCategories() {
         tcMoviesOnCategory.setCellValueFactory(new PropertyValueFactory<>("name"));
         try {
@@ -193,6 +252,10 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void goAddCategory() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/AddCategory.fxml"));
         Stage stage = new Stage();
@@ -210,6 +273,10 @@ public class MainMenuController implements Initializable {
         });
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void goAddMovie() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/AddMovie.fxml"));
         Stage stage = new Stage();
@@ -227,7 +294,9 @@ public class MainMenuController implements Initializable {
         });
     }
 
-
+    /**
+     *
+     */
     public void goEditCategory() {
         if (selectedCategory != null) {
             Category selectedCategory = (Category) tvCategories.getSelectionModel().getSelectedItem();
@@ -263,8 +332,9 @@ public class MainMenuController implements Initializable {
 
     }
 
-
-
+    /**
+     *
+     */
     public void goEditMovie() {
         if (selectedMovie != null) {
             Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
@@ -301,6 +371,10 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     public void deleteMovie() throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
@@ -322,31 +396,10 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void deleteMovieInCategory() throws SQLException {
-        if (selectedCategory != null && selectedMovieOnCategory != null) {
-            try {
-                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
-                categoryModel.deleteFromCategory(selectedCategory.getId(), selectedMovieOnCategory.getId());
-                reloadMoviesOnCategory();
-                reloadCategoryTable();
-                tvMoviesOnCategory.getSelectionModel().select(index > 0 ? index - 1 : index);
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-        }
-    }
-
-    public void addMovieToCategory() {
-        if (selectedMovie != null)
-            try {
-                categoryModel.addMovieToCategory(selectedCategory.getId(), selectedMovie.getId());
-                reloadMoviesOnCategory();
-                reloadCategoryTable();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    }
-
+    /**
+     *
+     * @throws SQLException
+     */
     public void deleteCategory() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
@@ -368,6 +421,38 @@ public class MainMenuController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    public void deleteMovieInCategory() throws SQLException {
+        if (selectedCategory != null && selectedMovieOnCategory != null) {
+            try {
+                int index = tvMoviesOnCategory.getSelectionModel().getFocusedIndex();
+                categoryModel.deleteFromCategory(selectedCategory.getId(), selectedMovieOnCategory.getId());
+                reloadMoviesOnCategory();
+                reloadCategoryTable();
+                tvMoviesOnCategory.getSelectionModel().select(index > 0 ? index - 1 : index);
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    public void addMovieToCategory() {
+        if (selectedMovie != null)
+            try {
+                categoryModel.addMovieToCategory(selectedCategory.getId(), selectedMovie.getId());
+                reloadMoviesOnCategory();
+                reloadCategoryTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     /**
@@ -397,6 +482,9 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     *
+     */
     public void reloadMoviesOnCategory() {
         tvMoviesOnCategory.refresh();
 
@@ -418,7 +506,9 @@ public class MainMenuController implements Initializable {
         }));
     }
 
-
+    /**
+     *
+     */
     private void selectedMovieOnCategory() {
         this.tvMoviesOnCategory.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             this.selectedMovieOnCategory = (Movie) newValue;
@@ -449,54 +539,14 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Loads the tableview for the movies, when search is pressed.
      *
-     * @param searchData
      */
-    private void searchTableViewLoad(ObservableList<Movie> searchData) {
-        tvMovies.setItems(getSearchData());
-    }
-
-    /**
-     * Gets the searchdata.
-     *
-     * @return searchData;
-     */
-    public ObservableList<Movie> getSearchData() {
-        return searchData;
-    }
-
-    /**
-     * Method that filters the movies, with the text input you write in the textfield, next to the search button.
-     */
-    public void filterMovies() {
-        if (hasSearched == true && !tfSearchBar.getText().equals("")) {
-            btnSearchBar.setText("X");
-            hasSearched = false;
-        } else {
-            btnSearchBar.setText("🔍");
-            hasSearched = true;
-            tfSearchBar.clear();
-        }
-        try {
-            searchData = FXCollections.observableList(movieModel.searchMovie(tfSearchBar.getText()));
-            searchTableViewLoad(searchData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public MovieManager getMovieManager() {
-        return movieManager;
-    }
-
     private void selectedMovie() {
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((Movie) newValue != null) {
                 this.selectedMovie = (Movie) newValue;
             }
         }));
-
 
         this.tvMovies.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovie != null) {
@@ -519,7 +569,29 @@ public class MainMenuController implements Initializable {
         });
     }
 
+    /**
+     * Method that filters the movies, with the text input you write in the textfield, next to the search button.
+     */
+    public void filterMovies() {
+        if (hasSearched == true && !tfSearchBar.getText().equals("")) {
+            btnSearchBar.setText("X");
+            hasSearched = false;
+        } else {
+            btnSearchBar.setText("🔍");
+            hasSearched = true;
+            tfSearchBar.clear();
+        }
+        try {
+            searchData = FXCollections.observableList(movieModel.searchMovie(tfSearchBar.getText()));
+            searchTableViewLoad(searchData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     *
+     */
     public void btnUp() {
         if (selectedMovieOnCategory != null) {
             try {
@@ -534,7 +606,9 @@ public class MainMenuController implements Initializable {
         }
     }
 
-
+    /**
+     *
+     */
     public void btnDown() {
         if (selectedMovieOnCategory != null) {
             try {
@@ -548,6 +622,4 @@ public class MainMenuController implements Initializable {
             }
         }
     }
-
-
 }
