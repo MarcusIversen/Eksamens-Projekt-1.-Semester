@@ -2,9 +2,7 @@ package dal.db;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class DatabaseConnector {
 
@@ -29,19 +27,5 @@ public class DatabaseConnector {
      */
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
-    }
-
-
-    /**
-     * Used for testing if the connection is open
-     * @param args
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws SQLException {
-        DatabaseConnector databaseConnector = new DatabaseConnector();
-
-        try(Connection connection = databaseConnector.getConnection()){
-            System.out.println("is it open?  :  " + !connection.isClosed());
-        }
     }
 }
