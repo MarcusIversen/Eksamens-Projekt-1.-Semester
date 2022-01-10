@@ -14,6 +14,10 @@ public class OpeningMenuController {
 
     public Button btnGoToMainMenu;
 
+    /**
+     * Opens the movie program
+     * @throws IOException
+     */
     public void goMainMenu() throws IOException{
         Stage switcher = (Stage) btnGoToMainMenu.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));

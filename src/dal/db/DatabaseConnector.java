@@ -11,7 +11,7 @@ public class DatabaseConnector {
     private SQLServerDataSource dataSource;
 
     /**
-     * Database connector constructoren, her skriver vi alle vores login data til databasen.
+     * Constructor for the database, plugging in the details of our SQL server / login
      */
     public DatabaseConnector() {
         dataSource = new SQLServerDataSource();
@@ -23,7 +23,7 @@ public class DatabaseConnector {
     }
 
     /**
-     * Her bruges vores database login data til at connecte, ved brug af getConnection();
+     * connects to the database using .getConnection();
      * @return
      * @throws SQLServerException
      */
@@ -31,6 +31,12 @@ public class DatabaseConnector {
         return dataSource.getConnection();
     }
 
+
+    /**
+     * Used for testing if the connection is open
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         DatabaseConnector databaseConnector = new DatabaseConnector();
 
