@@ -13,18 +13,16 @@ public class MovieManager {
     private MovieDAO movieDAO;
 
     /**
-     *
-     * @throws SQLException
+     * Constructor
      */
-    public MovieManager() throws SQLException {
+    public MovieManager(){
         movieSearcher = new MovieSearcher();
         movieDAO = new MovieDAO();
     }
 
     /**
-     * Gets the list of movies
-     * @return
-     * @throws Exception
+     * Gets list of movies using getMovies method from movieDAO
+     * @return a list of movie or an empty list of movies
      */
     public List<Movie> getMovie() {
         List<Movie> allMovie = movieDAO.getMovies();
@@ -32,42 +30,39 @@ public class MovieManager {
     }
 
     /**
-     *
+     * Creates a movie using createMovie method from movieDAO
      * @param name
      * @param rating
      * @param fileLink
      * @param duration
-     * @return
+     * @return a movie with name, rating, fileLink and duration
      */
     public Movie createMovie(String name, String rating, String fileLink, int duration) {
         return movieDAO.createMovie(name, rating, fileLink, duration);
     }
 
     /**
-     * Deletes a movie by taking the ID and using the method from MovieDAO.
+     * Deletes a movie by taking the ID and using the method from MovieDAO
      * @param id
-     * @throws Exception
      */
-    public void deleteMovie(int id) throws Exception {
+    public void deleteMovie(int id){
         movieDAO.deleteMovie(id);
     }
 
     /**
      * Edits a movie by selecting a movie and using the method from MovieDAO.
      * @param movie
-     * @throws Exception
      */
-    public void editMovie(Movie movie) throws Exception {
+    public void editMovie(Movie movie){
         movieDAO.editMovie(movie);
     }
 
     /**
      * Searching through a list of movies using the method from MovieDAO.
      * @param query
-     * @return
-     * @throws Exception
+     * @return a list of searched movies or an empty list of searched movies
      */
-    public List<Movie> searchMovie(String query) throws Exception {
+    public List<Movie> searchMovie(String query){
         List<Movie> allMovies = getMovie();
         List<Movie> searchResult = movieSearcher.search(allMovies, query);
         return searchResult;
