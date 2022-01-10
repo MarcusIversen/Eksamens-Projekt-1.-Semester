@@ -18,7 +18,6 @@ public class Category {
     public Category(int id, String name, int movies) {
         this.id = id;
         this.name = name;
-
     }
 
     /**
@@ -32,7 +31,7 @@ public class Category {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public int getMovieCount() {

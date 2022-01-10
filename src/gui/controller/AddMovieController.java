@@ -38,6 +38,7 @@ public class AddMovieController implements Initializable {
 
     @FXML
     private ComboBox<String> comboBox;
+
     ObservableList<String> list = FXCollections.observableArrayList("Test1", "Test2", "Test3");
 
     private MovieModel movieModel;

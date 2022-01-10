@@ -60,21 +60,12 @@ public class MainMenuController implements Initializable {
     private Button btnSearchBar;
 
     @FXML
-    private Label labelCategories;
-    @FXML
-    private Label labelMoviesOnCategory;
-    @FXML
-    private Label labelMovies;
-    @FXML
-    private Label labelFilter;
-
-    @FXML
     private TextField tfSearchBar;
 
     @FXML
-    public TableView<Movie> tvMovies;
+    private TableView<Movie> tvMovies;
     @FXML
-    public TableView<Category> tvCategories;
+    private TableView<Category> tvCategories;
     @FXML
     private TableView<Movie> tvMoviesOnCategory;
 
@@ -97,7 +88,6 @@ public class MainMenuController implements Initializable {
     @FXML
     public TableColumn tcDuration;
 
-    private Stage stage;
     private MovieModel movieModel;
     private CategoryModel categoryModel;
     private MovieManager movieManager;
@@ -119,7 +109,6 @@ public class MainMenuController implements Initializable {
      * @throws SQLException
      */
     public MainMenuController() throws SQLException {
-        stage = new Stage();
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
         movieManager = new MovieManager();

@@ -15,15 +15,11 @@ import java.sql.SQLException;
 public class EditCategoryController {
 
     @FXML
-    public TextField txtFieldEditCategory;
+    private TextField txtFieldEditCategory;
     @FXML
-    public Button btnCancel;
+    private Button btnCancel;
     @FXML
-    public Button btnEdit;
-    @FXML
-    public TextField playlistId;
-    @FXML
-    public Label newCategoryName;
+    private TextField playlistId;
 
     private CategoryModel categoryModel = new CategoryModel();
 

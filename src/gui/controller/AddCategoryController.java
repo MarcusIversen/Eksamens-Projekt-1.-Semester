@@ -14,19 +14,11 @@ import java.sql.SQLException;
 public class AddCategoryController {
 
     @FXML
-    public TextField txtFieldNewCategory;
+    private TextField txtFieldNewCategory;
     @FXML
-    public Button BackMainMenu;
+    private Button btnCancel;
     @FXML
-    public Button editButton;
-    @FXML
-    public TextField playlistId;
-    @FXML
-    public Label NewSongTitle;
-    @FXML
-    public Button btnCancel;
-    @FXML
-    public Button btnSave;
+    private Button btnSave;
 
     private CategoryModel categoryModel;
 

@@ -17,14 +17,6 @@ import java.sql.SQLException;
 
 public class EditMovieController {
 
-
-    @FXML
-    private Label labelNewEditSongTitle;
-    @FXML
-    private Label labelNewEditSongCategory;
-    @FXML
-    private Label labelNewEditSongFile;
-
     @FXML
     private TextField txtFieldTitle;
     @FXML
@@ -47,11 +39,6 @@ public class EditMovieController {
 
     @FXML
     private ChoiceBox cbProof;
-
-    @FXML
-    private Label NewSongTitle;
-    @FXML
-    private Label labelNewEditSongCategory1;
 
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;

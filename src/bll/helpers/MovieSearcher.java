@@ -35,7 +35,6 @@ public class MovieSearcher {
      * @param movie
      * @return
      */
-
     private boolean compareToMovieTitle(String query, Movie movie) {
         return movie.getName().toLowerCase().contains(query.toLowerCase());
     }
