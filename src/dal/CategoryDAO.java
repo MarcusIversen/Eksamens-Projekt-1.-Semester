@@ -6,7 +6,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
 import javafx.scene.control.Alert;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +17,15 @@ public class CategoryDAO {
     /**
      * Making a reference to the databaseConnector, so we can connect to the SQL Database.
      */
-    public CategoryDAO() throws SQLException {
+    public CategoryDAO(){
         databaseConnector = new DatabaseConnector();
     }
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Making a category list, connecting to the database and adding the results to our ArrayList.
+     * @return a list of categories or an empty list of categories
      */
-    public List<Category> getCategories() throws SQLException {
+    public List<Category> getCategories(){
         ArrayList<Category> allCategories = new ArrayList<>();
         try(Connection connection = databaseConnector.getConnection()) {
             String sqlStatement = "SELECT * FROM Category";
@@ -53,9 +51,9 @@ public class CategoryDAO {
     }
 
     /**
-     *
+     * Creating a category and inserting/storing the value in our SQL database.
      * @param name
-     * @return
+     * @return a Category with a name
      * @throws SQLServerException
      */
     public Category createCategory(String name) throws SQLServerException {
@@ -79,7 +77,7 @@ public class CategoryDAO {
     }
 
     /**
-     *
+     * Deletes the selected category based on the CategoryId
      * @param id
      */
     public void deleteCategory(int id) {
@@ -98,8 +96,10 @@ public class CategoryDAO {
     }
 
     /**
+     * Changes the name of the category if a match is found.
      *
-     * @param category
+     * @param  category a category with the new name, and the original id.
+     * @throws SQLException if it cannot connect to the database or something went wrong.
      */
     public void editCategory(Category category) {
         String sql = "UPDATE Category SET name=? WHERE id=?;";
@@ -116,12 +116,12 @@ public class CategoryDAO {
     }
 
     /**
-     *
+     * Adds the selected movie to the MoviesInCategory table,
+     * which holds the values for both the categoryId and the MovieId.
      * @param categoryId
      * @param movieId
-     * @throws SQLException
      */
-    public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
+    public void addMovieToCategory(int categoryId, int movieId){
         String sql = "INSERT INTO CatMovie (categoryId, movieId) VALUES (?,?);";
         try (Connection con = databaseConnector.getConnection();
              PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -135,7 +135,7 @@ public class CategoryDAO {
     }
 
     /**
-     *
+     * Gets an arraylist of movies on the categories by taking the categoryId
      * @param categoryId
      * @return
      * @throws SQLException
@@ -164,12 +164,11 @@ public class CategoryDAO {
     }
 
     /**
-     *
+     * Deletes a selected movie from category, by selecting a category/taking the categoryId and select a movie/movieId within category
      * @param categoryId
      * @param movieId
-     * @throws SQLServerException
      */
-    public void deleteFromCategory(int categoryId, int movieId) throws SQLServerException {
+    public void deleteFromCategory(int categoryId, int movieId){
         String sql = "DELETE FROM CatMovie WHERE categoryId = ? AND MovieId = ?;";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement st = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -178,14 +177,6 @@ public class CategoryDAO {
             st.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } ;
-    }
-
-    public static void main(String[] args) throws SQLException{
-        CategoryDAO categoryDAO = new CategoryDAO();
-        List<Category> allCategories = categoryDAO.getCategories();
-        //categoryDAO.createCategory("Drama");
-        System.out.println(allCategories);
-        categoryDAO.deleteCategory(2);
+        }
     }
 }

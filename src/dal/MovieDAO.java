@@ -1,16 +1,12 @@
 package dal;
 
-import be.Category;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.DatabaseConnector;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MovieDAO {
 
@@ -19,18 +15,17 @@ public class MovieDAO {
     /**
      * Making a reference to the databaseConnector, so we can connect to the SQL Database.
      */
-    public MovieDAO() throws SQLException {
+    public MovieDAO(){
         databaseConnector = new DatabaseConnector();
     }
 
     /**
-     * Create part of C.R.U.D.
-     * Method to create a movie in the database.
-     *
+     * Creates a movie, by inserting a giving name, rating, fileLink and duration
      * @param name
      * @param rating
      * @param fileLink
-     * @return
+     * @param duration
+     * @return a movie with a giving name, rating, fileLink and duration
      */
     public Movie createMovie(String name, String rating, String fileLink, int duration) {
 
@@ -60,10 +55,8 @@ public class MovieDAO {
     }
 
     /**
-     * Read part of C.R.U.D.
-     * Method to read alle the movies in the database.
-     *
-     * @return
+     * Making a movie list, connecting to the database and adding the results to our ArrayList.
+     * @return a list of movie or an empty list of movie
      */
     public List<Movie> getMovies() {
 
@@ -98,9 +91,7 @@ public class MovieDAO {
     }
 
     /**
-     * Update part of C.R.U.D.
-     * Method to update/edit movies in the database.
-     *
+     * Changes the name of a movie if a match is found
      * @param movie
      */
     public void editMovie(Movie movie) {
@@ -121,10 +112,8 @@ public class MovieDAO {
     }
 
     /**
-     * Delete part of C.R.U.D.
-     * Method to delete movies from the database.
-     *
-     * @param
+     * Deletes a movie, by taking the movieId
+     * @param id
      */
     public void deleteMovie(int id) {
         try (Connection connection = databaseConnector.getConnection()) {
@@ -144,13 +133,4 @@ public class MovieDAO {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws SQLException {
-        MovieDAO movieDAO = new MovieDAO();
-        List<Movie> allMovies = movieDAO.getMovies();
-        //movieDAO.createMovie("test", String.valueOf(4.7), "imdb.com", "yesterday");
-        System.out.println(allMovies);
-
-    }
-
 }
