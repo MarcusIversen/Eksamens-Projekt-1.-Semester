@@ -56,6 +56,9 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableColumn tcNumberOfMoviesOnCategory;
     @FXML
+    private TableColumn tcDuration;
+
+    @FXML
     private TableColumn<Movie, String> tcMovieRating;
     @FXML
     private TableColumn<Movie, String> tcNameOnMovie;
@@ -63,8 +66,6 @@ public class MainMenuController implements Initializable {
     private TableColumn<Category, String> tcCategory;
     @FXML
     private TableColumn<Movie, String> tcLastViewed;
-    @FXML
-    public TableColumn tcDuration;
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
@@ -133,7 +134,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Loading table View Categories
+     * Loading table view categories
      * @param allCategories
      */
     private void tableViewLoadCategories(ObservableList<Category> allCategories) {
@@ -141,7 +142,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     *Loading table View Movies
+     * Loading table view movies
      * @param allMovies
      */
     public void tableViewLoadMovies(ObservableList<Movie> allMovies) {
@@ -149,7 +150,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Loading table View Movies on Categories
+     * Loading table view movies on categories
      * @param allMoviesOnCategories
      */
     private void tableViewMoviesOnCategories(ObservableList<Movie> allMoviesOnCategories) {
@@ -157,7 +158,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Gets the value of all categories
+     * returns the allCategories list
      * @return
      */
     private ObservableList<Category> getCategoryData() {
@@ -165,7 +166,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Gets the value of all movies
+     * returns the allMovies list
      * @return
      */
     public ObservableList<Movie> getMoviesData() {
@@ -173,7 +174,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Gets the value of all movies on categories
+     * returns the allMoviesOnCategories list
      * @return
      */
     private ObservableList<Movie> getMoviesOnCategoriesData() {
@@ -182,7 +183,6 @@ public class MainMenuController implements Initializable {
 
     /**
      * Loads the tableview for the movies, when search is pressed.
-     *
      * @param searchData
      */
     private void searchTableViewLoad(ObservableList<Movie> searchData) {
@@ -190,8 +190,6 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Gets the searchdata.
-     *
      * @return searchData;
      */
     public ObservableList<Movie> getSearchData() {
@@ -207,7 +205,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * See the movies that is in the categories
+     * Makes the tableColumn show the movies on each category
      */
     public void seeMoviesOnCategories() {
         tcMoviesOnCategory.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -220,7 +218,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * adds categories
+     * Makes you able to add more categories to the list
      * @throws IOException
      */
     public void goAddCategory() throws IOException {
@@ -241,7 +239,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * adds movies
+     * Makes you able to add a movie to the database and the tableColumn
      * @throws IOException
      */
     public void goAddMovie() throws IOException {
@@ -262,7 +260,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Edits the categories
+     * Makes you able to edit the selected category name
      */
     public void goEditCategory() {
         if (selectedCategory != null) {
@@ -300,7 +298,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Edit the movies
+     * Makes you able to edit the selected movie title, filepath etc
      */
     public void goEditMovie() {
         if (selectedMovie != null) {
@@ -339,7 +337,8 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * delete movies
+     * deletes the selected movie.
+     * Gives you a warning message
      * @throws Exception
      */
     public void deleteMovie() throws Exception {
@@ -372,7 +371,8 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * delete categories
+     * deletes the selected category
+     * shows a warning message
      * @throws SQLException
      */
     public void deleteCategory() throws SQLException {
@@ -406,7 +406,8 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * deleting movies in categories
+     * deletes the selected movie from the category list.
+     * Gives no warning
      * @throws SQLException
      */
     public void deleteMovieInCategory() throws SQLException {
@@ -431,7 +432,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * adds movies to category
+     * Add a movie from the movie list to the selected category
      */
     public void addMovieToCategory() {
         if (selectedMovie != null)
@@ -445,7 +446,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Reloads the movie table
+     * Reloads the movie table to reflect changes
      */
     public void reloadMovieTable() throws Exception {
         try {
@@ -458,7 +459,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Reloads the category table
+     * Reloads the category table to reflect changes
      */
     public void reloadCategoryTable() {
         try {
@@ -472,7 +473,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * reloads the movies on the category in view
+     * reloads the movies on the category in view to reflect changes
      */
     public void reloadMoviesOnCategory() {
         try {
@@ -497,7 +498,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Selects the movies on the categories
+     * Makes you able to select a movie on the category from the table
      */
     private void selectedMovieOnCategory() {
         this.tvMoviesOnCategory.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -529,7 +530,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Selects the movies
+     * Makes you able to select a movie
      */
     private void selectedMovie() {
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -561,6 +562,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Method that filters the movies, with the text input you write in the textfield, next to the search button.
+     * Updates the icon with each press and clears the search on every second click
      */
     public void filterMovies() {
         if (hasSearched == true && !tfSearchBar.getText().equals("")) {
@@ -581,6 +583,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Takes the selected movie on the category and moves its position 1 up
+     * Doesn't reflect the changes to the database
      */
     public void btnUp() {
         if (selectedMovieOnCategory != null) {
@@ -598,6 +601,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Takes the selected movie on the category and moves its position 1 down
+     * Doesn't reflect the changes to the database
      */
     public void btnDown() {
         if (selectedMovieOnCategory != null) {
