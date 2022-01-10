@@ -32,24 +32,22 @@ public class EditCategoryController {
 
     /**
      * Cancels the cancelEditCategoryButton window and takes us back to the main window.
-     * @param actionEvent
      */
-    public void cancelEditCategoryButton(ActionEvent actionEvent) {
+    public void cancelEditCategoryButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
     /**
      * Edits the name of the selected category when pressed.
-     * @param actionEvent
      * @throws SQLException
      */
-    public void editCategoryButton(ActionEvent actionEvent) throws SQLException {
+    public void editCategoryButton() throws SQLException {
         String name = txtFieldEditCategory.getText();
         int id = Integer.parseInt(categoryId.getText());
         Category category = new Category(id, name);
         categoryModel.editCategory(category);
-        cancelEditCategoryButton(actionEvent);
+        cancelEditCategoryButton();
     }
 
     /**
