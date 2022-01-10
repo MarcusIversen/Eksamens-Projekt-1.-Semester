@@ -23,11 +23,14 @@ public class EditCategoryController {
 
     private CategoryModel categoryModel = new CategoryModel();
 
+    /**
+     * Constructor for the EditCategoryController.
+     */
     public EditCategoryController() throws SQLException {
     }
 
     /**
-     *
+     * Cancels the cancelEditCategoryButton window and takes us back to the main window.
      * @param actionEvent
      */
     public void cancelEditCategoryButton(ActionEvent actionEvent) {
@@ -36,7 +39,7 @@ public class EditCategoryController {
     }
 
     /**
-     *
+     * Edits the name of the selected category when pressed.
      * @param actionEvent
      * @throws SQLException
      */
@@ -49,7 +52,7 @@ public class EditCategoryController {
     }
 
     /**
-     *
+     * Sets the setSelected Category and defines what text fields should be changed.
      * @param category
      */
     public void setSelectedCategory(Category category) {
