@@ -39,7 +39,6 @@ public class EditMovieController {
 
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
-    private MainMenuController mainMenuController;
 
     /**
      * Constructor for EditMovieController.
