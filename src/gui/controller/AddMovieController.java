@@ -39,6 +39,9 @@ public class AddMovieController implements Initializable {
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
 
+    /**
+     * Constructor for AddMovieController.
+     */
     public AddMovieController() throws SQLException {
         this.movieModel = new MovieModel();
     }
@@ -56,7 +59,7 @@ public class AddMovieController implements Initializable {
     }
 
     /**
-     *
+     * Button for saving the newly added movies.
      * @throws Exception
      */
      public void saveMovieButton() throws Exception {
@@ -71,7 +74,8 @@ public class AddMovieController implements Initializable {
      }
 
     /**
-     *
+     * FileChooser for adding a Mp4 file
+     * Add the new movie to database.
      */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
