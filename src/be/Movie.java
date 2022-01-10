@@ -71,7 +71,7 @@ public class Movie {
         this.rating = rating;
     }
 
-    public void setDuration(int duration) {this.duration = duration;}
+    public void setDuration(int duration) { this.duration = duration; }
 
     /**
      *

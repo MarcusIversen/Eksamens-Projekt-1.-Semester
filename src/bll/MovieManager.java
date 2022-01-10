@@ -39,7 +39,7 @@ public class MovieManager {
      * @param duration
      * @return
      */
-    public Movie createMovie(String name, String rating, String fileLink, int duration){
+    public Movie createMovie(String name, String rating, String fileLink, int duration) {
         return movieDAO.createMovie(name, rating, fileLink, duration);
     }
 

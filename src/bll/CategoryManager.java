@@ -29,7 +29,7 @@ public class CategoryManager {
      * @param name
      * @throws SQLException
      */
-    public void createCategory(String name) throws SQLException{
+    public void createCategory(String name) throws SQLException {
         categoryDAO.createCategory(name);
     }
 
@@ -38,7 +38,7 @@ public class CategoryManager {
      * @param id
      * @throws SQLException
      */
-    public void deleteCategory(int id) throws SQLException{
+    public void deleteCategory(int id) throws SQLException {
         categoryDAO.deleteCategory(id);
     }
 
@@ -47,7 +47,7 @@ public class CategoryManager {
      * @param category
      * @throws SQLException
      */
-    public void editCategory(Category category) throws SQLException{
+    public void editCategory(Category category) throws SQLException {
         categoryDAO.editCategory(category);
     }
 
@@ -57,10 +57,10 @@ public class CategoryManager {
      * @param movieId
      * @throws SQLException
      */
-    public void addMovieToCategory(int categoryId, int movieId) throws SQLException{
+    public void addMovieToCategory(int categoryId, int movieId) throws SQLException {
         categoryDAO.addMovieToCategory(categoryId, movieId);
     }
-    
+
     /**
      *
      * @param categoryId

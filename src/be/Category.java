@@ -9,10 +9,34 @@ public class Category {
     private String name;
     private List<Movie> movies = new ArrayList<>();
 
-
-    public Category(int id, String name){
+    /**
+     *
+     * @param id
+     * @param name
+     * @param movies
+     */
+    public Category(int id, String name, int movies) {
         this.id = id;
         this.name = name;
+
+    }
+
+    /**
+     *
+     * @param id
+     * @param name
+     */
+    public Category(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public int getMovieCount() {
+        return movies.size();
     }
 
     public int getId() {
@@ -31,7 +55,7 @@ public class Category {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {return movies;}
+    public List<Movie> getMovies() { return movies; }
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;

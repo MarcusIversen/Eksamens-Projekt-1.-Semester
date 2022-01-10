@@ -27,7 +27,7 @@ public class CategoryDAO {
      * @return
      * @throws SQLException
      */
-    public List<Category> getCategories() throws SQLException{
+    public List<Category> getCategories() throws SQLException {
         ArrayList<Category> allCategories = new ArrayList<>();
         try(Connection connection = databaseConnector.getConnection()) {
             String sqlStatement = "SELECT * FROM Category";
@@ -82,7 +82,7 @@ public class CategoryDAO {
      *
      * @param id
      */
-    public void deleteCategory(int id){
+    public void deleteCategory(int id) {
         String sql = "DELETE FROM Category WHERE id = ?;";
         try (Connection con = databaseConnector.getConnection();
              PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -101,7 +101,7 @@ public class CategoryDAO {
      *
      * @param category
      */
-    public void editCategory(Category category){
+    public void editCategory(Category category) {
         String sql = "UPDATE Category SET name=? WHERE id=?;";
         try (Connection con = databaseConnector.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sql)) {
@@ -133,7 +133,6 @@ public class CategoryDAO {
         }
 
     }
-
 
     /**
      *
