@@ -30,7 +30,7 @@ public class MovieModel {
     }
 
     /**
-     * Gets the list of songs
+     * Gets the list of movies
      * @return List of movies
      * @throws Exception
      */

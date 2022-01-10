@@ -24,7 +24,7 @@ public class CategoryModel {
     }
 
     /**
-     * Gets the list of categories using the getCategories method in PlaylistDAO.
+     * Gets the list of categories using the getCategories method in CategoryDAO.
      */
     public List<Category> getCategories() throws SQLException {
         List<Category> allCategories = categoryManager.getCategories();
@@ -32,28 +32,28 @@ public class CategoryModel {
     }
 
     /**
-     * Creates a category with a given name using the method in PlaylistDAO.
+     * Creates a category with a given name using the method in CategoryDAO.
      */
     public void createCategory(String name) throws SQLException {
         categoryManager.createCategory(name);
     }
 
     /**
-     * Deletes a Category by taking the id using the method in PlaylistDAO.
+     * Deletes a Category by taking the id using the method in CategoryDAO.
      */
     public void deleteCategory(int id) throws SQLException {
         categoryManager.deleteCategory(id);
     }
 
     /**
-     * Edits a category by selecting a category using the method in PlaylistDAO.
+     * Edits a category by selecting a category using the method in CategoryDAO.
      */
     public void editCategory(Category category) throws SQLException {
         categoryManager.editCategory(category);
     }
 
     /**
-     * Adds a movie to the category by taking the categoryId and movieId and using the method in PlaylistDAO.
+     * Adds a movie to the category by taking the categoryId and movieId and using the method in CategoryDAO.
      */
     public void addMovieToCategory(int categoryId, int movieId) throws SQLException {
         categoryManager.addMovieToCategory(categoryId, movieId);
@@ -61,14 +61,14 @@ public class CategoryModel {
 
     /**
      * Gets the list of movies on the category by taking the categoryId
-     * Uses the method in PlaylistDAO.
+     * Uses the method in CategoryDAO.
      */
     public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
         return categoryManager.getMoviesOnCategory(categoryId);
     }
 
     /**
-     * Deletes a movie from the category by taken categoryId and movieId and using the method in PlaylistDAO.
+     * Deletes a movie from the category by taken categoryId and movieId and using the method in CategoryDAO.
      */
     public void deleteFromCategory(int categoryId, int movieId) throws SQLException {
         categoryManager.deleteFromCategory(categoryId, movieId);
