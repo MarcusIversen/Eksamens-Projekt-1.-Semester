@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="210.0" prefWidth="667.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpeningMenuController">
+<AnchorPane prefHeight="210.0" prefWidth="667.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpeningMenuController">
    <children>
       <Label layoutX="24.0" layoutY="25.0" prefHeight="63.0" prefWidth="628.0" text="PRIVATE MOVIE COLLECTION">
          <font>
@@ -16,7 +16,7 @@
             <Bloom threshold="0.05" />
          </effect>
       </Label>
-      <Label layoutX="32.0" layoutY="95.0" prefHeight="48.0" prefWidth="613.0" text="Remember to delete all movies with a rating under 6 , that hasn't been opened in 2 years.">
+      <Label layoutX="32.0" layoutY="95.0" prefHeight="48.0" prefWidth="613.0" text="Remember to delete all movies with a rating under 6, that hasn't been opened in 2 years.">
          <font>
             <Font size="15.0" />
          </font>
