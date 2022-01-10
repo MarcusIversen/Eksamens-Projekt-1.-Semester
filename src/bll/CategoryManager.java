@@ -14,18 +14,19 @@ public class CategoryManager {
     /**
      * Constructor for PlaylistManager
      */
-    public CategoryManager() throws SQLException {
+    public CategoryManager(){
     }
 
     /**
      * Gets the list of category using the getCategory method in categoryDAO.
+     * @return a list of categories or an empty list of categories
      */
-    public List<Category> getCategories() throws SQLException {
+    public List<Category> getCategories(){
         return categoryDAO.getCategories();
     }
 
     /**
-     *
+     * Creates a category using the createCategory method in categoryDAO
      * @param name
      * @throws SQLException
      */
@@ -34,37 +35,34 @@ public class CategoryManager {
     }
 
     /**
-     *
+     * Deletes a category using the deleteCategory methods in categoryDAO
      * @param id
-     * @throws SQLException
      */
-    public void deleteCategory(int id) throws SQLException {
+    public void deleteCategory(int id){
         categoryDAO.deleteCategory(id);
     }
 
     /**
-     *
+     * Edits a category using the editCategory from categoryDAO
      * @param category
-     * @throws SQLException
      */
-    public void editCategory(Category category) throws SQLException {
+    public void editCategory(Category category){
         categoryDAO.editCategory(category);
     }
 
     /**
-     *
+     * Adds a movie to category using addMovieToCategory method in categoryDAO
      * @param categoryId
      * @param movieId
-     * @throws SQLException
      */
-    public void addMovieToCategory(int categoryId, int movieId) throws SQLException {
+    public void addMovieToCategory(int categoryId, int movieId){
         categoryDAO.addMovieToCategory(categoryId, movieId);
     }
 
     /**
-     *
+     * Gets the movies on category using getMoviesOnCategory from categoryDAO
      * @param categoryId
-     * @return
+     * @return a list of movies on category or an empty list of movies on categories
      * @throws SQLException
      */
     public List<Movie> getMoviesOnCategory(int categoryId) throws SQLException {
@@ -72,12 +70,11 @@ public class CategoryManager {
     }
 
     /**
-     *
+     * Deletes movie from category using deleteFromCategory from categoryDAO
      * @param categoryId
      * @param movieId
-     * @throws SQLException
      */
-    public void deleteFromCategory(int categoryId, int movieId) throws SQLException {
+    public void deleteFromCategory(int categoryId, int movieId){
         categoryDAO.deleteFromCategory(categoryId, movieId);
     }
 }
