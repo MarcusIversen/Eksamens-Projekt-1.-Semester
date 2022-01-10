@@ -12,7 +12,7 @@ public class CategoryManager {
     private CategoryDAO categoryDAO = new CategoryDAO();
 
     /**
-     * Constructor for PlaylistManager
+     * Constructor for CategoryManager
      */
     public CategoryManager(){
     }

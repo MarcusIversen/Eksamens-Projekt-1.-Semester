@@ -445,7 +445,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Reloads the song table
+     * Reloads the movie table
      */
     public void reloadMovieTable() throws Exception {
         try {

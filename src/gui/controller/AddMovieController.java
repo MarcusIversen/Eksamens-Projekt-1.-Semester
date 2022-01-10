@@ -32,7 +32,7 @@ public class AddMovieController implements Initializable {
     @FXML
     private TextField txtFieldRating;
     @FXML
-    private Button btnSaveSong;
+    private Button btnSaveMovie;
     @FXML
     private Button btnCancel;
 
@@ -69,7 +69,7 @@ public class AddMovieController implements Initializable {
      int duration = (int) mediaPlayer.getMedia().getDuration().toSeconds();
 
      movieModel.createMovie(title, rating, fileLink, duration);
-     Stage stage = (Stage) btnSaveSong.getScene().getWindow();
+     Stage stage = (Stage) btnSaveMovie.getScene().getWindow();
      stage.close();
      }
 
