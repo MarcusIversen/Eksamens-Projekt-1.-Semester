@@ -21,12 +21,13 @@ public class EditCategoryController {
     @FXML
     private TextField categoryId;
 
-    private CategoryModel categoryModel = new CategoryModel();
+    private CategoryModel categoryModel;
 
     /**
      * Constructor for the EditCategoryController.
      */
     public EditCategoryController() throws SQLException {
+        this.categoryModel = new CategoryModel();
     }
 
     /**
