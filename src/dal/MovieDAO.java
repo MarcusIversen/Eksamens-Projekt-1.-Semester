@@ -127,7 +127,7 @@ public class MovieDAO {
             preparedStatement.setString(4, movie.getLastView());
             preparedStatement.setInt(5, movie.getId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete movie");
+                throw new Exception("Could not edit movie");
             }
         } catch (Exception e) {
             e.printStackTrace();
