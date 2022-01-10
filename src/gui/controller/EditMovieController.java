@@ -37,9 +37,6 @@ public class EditMovieController {
     @FXML
     private Button btnSave;
 
-    @FXML
-    private ChoiceBox cbProof;
-
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
     private MainMenuController mainMenuController;
@@ -48,7 +45,6 @@ public class EditMovieController {
         movieModel = new MovieModel();
         mainMenuController = new MainMenuController();
     }
-
 
     public void cancelEditMovieButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();

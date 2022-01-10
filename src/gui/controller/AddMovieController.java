@@ -36,11 +36,6 @@ public class AddMovieController implements Initializable {
     @FXML
     private Button btnCancel;
 
-    @FXML
-    private ComboBox<String> comboBox;
-
-    ObservableList<String> list = FXCollections.observableArrayList("Test1", "Test2", "Test3");
-
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
 
@@ -50,7 +45,6 @@ public class AddMovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        comboBox.setItems(list);
     }
 
     /**
@@ -71,7 +65,6 @@ public class AddMovieController implements Initializable {
      String fileLink = txtFieldFile.getText();
      int duration = (int) mediaPlayer.getMedia().getDuration().toSeconds();
 
-     //todo add combobox
      movieModel.createMovie(title, rating, fileLink, duration);
      Stage stage = (Stage) btnSaveSong.getScene().getWindow();
      stage.close();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieSearcher {
+
     /**
      * Method for searching a movie with the search button.
      *
@@ -13,7 +14,6 @@ public class MovieSearcher {
      * @param query
      * @return
      */
-
     public List<Movie> search(List<Movie> searchBase, String query) {
         List<Movie> searchResult = new ArrayList<>();
 
