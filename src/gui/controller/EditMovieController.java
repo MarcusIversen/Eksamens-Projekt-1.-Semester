@@ -41,18 +41,24 @@ public class EditMovieController {
     private MediaPlayer mediaPlayer;
     private MainMenuController mainMenuController;
 
+    /**
+     * Constructor for EditMovieController.
+     */
     public EditMovieController() throws SQLException {
         movieModel = new MovieModel();
         mainMenuController = new MainMenuController();
     }
 
+    /**
+     * Pressing the cancel button takes you back to the main window.
+     */
     public void cancelEditMovieButton() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
     /**
-     * Saves the newly added song.
+     * Saves the newly added movie.
      */
     public void saveBtn() throws Exception {
         String name = txtFieldTitle.getText();
@@ -68,7 +74,7 @@ public class EditMovieController {
     }
 
     /**
-     * Gets the values of the selected song.
+     * Gets the values of the selected movie.
      */
     public void setSelectedMovie(Movie movie) {
         txtFieldTitle.setText(movie.getName());
@@ -80,7 +86,8 @@ public class EditMovieController {
     }
 
     /**
-     *
+     * FileChooser for adding a Mp4 file
+     * Add the new movie to database.
      */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
