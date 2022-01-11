@@ -83,7 +83,7 @@ public class MainMenuController implements Initializable {
      * Constructor for MainMenuController.
      * @throws SQLException
      */
-    public MainMenuController() throws SQLException {
+    public MainMenuController(){
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
         movieManager = new MovieManager();
@@ -334,9 +334,8 @@ public class MainMenuController implements Initializable {
     /**
      * deletes the selected movie.
      * Gives you a warning message
-     * @throws Exception
      */
-    public void deleteMovie() throws Exception {
+    public void deleteMovie(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
         alert.setHeaderText("Warning before you delete movie");
@@ -368,9 +367,8 @@ public class MainMenuController implements Initializable {
     /**
      * deletes the selected category
      * shows a warning message
-     * @throws SQLException
      */
-    public void deleteCategory() throws SQLException {
+    public void deleteCategory(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("WARNING MESSAGE");
         alert.setHeaderText("Warning before you delete category");
@@ -505,9 +503,9 @@ public class MainMenuController implements Initializable {
         this.tvMoviesOnCategory.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovieOnCategory != null) {
                 try {
-                    var lastView_date = new Date(System.currentTimeMillis());
+                    Date lastView_date = new Date(System.currentTimeMillis());
                     String pattern = "dd/MM/yyyy  HH:mm:ss";
-                    var simpleDateFormat = new SimpleDateFormat(pattern);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                     String date = simpleDateFormat.format(lastView_date);
                     selectedMovieOnCategory.setLastView(date);
 
@@ -536,9 +534,9 @@ public class MainMenuController implements Initializable {
         this.tvMovies.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && selectedMovie != null) {
                 try {
-                    var lastView_date = new Date(System.currentTimeMillis());
+                    Date lastView_date = new Date(System.currentTimeMillis());
                     String pattern = "dd/MM/yyyy  HH:mm:ss";
-                    var simpleDateFormat = new SimpleDateFormat(pattern);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                     String date = simpleDateFormat.format(lastView_date);
                     selectedMovie.setLastView(date);
 

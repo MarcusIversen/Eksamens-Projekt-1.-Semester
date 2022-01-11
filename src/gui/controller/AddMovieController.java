@@ -1,16 +1,11 @@
 package gui.controller;
 
-import be.Category;
 import gui.model.MovieModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -42,7 +37,7 @@ public class AddMovieController implements Initializable {
     /**
      * Constructor for AddMovieController.
      */
-    public AddMovieController() throws SQLException {
+    public AddMovieController(){
         this.movieModel = new MovieModel();
     }
 
@@ -61,9 +56,8 @@ public class AddMovieController implements Initializable {
     /**
      * Button for saving the newly added movies.
      * Gets the text in each textField
-     * @throws Exception
      */
-     public void saveMovieButton() throws Exception {
+     public void saveMovieButton(){
      String title = txtFieldTitle.getText();
      String rating = txtFieldRating.getText();
      String fileLink = txtFieldFile.getText();

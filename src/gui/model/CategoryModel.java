@@ -17,7 +17,7 @@ public class CategoryModel {
     /**
      * Constructor for CategoryModel
      */
-    public CategoryModel() throws SQLException {
+    public CategoryModel(){
         categoryManager = new CategoryManager();
         categoriesToBeViewed = FXCollections.observableArrayList();
         categoriesToBeViewed.addAll(categoryManager.getCategories());
@@ -26,7 +26,7 @@ public class CategoryModel {
     /**
      * Gets the list of categories using the getCategories method in CategoryDAO.
      */
-    public List<Category> getCategories() throws SQLException {
+    public List<Category> getCategories(){
         List<Category> allCategories = categoryManager.getCategories();
         return allCategories;
     }
@@ -41,21 +41,21 @@ public class CategoryModel {
     /**
      * Deletes a Category by taking the id using the method in CategoryDAO.
      */
-    public void deleteCategory(int id) throws SQLException {
+    public void deleteCategory(int id){
         categoryManager.deleteCategory(id);
     }
 
     /**
      * Edits a category by selecting a category using the method in CategoryDAO.
      */
-    public void editCategory(Category category) throws SQLException {
+    public void editCategory(Category category){
         categoryManager.editCategory(category);
     }
 
     /**
      * Adds a movie to the category by taking the categoryId and movieId and using the method in CategoryDAO.
      */
-    public void addMovieToCategory(int categoryId, int movieId) throws SQLException {
+    public void addMovieToCategory(int categoryId, int movieId){
         categoryManager.addMovieToCategory(categoryId, movieId);
     }
 
