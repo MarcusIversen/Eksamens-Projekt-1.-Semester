@@ -3,6 +3,7 @@ package dal;
 import be.Category;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import dal.Interfaces.CategoryDAOInterface;
 import dal.db.DatabaseConnector;
 import javafx.scene.control.Alert;
 
@@ -10,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAO {
+public class CategoryDAO implements CategoryDAOInterface {
 
     private final DatabaseConnector databaseConnector;
 

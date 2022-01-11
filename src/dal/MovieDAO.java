@@ -2,13 +2,14 @@ package dal;
 
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import dal.Interfaces.MovieDAOInterface;
 import dal.db.DatabaseConnector;
 import javafx.scene.control.Alert;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDAO {
+public class MovieDAO implements MovieDAOInterface {
 
     private final DatabaseConnector databaseConnector;
 
