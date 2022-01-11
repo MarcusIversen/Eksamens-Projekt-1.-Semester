@@ -376,7 +376,7 @@ public class MainMenuController implements Initializable {
         alert.setHeaderText("Warning before you delete category");
         alert.setContentText(" Remove all movies from selected category to delete!! \n Are you sure you want " +
                 "to delete this movie?");
-        if (selectedMovie != null) {
+        if (selectedCategory != null) {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 selectedCategory();
