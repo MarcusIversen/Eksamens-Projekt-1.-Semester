@@ -60,6 +60,7 @@ public class AddMovieController implements Initializable {
 
     /**
      * Button for saving the newly added movies.
+     * Gets the text in each textField
      * @throws Exception
      */
      public void saveMovieButton() throws Exception {
@@ -74,8 +75,7 @@ public class AddMovieController implements Initializable {
      }
 
     /**
-     * FileChooser for adding a Mp4 file
-     * Add the new movie to database.
+     * FileChooser for adding a mp4 or mpeg4 file
      */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();

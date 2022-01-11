@@ -139,7 +139,7 @@ public class Movie {
      */
     public String getDuration() {
         int minutes = (duration)/60;
-        int seconds = (duration) %60;
+        int seconds = (duration)%60;
         if (10 > seconds){
             return minutes + ":0" + seconds;
         } else {

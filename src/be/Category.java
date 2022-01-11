@@ -31,8 +31,7 @@ public class Category {
     }
 
     /**
-     * Gets the number moviesCount
-     * @return
+     * @returns the size of the Movie arraylist
      */
     public int getMovieCount() {
         return movies.size();

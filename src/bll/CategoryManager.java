@@ -18,7 +18,7 @@ public class CategoryManager {
 
     /**
      * Gets the list of category using the getCategory method in categoryDAO.
-     * @return a list of categories or an empty list of categories
+     * @return a list of categories
      */
     public List<Category> getCategories(){
         return categoryDAO.getCategories();

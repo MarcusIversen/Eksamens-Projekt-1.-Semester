@@ -40,6 +40,7 @@ public class EditCategoryController {
 
     /**
      * Edits the name of the selected category when pressed.
+     * Gets the name from the textField and the saves the categoryId.
      * @throws SQLException
      */
     public void editCategoryButton() throws SQLException {

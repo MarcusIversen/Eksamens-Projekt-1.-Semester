@@ -31,9 +31,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
-
-    @FXML
-    private Button btnEditMovie;
+    
     @FXML
     private Button btnSearchBar;
 
@@ -62,8 +60,6 @@ public class MainMenuController implements Initializable {
     private TableColumn<Movie, String> tcMovieRating;
     @FXML
     private TableColumn<Movie, String> tcNameOnMovie;
-    @FXML
-    private TableColumn<Category, String> tcCategory;
     @FXML
     private TableColumn<Movie, String> tcLastViewed;
 
@@ -304,7 +300,6 @@ public class MainMenuController implements Initializable {
         if (selectedMovie != null) {
             Movie selectedMovie = tvMovies.getSelectionModel().getSelectedItem();
 
-            Stage switcher = (Stage) btnEditMovie.getScene().getWindow();
             FXMLLoader parent = new FXMLLoader(getClass().getResource("/gui/view/EditMovie.fxml"));
             Scene mainWindowScene = null;
             try {
@@ -408,9 +403,8 @@ public class MainMenuController implements Initializable {
     /**
      * deletes the selected movie from the category list.
      * Gives no warning
-     * @throws SQLException
      */
-    public void deleteMovieInCategory() throws SQLException {
+    public void deleteMovieInCategory() {
 
         if (selectedCategory != null && selectedMovieOnCategory != null) {
             try {
@@ -448,7 +442,7 @@ public class MainMenuController implements Initializable {
     /**
      * Reloads the movie table to reflect changes
      */
-    public void reloadMovieTable() throws Exception {
+    public void reloadMovieTable() {
         try {
             int index = tvMovies.getSelectionModel().getFocusedIndex();
             this.tvMovies.setItems(FXCollections.observableList(movieModel.getMovies()));

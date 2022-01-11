@@ -28,8 +28,6 @@ public class EditMovieController {
     private TextField txtFieldFileDuration;
 
     @FXML
-    private Button chooseFileButton;
-    @FXML
     private Button btnCancel;
     @FXML
     private Button btnSave;
@@ -42,8 +40,8 @@ public class EditMovieController {
      * Constructor for EditMovieController.
      */
     public EditMovieController() throws SQLException {
-        movieModel = new MovieModel();
-        mainMenuController = new MainMenuController();
+        this.movieModel = new MovieModel();
+        this.mainMenuController = new MainMenuController();
     }
 
     /**
@@ -56,6 +54,7 @@ public class EditMovieController {
 
     /**
      * Saves the newly added movie.
+     * Gets the text from the various textFields
      */
     public void saveBtn() throws Exception {
         String name = txtFieldTitle.getText();
@@ -83,8 +82,7 @@ public class EditMovieController {
     }
 
     /**
-     * FileChooser for adding a Mp4 file
-     * Add the new movie to database.
+     * FileChooser for adding a Mp4 or mpeg4 file
      */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
