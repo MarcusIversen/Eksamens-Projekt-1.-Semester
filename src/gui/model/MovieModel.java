@@ -4,9 +4,6 @@ import be.Movie;
 import bll.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class MovieModel {
@@ -14,7 +11,7 @@ public class MovieModel {
     private ObservableList<Movie> moviesToBeViewed;
     private MovieManager movieManager;
 
-    public MovieModel() throws SQLException {
+    public MovieModel(){
         movieManager = new MovieManager();
         moviesToBeViewed = FXCollections.observableArrayList();
         moviesToBeViewed.addAll(movieManager.getMovie());
@@ -25,7 +22,7 @@ public class MovieModel {
      * @param movie
      * @throws Exception
      */
-    public void editMovie(Movie movie) throws Exception {
+    public void editMovie(Movie movie){
         movieManager.editMovie(movie);
     }
 
@@ -55,7 +52,7 @@ public class MovieModel {
      * @param id
      * @throws Exception
      */
-    public void deleteMovie(int id) throws Exception {
+    public void deleteMovie(int id){
         movieManager.deleteMovie(id);
     }
 
@@ -65,7 +62,7 @@ public class MovieModel {
      * @return searchResults
      * @throws Exception
      */
-    public List<Movie> searchMovie(String query) throws Exception {
+    public List<Movie> searchMovie(String query){
         List<Movie> searchResults = null;
 
         searchResults = movieManager.searchMovie(query);

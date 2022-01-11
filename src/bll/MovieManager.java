@@ -3,8 +3,6 @@ package bll;
 import be.Movie;
 import bll.helpers.MovieSearcher;
 import dal.MovieDAO;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class MovieManager {
