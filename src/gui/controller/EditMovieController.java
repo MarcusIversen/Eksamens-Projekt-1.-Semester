@@ -39,7 +39,7 @@ public class EditMovieController {
     /**
      * Constructor for EditMovieController.
      */
-    public EditMovieController() throws SQLException {
+    public EditMovieController(){
         this.movieModel = new MovieModel();
         this.mainMenuController = new MainMenuController();
     }
@@ -56,7 +56,7 @@ public class EditMovieController {
      * Saves the newly added movie.
      * Gets the text from the various textFields
      */
-    public void saveBtn() throws Exception {
+    public void saveBtn(){
         String name = txtFieldTitle.getText();
         String rating = txtFieldFileRating.getText();
         String fileLink = txtFieldFile.getText();

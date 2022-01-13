@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddMovieController implements Initializable {

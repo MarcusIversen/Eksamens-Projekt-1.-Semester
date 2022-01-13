@@ -23,7 +23,7 @@ public class EditCategoryController {
     /**
      * Constructor for the EditCategoryController.
      */
-    public EditCategoryController() throws SQLException {
+    public EditCategoryController(){
         this.categoryModel = new CategoryModel();
     }
 
@@ -40,7 +40,7 @@ public class EditCategoryController {
      * Gets the name from the textField and the saves the categoryId.
      * @throws SQLException
      */
-    public void editCategoryButton() throws SQLException {
+    public void editCategoryButton(){
         String name = txtFieldEditCategory.getText();
         int id = Integer.parseInt(categoryId.getText());
         Category category = new Category(id, name);
