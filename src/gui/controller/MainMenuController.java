@@ -606,6 +606,10 @@ public class MainMenuController implements Initializable {
             }
         }
     }
+
+    /**
+     * Searches the selectedMovie using the title on IMDB.
+     */
     public void searchOnIMDB() {
         String query = selectedMovie == null ? selectedMovieOnCategory.getName() : selectedMovie.getName();
         query = query.replaceAll(" ", "_");
