@@ -2,7 +2,6 @@ package gui.controller;
 
 import be.Category;
 import be.Movie;
-import bll.MovieManager;
 import gui.model.CategoryModel;
 import gui.model.MovieModel;
 import javafx.application.Platform;
@@ -67,7 +66,6 @@ public class MainMenuController implements Initializable {
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
-    private MovieManager movieManager;
 
     public ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
@@ -88,7 +86,6 @@ public class MainMenuController implements Initializable {
     public MainMenuController(){
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
-        movieManager = new MovieManager();
     }
 
     /**
@@ -194,9 +191,6 @@ public class MainMenuController implements Initializable {
         return searchData;
     }
 
-    public MovieManager getMovieManager() {
-        return movieManager;
-    }
 
     public void closeTheAppButton() {
         Platform.exit();
