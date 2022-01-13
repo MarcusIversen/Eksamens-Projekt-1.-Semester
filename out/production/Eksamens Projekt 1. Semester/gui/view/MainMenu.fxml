@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="19.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -60,8 +60,6 @@
             <Bloom threshold="0.05" />
          </effect>
       </Label>
-      <Label layoutX="904.0" layoutY="90.0" prefHeight="17.0" prefWidth="67.0" text="Reload table" />
-      <Button fx:id="btnReload" layoutX="901.0" layoutY="85.0" mnemonicParsing="false" onAction="#reloadMovieTable" opacity="0.0" prefHeight="27.0" prefWidth="67.0" />
       <Label layoutX="46.0" layoutY="52.0" prefHeight="23.0" prefWidth="256.0" text="Double tap to play movie">
          <font>
             <Font name="Bodoni MT Black" size="19.0" />
