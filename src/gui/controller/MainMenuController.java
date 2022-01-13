@@ -493,6 +493,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Makes you able to select a movie on the category from the table
+     * If you doubleclick a movie, it updates the last viewed column - also edits the database using the editMovie() method
      */
     private void selectedMovieOnCategory() {
         this.tvMoviesOnCategory.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -525,6 +526,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Makes you able to select a movie
+     * If you doubleclick a movie, it updates the last viewed column - also edits the database using the editMovie() method
      */
     private void selectedMovie() {
         this.tvMovies.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
