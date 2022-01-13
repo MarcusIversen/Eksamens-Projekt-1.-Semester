@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.ErrorHandling;
 import gui.model.CategoryModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,14 +20,16 @@ public class AddCategoryController {
     private Button btnSave;
 
     private CategoryModel categoryModel;
+    private ErrorHandling errorHandling;
 
     /**
      * Constructor for AddCategoryController
      * adds CategoryModel
      * @throws SQLException
      */
-    public AddCategoryController() throws SQLException {
-        this.categoryModel = new CategoryModel();
+    public AddCategoryController() {
+        categoryModel = new CategoryModel();
+        errorHandling = new ErrorHandling();
     }
 
     /**
@@ -46,11 +49,7 @@ public class AddCategoryController {
         if(txtFieldNewCategory != null && !txtFieldNewCategory.getText().isEmpty()){
             categoryModel.createCategory(txtFieldNewCategory.getText());
         }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR MESSAGE");
-            alert.setHeaderText("No name is giving to the category");
-            alert.setContentText("To add a category, please enter a name first");
-            alert.showAndWait();
+            errorHandling.addMovieError();
         }
         stage.close();
     }

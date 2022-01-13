@@ -1,6 +1,7 @@
 package dal;
 
 import be.Category;
+import be.ErrorHandling;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.Interfaces.CategoryDAOInterface;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class CategoryDAO implements CategoryDAOInterface {
 
+    private ErrorHandling errorHandling;
     private final DatabaseConnector databaseConnector;
 
     /**
@@ -20,6 +22,7 @@ public class CategoryDAO implements CategoryDAOInterface {
      */
     public CategoryDAO(){
         databaseConnector = new DatabaseConnector();
+        errorHandling = new ErrorHandling();
     }
 
     /**
@@ -88,11 +91,7 @@ public class CategoryDAO implements CategoryDAOInterface {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException ex) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING MESSAGE");
-            alert.setHeaderText("There is still movies in the selected category");
-            alert.setContentText("Remove all movies from category to delete");
-            alert.showAndWait();
+            errorHandling.deleteCategoryDAOError();
         }
     }
 

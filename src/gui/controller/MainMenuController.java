@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Category;
+import be.ErrorHandling;
 import be.Movie;
 import gui.model.CategoryModel;
 import gui.model.MovieModel;
@@ -66,6 +67,7 @@ public class MainMenuController implements Initializable {
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
+    private ErrorHandling errorHandling;
 
     public ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
@@ -86,6 +88,7 @@ public class MainMenuController implements Initializable {
     public MainMenuController(){
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
+        errorHandling = new ErrorHandling();
     }
 
     /**
@@ -280,11 +283,7 @@ public class MainMenuController implements Initializable {
                 }
             });
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR MESSAGE");
-            alert.setHeaderText("No category is selected");
-            alert.setContentText("To edit a category, select a category first");
-            alert.showAndWait();
+            errorHandling.editCategoryError();
         }
 
     }
@@ -319,11 +318,7 @@ public class MainMenuController implements Initializable {
                 }
             });
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR MESSAGE");
-            alert.setHeaderText("No movie is selected");
-            alert.setContentText("To edit a movie, select a movie first");
-            alert.showAndWait();
+            errorHandling.editMovieError();
         }
     }
 
@@ -352,11 +347,7 @@ public class MainMenuController implements Initializable {
                 e.printStackTrace();
             }
         }else {
-            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
-            alertDelete.setTitle("ERROR MESSAGE");
-            alertDelete.setHeaderText("No movie is selected");
-            alertDelete.setContentText("To edit a movie, select a movie first");
-            alertDelete.showAndWait();
+            errorHandling.deleteMovieError();
         }
     }
 
@@ -385,11 +376,7 @@ public class MainMenuController implements Initializable {
                 e.printStackTrace();
             }
         }else {
-            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
-            alertDelete.setTitle("ERROR MESSAGE");
-            alertDelete.setHeaderText("No category is selected");
-            alertDelete.setContentText("To delete a category, select a category first");
-            alertDelete.showAndWait();
+            errorHandling.deleteCategoryError();
         }
 
     }
@@ -411,11 +398,7 @@ public class MainMenuController implements Initializable {
                 sqlException.printStackTrace();
             }
         }else{
-            Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
-            alertDelete.setTitle("ERROR MESSAGE");
-            alertDelete.setHeaderText("No movie is selected");
-            alertDelete.setContentText("To delete a movie, select a movie first");
-            alertDelete.showAndWait();
+            errorHandling.deleteMovieInCategoryError();
         }
     }
 
@@ -584,7 +567,7 @@ public class MainMenuController implements Initializable {
                 Collections.swap(allMoviesOnCategories, index, index1);
                 tvMoviesOnCategory.getSelectionModel().select(index);
             } catch (Exception exception) {
-                exception.printStackTrace();
+                errorHandling.buttonError();
             }
         }
     }
@@ -602,7 +585,7 @@ public class MainMenuController implements Initializable {
                 Collections.swap(allMoviesOnCategories, index, index1);
                 tvMoviesOnCategory.getSelectionModel().select(index);
             } catch (Exception exception) {
-                exception.printStackTrace();
+                errorHandling.buttonError();
             }
         }
     }
@@ -616,9 +599,9 @@ public class MainMenuController implements Initializable {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
                 Desktop.getDesktop().browse(new URI("https://www.imdb.com/find?q=" + query + "&ref_=nv_sr_sm"));
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

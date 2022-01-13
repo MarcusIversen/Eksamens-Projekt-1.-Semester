@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.ErrorHandling;
 import gui.model.MovieModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,12 +33,14 @@ public class AddMovieController implements Initializable {
 
     private MovieModel movieModel;
     private MediaPlayer mediaPlayer;
+    private ErrorHandling errorHandling;
 
     /**
      * Constructor for AddMovieController.
      */
     public AddMovieController(){
         this.movieModel = new MovieModel();
+        errorHandling = new ErrorHandling();
     }
 
     @Override
@@ -72,7 +75,7 @@ public class AddMovieController implements Initializable {
      */
     public void chooseMP4Button() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Movie files", "*.mp4", "*.mpeg4"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp4, mpeg4", "*.mp4", "*.mpeg4"));
         fileChooser.setInitialDirectory(new File("data/"));
         File selectedFile = fileChooser.showOpenDialog(null);
 
@@ -92,11 +95,7 @@ public class AddMovieController implements Initializable {
                 }
             });
         }else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR MESSAGE");
-            alert.setHeaderText("Wrong file type is selected");
-            alert.setContentText("To add a movie, select a file type ending with .mp4 or mpeg4 first");
-            alert.showAndWait();
+            errorHandling.addFileError();
         }
     }
 }

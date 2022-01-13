@@ -1,5 +1,6 @@
 package dal;
 
+import be.ErrorHandling;
 import be.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.Interfaces.MovieDAOInterface;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class MovieDAO implements MovieDAOInterface {
 
+    private ErrorHandling errorHandling;
     private final DatabaseConnector databaseConnector;
 
     /**
@@ -18,6 +20,7 @@ public class MovieDAO implements MovieDAOInterface {
      */
     public MovieDAO(){
         databaseConnector = new DatabaseConnector();
+        errorHandling = new ErrorHandling();
     }
 
     /**
@@ -104,11 +107,7 @@ public class MovieDAO implements MovieDAOInterface {
                 throw new Exception("Could not delete movie");
             }
         } catch (SQLException throwables) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING MESSAGE");
-            alert.setHeaderText("There is still categories assigned to this movie!!");
-            alert.setContentText(" To delete a movie, delete it from all categories first!!");
-            alert.showAndWait();
+            errorHandling.deleteMovieDAOError();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,27 +5,10 @@ import javafx.scene.control.Alert;
 
 public class ErrorHandling {
 
-    private final DatabaseConnector databaseConnector;
-
-    /**
-     * Making a reference to the databaseConnector, so we can connect to the SQL Database.
-     */
-    public ErrorHandling(){
-        databaseConnector = new DatabaseConnector();
-    }
-
-    public static void connectionError(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Couldn't connect to Server");
-        alert.setContentText("Check your Connections and make you have access to the Server");
-        alert.showAndWait();
-    }
-
     public static void addMovieError(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("ERROR MESSAGE");
-        alert.setHeaderText("No name is giving to the category");
+        alert.setHeaderText("No name is given to the category");
         alert.setContentText("To add a category, please enter a name first");
         alert.showAndWait();
     }
@@ -54,11 +37,12 @@ public class ErrorHandling {
         alert.showAndWait();
     }
 
+
     public static void deleteMovieError(){
         Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
         alertDelete.setTitle("ERROR MESSAGE");
         alertDelete.setHeaderText("No movie is selected");
-        alertDelete.setContentText("To edit a movie, select a movie first");
+        alertDelete.setContentText("To delete a movie, select a movie first");
         alertDelete.showAndWait();
     }
 
@@ -78,11 +62,11 @@ public class ErrorHandling {
         alertDelete.showAndWait();
     }
 
-    public static void buttonUpError(){
+    public static void buttonError(){
         Alert alertDelete = new Alert(Alert.AlertType.INFORMATION);
         alertDelete.setTitle("ERROR MESSAGE");
-        alertDelete.setHeaderText("There is only one movie in category");
-        alertDelete.setContentText("Add more movies to change position");
+        alertDelete.setHeaderText("Movie cant move up/down");
+        alertDelete.setContentText("There is not enough movies/table ends here");
         alertDelete.showAndWait();
     }
 
