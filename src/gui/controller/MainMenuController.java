@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -605,6 +607,19 @@ public class MainMenuController implements Initializable {
                 tvMoviesOnCategory.getSelectionModel().select(index);
             } catch (Exception exception) {
                 exception.printStackTrace();
+            }
+        }
+    }
+    public void searchOnIMDB() {
+        String query = selectedMovie == null ? selectedMovieOnCategory.getName() : selectedMovie.getName();
+        query = query.replaceAll(" ", "_");
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://www.imdb.com/find?q=" + query + "&ref_=nv_sr_sm"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
             }
         }
     }

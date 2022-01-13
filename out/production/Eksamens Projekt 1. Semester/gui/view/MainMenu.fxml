@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
+<AnchorPane prefHeight="604.0" prefWidth="1007.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainMenuController">
     <children>
         <TableView fx:id="tvCategories" layoutX="19.0" layoutY="107.0" prefHeight="426.0" prefWidth="235.0">
             <columns>
@@ -39,13 +39,13 @@
         <Label fx:id="labelMovies" layoutX="603.0" layoutY="90.0" text="Movies" />
         <Button fx:id="btnLeftArrow" layoutX="564.0" layoutY="100.0" mnemonicParsing="false" onAction="#addMovieToCategory" prefHeight="40.0" prefWidth="27.0" style="-fx-rotate: 90px;" text="▼" />
         <Button fx:id="btnAddCategory" layoutX="19.0" layoutY="552.0" mnemonicParsing="false" onAction="#goAddCategory" prefHeight="26.0" prefWidth="50.0" text="Add.." />
-        <Label fx:id="labelFilter" layoutX="761.0" layoutY="36.0" text="Search:">
+        <Label fx:id="labelFilter" layoutX="759.0" layoutY="22.0" text="Search:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="tfSearchBar" layoutX="818.0" layoutY="35.0" prefHeight="25.0" prefWidth="120.0" />
-        <Button fx:id="btnSearchBar" layoutX="940.0" layoutY="35.0" mnemonicParsing="false" onAction="#filterMovies" prefHeight="26.0" prefWidth="31.0" text="🔍" />
+        <TextField fx:id="tfSearchBar" layoutX="816.0" layoutY="22.0" prefHeight="25.0" prefWidth="120.0" />
+        <Button fx:id="btnSearchBar" layoutX="938.0" layoutY="21.0" mnemonicParsing="false" onAction="#filterMovies" prefHeight="26.0" prefWidth="31.0" text="🔍" />
         <TableView fx:id="tvMoviesOnCategory" layoutX="261.0" layoutY="107.0" prefHeight="426.0" prefWidth="292.0">
             <columns>
                 <TableColumn fx:id="tcMovieRatingOnCategory" prefWidth="31.0" text="★" />
@@ -70,5 +70,6 @@
             <Bloom threshold="0.86" />
          </effect>
       </Label>
+      <Button fx:id="btnImdbSearch" layoutX="757.0" layoutY="53.0" mnemonicParsing="false" onAction="#searchOnIMDB" prefHeight="26.0" prefWidth="213.0" text="Search on imdb.com" />
     </children>
 </AnchorPane>
