@@ -69,7 +69,7 @@ public class MainMenuController implements Initializable {
     private CategoryModel categoryModel;
     private ErrorHandling errorHandling;
 
-    public ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
     private ObservableList<Movie> allMoviesOnCategories = FXCollections.observableArrayList();
 

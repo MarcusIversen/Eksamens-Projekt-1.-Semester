@@ -16,7 +16,7 @@ public class DatabaseConnector {
         dataSource.setServerName("10.176.111.31");
         dataSource.setDatabaseName("PrivateMovieCollection2022");
         dataSource.setUser("CSe21A_5");
-        dataSource.setPassword("CSe21A_5");
+        dataSource.setPassword("123And123");
         dataSource.setPortNumber(1433);
     }
 
